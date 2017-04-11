@@ -1,4 +1,4 @@
-package main.java.session1;
+package main.java.session01;
 
 public class Main {
 
