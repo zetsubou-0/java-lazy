@@ -1,4 +1,4 @@
-package main.java.session02;
+package session02;
 
 /**
  * Created by zetsubou_0 on 4/13/17.

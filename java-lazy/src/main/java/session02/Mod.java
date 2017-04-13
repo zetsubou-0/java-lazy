@@ -1,4 +1,4 @@
-package main.java.session02;
+package session02;
 
 public class Mod {
 
