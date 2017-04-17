@@ -1,4 +1,4 @@
-package session01;
+package session.session01;
 
 public class MethodInvestigation {
     String name; // null
