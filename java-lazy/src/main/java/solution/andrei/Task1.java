@@ -43,8 +43,5 @@ public class Task1 {
         int in = (int)n;
         long ln = (long)n;
         float fn = (float)n;
-
-
-
     }
 }
