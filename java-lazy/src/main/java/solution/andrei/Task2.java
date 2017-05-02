@@ -4,7 +4,7 @@ public class Task2 {
         double number = 12.5;
         System.out.println(translation(number));
         int value = 5;
-        System.out.print(answer(value));
+        System.out.println(answer(value));
         System.out.print(mood(value));
 
     }
