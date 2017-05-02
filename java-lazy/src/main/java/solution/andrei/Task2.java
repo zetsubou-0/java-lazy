@@ -1,10 +1,10 @@
 package solution.andrei;
 public class Task2 {
-    private static void main (String[] args){
-        double figure = 12.5;
-        System.out.println (figure/100);
+    public static void main (String[] args){
+        double number = 12.5;
+        System.out.print(translation(number));
     }
-    private static double translation (double figure){
-        return figure/100;
+    private static double translation (double number){
+        return number/100;
     }
 }
