@@ -16,7 +16,7 @@ public class Task1 {
         int i;
         long l;
         float f;
-        double d = 0;
+        double d = 0.0;
         d = 3.14;
         boolean b;
         char c;
