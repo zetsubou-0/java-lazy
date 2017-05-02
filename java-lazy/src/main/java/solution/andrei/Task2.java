@@ -8,16 +8,19 @@ public class Task2 {
         System.out.print(mood(value));
 
     }
+
     private static double translation (double number){
-        return number/100;
+        return number / 100;
     }
+
     private static boolean answer (int value){
-        if (value>=0){
+        if (value >= 0){
             return true;
         }else {
             return false;
         }
     }
+
     private static String mood (long value ){
         if (value > 0){
             return "positive";
