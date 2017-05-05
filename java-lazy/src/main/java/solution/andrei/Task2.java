@@ -13,12 +13,9 @@ public class Task2 {
 
         System.out.println(mood((int)value2));
 
-
-        System.out.print("start ");
-        for (int i = 1; i <= 100; i++) {
-            System.out.print(i + " ");
-        }
-        System.out.println("stop");
+        String s1 = "start ";
+        String s2 = "stop";
+        line(s1,s2);
     }
 
     private static double translation (double number){
@@ -46,5 +43,21 @@ public class Task2 {
 
     private static String mood (int val){
         return mood((long)val);
+    }
+
+    private static void line (String start, String stop){
+        System.out.print(start);
+        int a = -100;
+        int b = 230;
+        int i = a;
+        while (i <= b ) {
+            System.out.print(i + " ");
+            i++;
+        }
+        while (i >= b) {
+            System.out.print(i + " ");
+            i--;
+        }
+        System.out.print(stop);
     }
 }
