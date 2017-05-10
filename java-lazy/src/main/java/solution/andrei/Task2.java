@@ -13,9 +13,8 @@ public class Task2 {
 
         System.out.println(mood((int)value2));
 
-        String s1 = "start ";
-        String s2 = "stop";
-        line(s1,s2);
+
+        line(-12,35);
     }
 
     private static double translation (double number){
@@ -45,10 +44,9 @@ public class Task2 {
         return mood((long)val);
     }
 
-    private static void line (String start, String stop){
-        System.out.print(start);
-        int a = -100;
-        int b = 230;
+    private static void line (int a, int b){
+        System.out.print("start");
+
         int i = a;
         while (i <= b ) {
             System.out.print(i + " ");
@@ -58,6 +56,6 @@ public class Task2 {
             System.out.print(i + " ");
             i--;
         }
-        System.out.print(stop);
+        System.out.print("stop");
     }
 }
