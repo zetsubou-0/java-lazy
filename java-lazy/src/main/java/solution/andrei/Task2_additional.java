@@ -29,10 +29,6 @@ public class Task2_additional {
     }
 
     private static double methodMaxMin (double[] a){
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 -1 ==0 | a[i] <0){
-                System.out.println(a[i]);
-            }
-        }
+       return 0;
     }
 }
