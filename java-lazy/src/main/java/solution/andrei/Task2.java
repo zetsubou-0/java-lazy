@@ -94,7 +94,7 @@ public class Task2 {
 
     private static void vivodElement1(double[] a){
         for (int i = 0; i < a.length; i++) {
-            if (a[i] % 2 -1 ==0 | a[i] <0){
+            if (a[i] % 2 == 1 || a[i] <0){
                 System.out.println(a[i]);
             }
         }
