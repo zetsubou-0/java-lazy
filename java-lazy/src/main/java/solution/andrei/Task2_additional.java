@@ -36,6 +36,6 @@ public class Task2_additional {
         }
         System.out.println(max);
         System.out.println(min);
-       return (max + min)/2;
+       return  (max + min)/2;
     }
 }
