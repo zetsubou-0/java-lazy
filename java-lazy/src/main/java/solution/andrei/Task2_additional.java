@@ -13,11 +13,10 @@ public class Task2_additional {
         element[2] = 3.5;
         element[3] = 0.01;
         element[4] = 5.5;
-        methodMaxMin(element);
+        System.out.println(methodMaxMin(element));
     }
 
     private static int factorial(int x){
-
         if (x == 1){
             return 1;
         } else{
@@ -26,6 +25,17 @@ public class Task2_additional {
     }
 
     private static double methodMaxMin (double[] a){
-       return 0;
+        double max = a[0] ;
+        double min = a[0];
+        for (int i = 0; i < a.length; i++) {
+            if (max < a[i]){
+                max = a[i];
+            }if (min > a[i]){
+                min = a[i];
+            }
+        }
+        System.out.println(max);
+        System.out.println(min);
+       return (max + min)/2;
     }
 }
