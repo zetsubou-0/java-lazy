@@ -59,8 +59,7 @@ public class Task2 {
     private static String mood (long value ){
         if (value > 0){
             return "positive";
-        }
-        if (value < 0){
+        }else if (value < 0){
             return "negative";
         }else {
             return "zero";
@@ -73,15 +72,13 @@ public class Task2 {
 
     private static void line (int a, int b){
         System.out.print("start");
-
-        int i = a;
-        while (i <= b ) {
-            System.out.print(i + " ");
-            i++;
+        while (a <= b ) {
+            System.out.print(a + " ");
+            a++;
         }
-        while (i >= b) {
-            System.out.print(i + " ");
-            i--;
+        while (a >= b) {
+            System.out.print(a + " ");
+            a--;
         }
         System.out.println("stop");
     }
