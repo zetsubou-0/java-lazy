@@ -14,6 +14,16 @@ public class Task2_additional {
         element[3] = 0.01;
         element[4] = 5.5;
         System.out.println("среднее значение:" + methodMaxMin(element));
+
+
+        int[] element1 = new int[4];
+        element1[0] = 1;
+        element1[1] = 2;
+        element1[2] = 3;
+        element1[3] = 4;
+        System.out.println("вывод многомерного массива:");
+        arrayOutput(multidimensionalArrayConverter(element1));
+
     }
 
     private static int factorial(int x){
@@ -37,5 +47,24 @@ public class Task2_additional {
         System.out.println("максимальное число:" + max);
         System.out.println("минимальное число:" + min);
        return  (max + min)/2;
+    }
+
+    private static int[][] multidimensionalArrayConverter (int[] oneDimensionalArray) {
+        int count = 0;
+        int[][] multidimensionalArray = new int[2][2];
+        for (int i = 0; i < multidimensionalArray.length; i++) {
+            for (int j = 0; j < multidimensionalArray[i].length; j++) {
+                multidimensionalArray[i][j] = oneDimensionalArray[count++];
+            }
+        }
+        return multidimensionalArray;
+    }
+    private static void arrayOutput (int[][] multidimensionalArray) {
+        for (int i = 0; i < multidimensionalArray.length; i++) {
+            for (int j = 0; j < multidimensionalArray[i].length; j++) {
+                System.out.print(multidimensionalArray[i][j] + "\t");
+            }
+            System.out.println();
+        }
     }
 }

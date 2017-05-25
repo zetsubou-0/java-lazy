@@ -13,7 +13,7 @@ public class Task2 {
 
         System.out.println(mood((int)value2));
 
-        line(-12,35);
+        line(35,-12);
 
         double[] element = new double[2];
         element [0] = 0.1;
@@ -72,13 +72,16 @@ public class Task2 {
 
     private static void line (int a, int b){
         System.out.print("start");
-        while (a <= b ) {
-            System.out.print(a + " ");
-            a++;
-        }
-        while (a >= b) {
-            System.out.print(a + " ");
-            a--;
+        if (a <= b ){
+            while (a <= b ) {
+                System.out.print(a + " ");
+                a++;
+            }
+        }else {
+            while (a >= b) {
+                System.out.print(a + " ");
+                a--;
+            }
         }
         System.out.println("stop");
     }
