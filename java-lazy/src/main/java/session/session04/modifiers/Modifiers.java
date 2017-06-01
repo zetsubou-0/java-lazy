@@ -1,4 +1,4 @@
-package session.session04;
+package session.session04.modifiers;
 
 public class Modifiers {
    /*
@@ -21,7 +21,5 @@ public class Modifiers {
         Поле не может быть изменено(только для чтения)
         Метод - не может быть переопределён
         Класс нельзя наследовать
-
-
     */
 }

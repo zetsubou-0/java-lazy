@@ -1,4 +1,4 @@
-package session.session04;
+package session.session04.classesAndObjects;
 
 public class ExampleClass {
     {
@@ -13,6 +13,11 @@ public class ExampleClass {
 
     }
 
+    private static class Nested{
+
+    }
+
+    public static final String constantLine = setConstantLine();
     public int number;
     protected String line;
     double doubleNumber;
@@ -61,4 +66,13 @@ public class ExampleClass {
     public void printHello(){
         System.out.println("Hello");
     }
+
+    private static String setConstantLine(){
+        System.out.println("constantLine");
+        return "constantLine";
+    }
+}
+
+class SecondClass{
+
 }
