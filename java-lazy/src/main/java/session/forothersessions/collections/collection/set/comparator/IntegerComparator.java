@@ -1,4 +1,4 @@
-package session.forothersessions.collections.collection.comparator;
+package session.forothersessions.collections.collection.set.comparator;
 
 
 import java.util.Comparator;

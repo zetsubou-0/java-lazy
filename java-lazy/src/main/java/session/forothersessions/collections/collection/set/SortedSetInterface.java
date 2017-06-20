@@ -1,7 +1,7 @@
 package session.forothersessions.collections.collection.set;
 
 import session.forothersessions.collections.util.CollectonUtil;
-import session.forothersessions.collections.collection.comparator.IntegerComparator;
+import session.forothersessions.collections.collection.set.comparator.IntegerComparator;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
