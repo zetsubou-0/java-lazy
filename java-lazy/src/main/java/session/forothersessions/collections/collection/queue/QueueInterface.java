@@ -2,6 +2,7 @@ package session.forothersessions.collections.collection.queue;
 
 import session.forothersessions.collections.util.CollectonUtil;
 
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -18,7 +19,7 @@ public class QueueInterface {
 
          */
         public static void main(String[] args) {
-            Queue<Integer> queue = new PriorityQueue<>();//очередь упорядочена
+            Queue<Integer> queue = new LinkedList<>();//очередь упорядочена
             queue.offer(2);
             queue.offer(3);
             queue.offer(4);
