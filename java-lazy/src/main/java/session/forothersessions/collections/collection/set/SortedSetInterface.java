@@ -1,7 +1,7 @@
 package session.forothersessions.collections.collection.set;
 
 import session.forothersessions.collections.util.CollectonUtil;
-import session.forothersessions.collections.collection.set.comparator.IntegerComparator;
+import session.forothersessions.collections.comparator.IntegerComparator;
 
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -17,8 +17,6 @@ public class SortedSetInterface {
     4)SortedSet<E> tailSet(E fromElement) - возвращает отсортированное множество c позиции fromElement.
     5)E first() - возвращает первый элемент отсортированного множества
     6)E last() - возвращает последний элемент отсортированного множества
-
-
     */
     public static void main(String[] args) {
         SortedSet<Integer> sortedSet = new TreeSet<>(new IntegerComparator()); // можно без компаратора

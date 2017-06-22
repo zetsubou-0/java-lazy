@@ -23,8 +23,6 @@ public class ListInterfaсe {
     7) ListIterator<E> listIterator(int index); - возвращает итератор для обхода элементов начиная с позиции "index"
     8) E remove(int index); - удаляет элемент по индексу и возвращает его;
 
-
-
      */
     public static void main(String[] args) {
         //Создаём список

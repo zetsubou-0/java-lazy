@@ -23,8 +23,8 @@ public class CollectionInterface {
     12)void clear(); - удаляет все элементы из вызывающей коллекции
     13)boolean equals(Object o); - true, если вызывающая коллекция и заданный объект равнозначны
     14)int hashCode(); - возвращает хэш-код вызывающей коллекции
-
     */
+
     public static void main(String[] args) {
         //Создание коллекции
         Collection<Integer> collection = new ArrayList<>();
@@ -46,7 +46,7 @@ public class CollectionInterface {
         System.out.println("Количество элементов в коллекции: " + collection.size());
 
         //Проверяем пустая ли коллекция
-        System.out.println("Проверка на пустую коллекцию: "+ collection.isEmpty());
+        System.out.println("Проверка на пустую коллекцию: " + collection.isEmpty());
 
         //Проверяем на содержание элемента
         System.out.println("Содержит ли коллекция цифру 5: " + collection.contains(5));
@@ -102,10 +102,7 @@ public class CollectionInterface {
         collection.clear();
         System.out.println("Коллекция после очистки");
         CollectonUtil.printCollection(collection);
-
     }
-
-
 
     private static <E> void printArray(E[] array){
         for (E element: array) {

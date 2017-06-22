@@ -74,7 +74,5 @@ public class DequeInteface {
         System.out.println("Удаляем элемент из головного конца методом removeFirstOccurrence:" + deque.removeFirstOccurrence(1));
         System.out.println("Удаляем элемент из головного конца методом removeLastOccurrence:" + deque.removeFirstOccurrence(5));
         CollectonUtil.printCollection(deque);
-
-
     }
 }
