@@ -2,6 +2,8 @@ package session.forothersessions.exceptions;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainExсeptions extends Object implements Cloneable {
@@ -23,10 +25,10 @@ public class MainExсeptions extends Object implements Cloneable {
                      -InternalError
                      -UnknownError
                      -OutOfMemoryError   (выбрасывыется, когда JVM не может выделить объект из-за нехватки памяти, а сборщик мусора не может высвободить её)
-                     -StackOverflowError
+                     -StackOverflowError - стек заполнен
                -AssertionError
          -Exception
-               -RuntimeException
+               -RuntimeException - ошибки программирования
                      -BufferOverflowException
                      -BufferUnderflowException
                      -ArithmeticException
@@ -44,7 +46,7 @@ public class MainExсeptions extends Object implements Cloneable {
                      -NullPointerException
                      -UnsupportedOperationException
                      -NoSuchElementException
-               -IOException
+               -IOException  - ошибки ввода/вывода
                      -CharacterCodingException
                            -MalformedInputException
                            -UnmappableCharacterException
@@ -123,7 +125,7 @@ public class MainExсeptions extends Object implements Cloneable {
       testMultiCatch();
 
       useTryWithResources();
-
+   throwOutOfMemoryError();
       try {
          ignoreException();
       } catch (FileNotFoundException e) {
@@ -151,9 +153,15 @@ public class MainExсeptions extends Object implements Cloneable {
    }
 
    private static void throwOutOfMemoryError(){
+      long[] arrray = new long[Integer.MAX_VALUE]; // требует 16GB
+      /*List<Object> list = new ArrayList<>();
       while (true) {
-         String[] array = new String[Integer.MAX_VALUE];
-      }
+         list.add(new Object());
+      }*/
+   }
+
+   private static void throwStackOverflow(){
+      throwStackOverflow();
    }
 
    private static void useTryWithResources(){

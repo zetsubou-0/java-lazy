@@ -1,6 +1,7 @@
 package session.session04.classesAndObjects;
 
-public class ExampleClass {
+public class ExampleClass extends SuperClassExample{
+
     {
         System.out.println("Logic Block");
     }
