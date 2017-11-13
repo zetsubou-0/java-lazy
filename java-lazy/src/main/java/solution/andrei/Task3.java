@@ -9,7 +9,7 @@ public class Task3 {
         deduces(number);
         //2
         String firstLine = "Валиииик";
-        String secondLine = "Валииик";
+        String secondLine = "Валиииик";
         comparison(firstLine,secondLine);
         //3
         int SecondNumber = 0;
@@ -29,7 +29,7 @@ public class Task3 {
         //7
         int firstNumber = 10;
         int secondNumber = 9;
-        int thirdNumber = -5;
+        int thirdNumber = 5;
         mean(firstNumber,secondNumber,thirdNumber);
 
 
@@ -48,14 +48,13 @@ public class Task3 {
     private static void comparison(String firstLine,String secondLine){
         if(firstLine.equals(secondLine)){
             System.out.printf("%s%n%n","Строки идентичны");
-        } else {
-            System.out.printf("%s%n%n","Строки разные");
         }
         if (firstLine.length() == secondLine.length()) {
             System.out.printf("%s%n%n","Длины строк равны");
-        }
-        if (firstLine.charAt(0) == secondLine.charAt(0)){
+        }else if (firstLine.charAt(0) == secondLine.charAt(0)){
             System.out.printf("%s%n%n","Совпадает первый символ");
+        }else {
+            System.out.printf("%s%n%n","Строки разные");
         }
     }
 
@@ -114,12 +113,13 @@ public class Task3 {
         for(int i = 0; i <  a.length; i++) {
             System.out.print(a[i] + "  ");
         }
-
+        System.out.println();
+        System.out.println();
     }
     //6. Используя цикл for вывести на экран чётные числа от 1 до 100 включительно.(лучше в отдельном методе реализовывать)
 
     private static void ethnicity(){
-        for (int i = 0; i <= 100  ; i = i + 2){
+        for (int i = 2; i <= 100  ; i = i + 2){
                 System.out.print(i + " ");
         }
         System.out.println();
@@ -128,16 +128,14 @@ public class Task3 {
      //7. Создать метод, принимающий в качестве параметров 3 целых числа и выводящее в консоль среднее из них
 
     private static void mean (int a, int b, int c){
-        int min;
+        int min = 0;
         if (a > b && b < c){
             min = b;
-            System.out.println(min);
         }else if (b > a && a < c){
             min = a;
-            System.out.println(min);
         }else if (b > c && c < a){
             min = c;
-            System.out.println(min);
         }
+        System.out.println(min);
     }
 }
