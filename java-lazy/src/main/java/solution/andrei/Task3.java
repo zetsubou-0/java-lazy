@@ -16,6 +16,23 @@ public class Task3 {
         defineNumber(SecondNumber);
         //4
         square ();
+        //5
+        int[] element = new int[5];
+        element[0] = 10;
+        element[1] = 5;
+        element[2] = 9;
+        element[3] = 4;
+        element[4] = 7;
+        numbersDecrease(element);
+        //6
+        ethnicity();
+        //7
+        int firstNumber = 10;
+        int secondNumber = 9;
+        int thirdNumber = 5;
+        mean(firstNumber,secondNumber,thirdNumber);
+
+
     }
     //1. Создать метод, который выводит в консоль переданный double в формате "два символа после запятой"(использовать форматирование строки)
     private static void deduces(double a) {
@@ -69,13 +86,49 @@ public class Task3 {
     //4. Создать метод выводящий на экран квадрат из 10х10 букв S используя цикл while. Буквы в каждой строке не разделять.
 
     private static void square (){
-        String letter = "SSSSSSSSSS";
-        int max = 10;
-        int i = 1;
-        while (i <= max){
-            System.out.printf("%.10s%n",letter);
+        int i = 0;
+        while (i <=9){
+            int j = 0;
+            while (j <=9){
+                System.out.print("S");
+                j++;
+            }
+          System.out.println();
             i++;
         }
+        System.out.println();
     }
+    //5. Создать метод, принимающий в качестве параметров 5 чисел и выводящий их в порядк убывания
+    private static void numbersDecrease(int[] a){
+        for (int i = a.length-1; i > 0;i--){
+            for (int j = 0; j < i; j++){
+                if (a[j] > a[j + 1]){
+                    int tmp = a[j];
+                    a[j] = a[j + 1];
+                    a[j + 1] = tmp;
+                }
+            }
+        }
+        for(int i = 0; i <  a.length; i++) {
+            System.out.print(a[i] + "  ");
+        }
 
+    }
+    //6. Используя цикл for вывести на экран чётные числа от 1 до 100 включительно.(лучше в отдельном методе реализовывать)
+
+    private static void ethnicity(){
+        for (int i = 0; i <= 100  ; i++){
+            if (i != 0 && i % 2 ==0){
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println();
+        System.out.println();
+    }
+     //7. Создать метод, принимающий в качестве параметров 3 целых числа и выводящее в консоль среднее из них
+
+    private static void mean (int a, int b, int c){
+        int d = (a + b + c)/3;
+        System.out.println(d);
+    }
 }
