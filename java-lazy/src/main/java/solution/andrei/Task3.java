@@ -128,7 +128,12 @@ public class Task3 {
      //7. Создать метод, принимающий в качестве параметров 3 целых числа и выводящее в консоль среднее из них
 
     private static void mean (int a, int b, int c){
-        int d = (a + b + c)/3;
-        System.out.println(d);
+        if (a > b && b < c){
+            System.out.println(b);
+        }else if (b > a && a < c){
+            System.out.println(a);
+        }else if (b > c && c < a){
+            System.out.println(c);
+        }
     }
 }
