@@ -29,12 +29,13 @@ public class Task3 {
         //7
         int firstNumber = 10;
         int secondNumber = 9;
-        int thirdNumber = 5;
+        int thirdNumber = -5;
         mean(firstNumber,secondNumber,thirdNumber);
 
 
     }
     //1. Создать метод, который выводит в консоль переданный double в формате "два символа после запятой"(использовать форматирование строки)
+
     private static void deduces(double a) {
         System.out.printf("%.2f%n%n", a);
     }
@@ -44,16 +45,16 @@ public class Task3 {
     "Совпадает первый символ" если первая буква строк одинаковая,
     иначе "Строки разные"*/
 
-    private static void comparison(String firstline,String secondline){
-        if(firstline.equals(secondline)){
+    private static void comparison(String firstLine,String secondLine){
+        if(firstLine.equals(secondLine)){
             System.out.printf("%s%n%n","Строки идентичны");
         } else {
             System.out.printf("%s%n%n","Строки разные");
         }
-        if (firstline.length() == secondline.length()) {
+        if (firstLine.length() == secondLine.length()) {
             System.out.printf("%s%n%n","Длины строк равны");
         }
-        if (firstline.charAt(0) == secondline.charAt(0)){
+        if (firstLine.charAt(0) == secondLine.charAt(0)){
             System.out.printf("%s%n%n","Совпадает первый символ");
         }
     }
@@ -99,6 +100,7 @@ public class Task3 {
         System.out.println();
     }
     //5. Создать метод, принимающий в качестве параметров 5 чисел и выводящий их в порядк убывания
+
     private static void numbersDecrease(int[] a){
         for (int i = a.length-1; i > 0;i--){
             for (int j = 0; j < i; j++){
@@ -117,10 +119,8 @@ public class Task3 {
     //6. Используя цикл for вывести на экран чётные числа от 1 до 100 включительно.(лучше в отдельном методе реализовывать)
 
     private static void ethnicity(){
-        for (int i = 0; i <= 100  ; i++){
-            if (i != 0 && i % 2 ==0){
+        for (int i = 0; i <= 100  ; i = i + 2){
                 System.out.print(i + " ");
-            }
         }
         System.out.println();
         System.out.println();
@@ -128,12 +128,16 @@ public class Task3 {
      //7. Создать метод, принимающий в качестве параметров 3 целых числа и выводящее в консоль среднее из них
 
     private static void mean (int a, int b, int c){
+        int min;
         if (a > b && b < c){
-            System.out.println(b);
+            min = b;
+            System.out.println(min);
         }else if (b > a && a < c){
-            System.out.println(a);
+            min = a;
+            System.out.println(min);
         }else if (b > c && c < a){
-            System.out.println(c);
+            min = c;
+            System.out.println(min);
         }
     }
 }
