@@ -51,9 +51,9 @@ public class Task3 {
         }
         if (firstLine.length() == secondLine.length()) {
             System.out.printf("%s%n%n","Длины строк равны");
-        }else if (firstLine.charAt(0) == secondLine.charAt(0)){
+        }if (firstLine.charAt(0) == secondLine.charAt(0)){
             System.out.printf("%s%n%n","Совпадает первый символ");
-        }else {
+        }else if (firstLine.length() != secondLine.length() && firstLine.charAt(0) != secondLine.charAt(0) && !firstLine.equals(secondLine)){
             System.out.printf("%s%n%n","Строки разные");
         }
     }
@@ -101,17 +101,18 @@ public class Task3 {
     //5. Создать метод, принимающий в качестве параметров 5 чисел и выводящий их в порядк убывания
 
     private static void numbersDecrease(int[] a){
-        for (int i = a.length-1; i > 0;i--){
-            for (int j = 0; j < i; j++){
-                if (a[j] > a[j + 1]){
-                    int tmp = a[j];
-                    a[j] = a[j + 1];
-                    a[j + 1] = tmp;
-                }
+        for (int i = 0; i < 4;){
+            int b = a[i+ 1];
+                if (a[i] < b){
+                    a[i + 1] = a[i];
+                    a[i] = b;
+                    i = 0;
+                    continue;
             }
+            i++;
         }
-        for(int i = 0; i <  a.length; i++) {
-            System.out.print(a[i] + "  ");
+        for(int i = 0; i < 5; i++) {
+            System.out.println(a[i]);
         }
         System.out.println();
         System.out.println();
