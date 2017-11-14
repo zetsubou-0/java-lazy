@@ -9,7 +9,7 @@ public class Task3 {
         deduces(number);
         //2
         String firstLine = "Валиииик";
-        String secondLine = "Валиииик";
+        String secondLine = "Валииик";
         comparison(firstLine,secondLine);
         //3
         int SecondNumber = 0;
@@ -46,14 +46,18 @@ public class Task3 {
     иначе "Строки разные"*/
 
     private static void comparison(String firstLine,String secondLine){
+        boolean a = true;
         if(firstLine.equals(secondLine)){
             System.out.printf("%s%n%n","Строки идентичны");
+            a = false;
         }
         if (firstLine.length() == secondLine.length()) {
             System.out.printf("%s%n%n","Длины строк равны");
+            a = false;
         }if (firstLine.charAt(0) == secondLine.charAt(0)){
             System.out.printf("%s%n%n","Совпадает первый символ");
-        }else if (firstLine.length() != secondLine.length() && firstLine.charAt(0) != secondLine.charAt(0) && !firstLine.equals(secondLine)){
+            a = false;
+        }if (a){
             System.out.printf("%s%n%n","Строки разные");
         }
     }
