@@ -10,7 +10,7 @@ public class ExampleClass extends SuperClassExample{
         System.out.println("Static Block");
     }
 //внутренний класс
-    private class Inner{
+    public class Inner{
 
     }
 //вложенный класс
@@ -18,7 +18,7 @@ public class ExampleClass extends SuperClassExample{
 
     }
 //константа
-    public static final String constantLine = setConstantLine();
+    public static final String CONSTANT_LINE = setConstantLine();
 //поля класса
     public int number;
     protected String line;
@@ -64,17 +64,20 @@ public class ExampleClass extends SuperClassExample{
     public void setPrivateLine(String privateLine) {
         this.privateLine = privateLine;
     }
-
+//метод
     public void printHello(){
         System.out.println("Hello");
     }
 
     private static String setConstantLine(){
-        System.out.println("constantLine");
-        return "constantLine";
+        System.out.println("CONSTANT_LINE");
+        return "CONSTANT_LINE";
     }
 }
 
 class SecondClass{
+
+}
+class Cat{
 
 }

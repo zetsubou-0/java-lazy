@@ -85,7 +85,7 @@ public class ClassesAndObjects {
     Обращение к переменным класса(статическим) производится через имя класса:
         имя_класса.имя_статической_переменной;
             Пример:
-        ExampleClass.constantLine;
+        ExampleClass.CONSTANT_LINE;
     Обращение к методам:
         имя_объекта.имя_метода(параметры если требуются);
             Пример:
@@ -93,5 +93,10 @@ public class ClassesAndObjects {
     */
    public static void main(String[] args) {
        ExampleClass exampleClass = new ExampleClass(5, "line", 4.8, "secondLine");
+       Man man = new Man("Vadim", 74, 176);
+       Man.skin = "black";
+       Man man1 = new Man();
+
+       System.out.println(man);
    }
 }
