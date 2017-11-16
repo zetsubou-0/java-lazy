@@ -1,29 +1,30 @@
 package session.session04.classesAndObjects;
 
 public class ExampleClass extends SuperClassExample{
-
+//логический блок
     {
         System.out.println("Logic Block");
     }
-
+//статический блок
     static {
         System.out.println("Static Block");
     }
-
+//внутренний класс
     private class Inner{
 
     }
-
+//вложенный класс
     private static class Nested{
 
     }
-
+//константа
     public static final String constantLine = setConstantLine();
+//поля класса
     public int number;
     protected String line;
     double doubleNumber;
     private String privateLine;
-
+//конструктор
     public ExampleClass(int number, String line, double doubleNumber, String privateLine) {
         System.out.println("Constructor");
         this.number = number;
@@ -31,7 +32,7 @@ public class ExampleClass extends SuperClassExample{
         this.doubleNumber = doubleNumber;
         this.privateLine = privateLine;
     }
-
+//геттеры и сеттеры
     public int getNumber() {
         return number;
     }

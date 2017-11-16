@@ -37,7 +37,7 @@ public class Switch {
                 System.out.println(5);
                 break;
             default:
-                System.out.println("Other number");
+                System.out.println("Other number " + number);
         }
     }
 }
