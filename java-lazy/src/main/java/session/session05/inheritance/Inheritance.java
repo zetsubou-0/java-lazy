@@ -1,4 +1,4 @@
-package session.session04.inheritance;
+package session.session05.inheritance;
 
 public class Inheritance {
     /*

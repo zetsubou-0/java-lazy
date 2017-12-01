@@ -1,4 +1,4 @@
-package session.session04.inheritance.examples;
+package session.session05.inheritance.examples;
 
 public class Man {
     public int weight;

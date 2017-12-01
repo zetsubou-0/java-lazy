@@ -1,4 +1,4 @@
-package session.session04.interfaces;
+package session.session05.interfaces;
 
 import java.io.Serializable;
 
