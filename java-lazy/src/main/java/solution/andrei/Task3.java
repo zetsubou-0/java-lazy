@@ -9,7 +9,7 @@ public class Task3 {
         deduces(number);
         //2
         String firstLine = "Валиииик";
-        String secondLine = "Валииик";
+        String secondLine = "Валиииик";
         comparison(firstLine,secondLine);
         //3
         int SecondNumber = 0;
@@ -27,9 +27,9 @@ public class Task3 {
         //6
         ethnicity();
         //7
-        int firstNumber = 10;
-        int secondNumber = 9;
-        int thirdNumber = 5;
+        int firstNumber = 1;
+        int secondNumber = 2;
+        int thirdNumber = 3;
         mean(firstNumber,secondNumber,thirdNumber);
 
 
@@ -50,11 +50,10 @@ public class Task3 {
         if(firstLine.equals(secondLine)){
             System.out.printf("%s%n%n","Строки идентичны");
             a = false;
-        }
-        if (firstLine.length() == secondLine.length()) {
+        }else if (firstLine.length() == secondLine.length()) {
             System.out.printf("%s%n%n","Длины строк равны");
             a = false;
-        }if (firstLine.charAt(0) == secondLine.charAt(0)){
+        }else if (firstLine.charAt(0) == secondLine.charAt(0)){
             System.out.printf("%s%n%n","Совпадает первый символ");
             a = false;
         }if (a){
