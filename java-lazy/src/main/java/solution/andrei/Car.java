@@ -1,4 +1,5 @@
 package solution.andrei;
+
 /*
 1. Создать класс Машина с полями марка, год выпуска, пробег (подумать какой лучше модификатор доступа сделать)
 
@@ -27,33 +28,54 @@ public class Car {
     public int year;
     public int mileage;
 
-public Car() {
-    mark = "citroen";
-}
-public Car(String mark){
-    this.mark = mark;
-}
-public Car(String mark, int year, int mileage){
-    this.mark = mark;
-    this.year = year;
-    this.mileage = mileage;
-}
-public String getMark(){
-    return mark;
-}
-public void setMark(String mark){
-    this.mark = mark;
-}
-public int year(){
-    return year;
-}
-public void setYear(int year){
-    this.year = year;
-}
-public int getMileage(){
-    return mileage;
-}
-public void setMileage(int mileage){
-    this.mileage = mileage;
-}
+
+    public Car() {
+        mark = "citroen";
+    }
+
+    public Car(String mark) {
+        this.mark = mark;
+    }
+
+    public Car(String mark, int year, int mileage) {
+        this.mark = mark;
+        this.year = year;
+        this.mileage = mileage;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+    public int year() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public int getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
+    }
+
+    static {
+        int minYear = 2016;
+    }
+
+    public void testYear(int year){
+        if (year < mileage){
+            System.out.println("машина старая");
+        }else {
+            System.out.println("нормальная машина");
+        }
+    }
 }
