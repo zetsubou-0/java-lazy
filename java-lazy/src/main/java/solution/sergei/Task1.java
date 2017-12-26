@@ -68,10 +68,25 @@ public class Task1 {
         float c4;
         c4 = (float) d4;    */
 
-     int a1 = 0;
-     long b1 = (long) a1;
-     float c1 = (float) a1;
-     double d1 = (double) a1;
+         int a1 = 0;
+         long b1 = a1;
+         float c1 = (float) a1;
+         double d1 = a1;
+
+         long b2 = 14L;
+         int a2 = (int) b2;
+         float c2 = (float) b2;
+         double d2 = (double) b2;
+
+         float c3 = 3.01f;
+         int a3 = (int) c3;
+         long b3 = (long) c3;
+         double d3 = c3;
+
+         double d4 = 5.7;
+         int a4 = (int) d4;
+         long b4 = (long) d4;
+         float c4 = (float) d4;
 
 
     }
