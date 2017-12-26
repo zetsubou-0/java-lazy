@@ -70,13 +70,13 @@ public class Task1 {
 
          int a1 = 0;
          long b1 = a1;
-         float c1 = (float) a1;
+         float c1 = a1;
          double d1 = a1;
 
          long b2 = 14L;
          int a2 = (int) b2;
-         float c2 = (float) b2;
-         double d2 = (double) b2;
+         float c2 = b2;
+         double d2 = b2;
 
          float c3 = 3.01f;
          int a3 = (int) c3;
