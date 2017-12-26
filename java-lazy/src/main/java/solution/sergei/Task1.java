@@ -36,10 +36,37 @@ public class Task1 {
         String g = null;
         g = "Task 1";
 
-        int i;
-        long k;
-        float l;
-        double m;
+        int a1 = 0;
+        long b1;
+        b1 = (long) a1;
+        float c1;
+        c1 = (float) a1;
+        double d1;
+        d1 = (double) a1;
+
+        long b2 = 14L;
+        int a2;
+        a2 = (int) b2;
+        float c2;
+        c2 = (long) b2;
+        double d2;
+        d2 = (double) b2;
+
+        float c3 = 3.01f;
+        int a3;
+        a3 = (int) c3;
+        long b3;
+        b3 = (long) c3;
+        double d3 = 1.2;
+        d3 = (double) c3;
+
+        double d4 = 5.7;
+        int a4;
+        a4 = (int) d4;
+        long b4;
+        b4 = (long) d4;
+        float c4;
+        c4 = (float) d4;
 
 
     }
