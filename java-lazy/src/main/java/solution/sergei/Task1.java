@@ -19,15 +19,16 @@ public class Task1 {
         a = 50;
 
         long b;
-        b = 14;
+        b = 14L;                        //исправленно
 
         float c;
         c = 3.14f;
 
-        double d = 0;
-        d = 13;
+        double d = 0.0;                 //исправленно
+        d = 13.1;                       // -//-
 
         boolean e;
+        e = true;                       //добавленно
 
         char f;
         f = 'f';
@@ -35,6 +36,10 @@ public class Task1 {
         String g = null;
         g = "Task 1";
 
+        int i;
+        long k;
+        float l;
+        double m;
 
 
     }
