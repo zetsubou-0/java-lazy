@@ -36,7 +36,7 @@ public class Task1 {
         String g = null;
         g = "Task 1";
 
-        int a1 = 0;
+     /*   int a1 = 0;
         long b1;
         b1 = (long) a1;
         float c1;
@@ -66,7 +66,12 @@ public class Task1 {
         long b4;
         b4 = (long) d4;
         float c4;
-        c4 = (float) d4;
+        c4 = (float) d4;    */
+
+     int a1 = 0;
+     long b1 = (long) a1;
+     float c1 = (float) a1;
+     double d1 = (double) a1;
 
 
     }
