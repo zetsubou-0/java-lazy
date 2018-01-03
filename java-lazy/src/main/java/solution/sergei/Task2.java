@@ -44,10 +44,25 @@ public class Task2 {
         System.out.println(negative(b));                                                            //
 
         int c = 15;                                                                                 // 4
-        System.out.println((c > 0) ? "positive" : ((c<0) ? "negative": "zero"));                    //                                     //
+        System.out.println((c > 0) ? "positive" : ((c<0) ? "negative": "zero"));                    //
+
+        array (-10, 4);                                                                      // 5
+
+        double[] mass1 = new double[4];                                                             // 6
+        mass1[0] = 5.0;                                                                             //
+        mass1[1] = 3.2;                                                                             //
+        mass1[2] = 0.3;                                                                             //
+        mass1[3] = -1.2;                                                                            //
+        conclusion(mass1);                                                                          //
+
+        int[] mass2 = new int[5];                                                                   // 7
+        mass2[0] = 3;                                                                               //
+        mass2[1] = 2;                                                                               //
+        mass2[3] = 1;                                                                               //
+        mass2[4] = -1;                                                                              //
+        mass2[5] = -5;                                                                              //
+        conclusion2(mass2);                                                                         //
     }
-
-
 
     private static double procent(double i){                                                        // 1
         return i/100;                                                                               //
@@ -76,6 +91,42 @@ public class Task2 {
             return "zero";                                                                          //
     }                                                                                               //
 
+    private static void array(int d, int e){                                                        // 5
+        System.out.println("start");                                                             //
+        if (d<e){                                                                                   //
+            while (d<e){                                                                            //
+                System.out.println(d + " ");                                                     //
+                d++;                                                                                //
+            }                                                                                       //
+        }                                                                                           //
+        else{                                                                                       //
+            while (d>e){                                                                            //
+                System.out.println(d + " ");                                                     //
+                d--;                                                                                //
+            }                                                                                       //
+        }                                                                                           //
+        System.out.println("stop");                                                              //
+    }                                                                                               //
+
+    private static void conclusion(double[] mass1) {                                                // 6
+        for (int i = 0; i < mass1.length; i++){                                                     //
+            System.out.println(mass1[i] + " ");                                                  //
+        }                                                                                           //
+    }                                                                                               //
+
+    private static void conclusion2(int[] mass2) {                                                  // 7
+        for (int i = 0; i < mass2.length; i++){                                                     //
+            if (mass2[i]%2 !=0){                                                                    //
+                System.out.println(mass2[i] + " ");                                              //
+            }                                                                                       //
+            if (mass2[i]<0){                                                                        //
+                System.out.println(mass2[i] + " ");                                                 //
+            }                                                                                       //
+        }                                                                                           //
+    }                                                                                               //
+
+
 
 
 }
+
