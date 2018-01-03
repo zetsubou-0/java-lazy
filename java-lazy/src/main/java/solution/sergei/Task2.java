@@ -70,6 +70,8 @@ public class Task2 {
         mass2[4] = -1;                                                                              //
         mass2[5] = -5;                                                                              //
         summ(mass3);                                                                                //
+
+        multiplication(mass3);                                                                      // 9
     }
 
 
@@ -101,32 +103,32 @@ public class Task2 {
     }                                                                                               //
 
     private static void array(int d, int e){                                                        // 5
-        System.out.println("start");                                                             //
+        System.out.println("start");                                                                //
         if (d<e){                                                                                   //
             while (d<e){                                                                            //
-                System.out.println(d + " ");                                                     //
+                System.out.println(d + " ");                                                        //
                 d++;                                                                                //
             }                                                                                       //
         }                                                                                           //
         else{                                                                                       //
             while (d>e){                                                                            //
-                System.out.println(d + " ");                                                     //
+                System.out.println(d + " ");                                                        //
                 d--;                                                                                //
             }                                                                                       //
         }                                                                                           //
-        System.out.println("stop");                                                              //
+        System.out.println("stop");                                                                 //
     }                                                                                               //
 
     private static void conclusion(double[] mass1) {                                                // 6
         for (int i = 0; i < mass1.length; i++){                                                     //
-            System.out.println(mass1[i] + " ");                                                  //
+            System.out.println(mass1[i] + " ");                                                     //
         }                                                                                           //
     }                                                                                               //
 
     private static void conclusion2(int[] mass2) {                                                  // 7
         for (int i = 0; i < mass2.length; i++){                                                     //
             if (mass2[i]%2 !=0){                                                                    //
-                System.out.println(mass2[i] + " ");                                              //
+                System.out.println(mass2[i] + " ");                                                 //
             }                                                                                       //
             if (mass2[i]<0){                                                                        //
                 System.out.println(mass2[i] + " ");                                                 //
@@ -134,15 +136,23 @@ public class Task2 {
         }                                                                                           //
     }                                                                                               //
 
-    private static void summ(int [] mass3) {                                                        // 8
+    private static int summ(int [] mass3) {                                                         // 8
         int f = 0;                                                                                  //
         for (int i = 0; i < mass3.length; i++){                                                     //
             f += mass3[i];                                                                          //
         }                                                                                           //
-        System.out.println("Сумма всех элементов массива равна: " + f);                          //
+        System.out.println("Сумма всех элементов массива равна: " + f);                             //
+        return f;                                                                                   //
     }                                                                                               //
 
-
+    private static int multiplication(int[] mass3){                                                 // 9
+        int f = 0;                                                                                  //
+        for (int i = 0; i< mass3.length; i++){                                                      //
+            f *= mass3[i];                                                                          //
+        }                                                                                           //
+        System.out.println("Произведение всех элементов массива равна: " + f);                   //
+        return f;                                                                                   //
+    }                                                                                               //
 
 }
 
