@@ -62,7 +62,16 @@ public class Task2 {
         mass2[4] = -1;                                                                              //
         mass2[5] = -5;                                                                              //
         conclusion2(mass2);                                                                         //
+
+        int[] mass3 = new int[5];                                                                   // 8
+        mass2[0] = 3;                                                                               //
+        mass2[1] = 2;                                                                               //
+        mass2[3] = 1;                                                                               //
+        mass2[4] = -1;                                                                              //
+        mass2[5] = -5;                                                                              //
+        summ(mass3);                                                                                //
     }
+
 
     private static double procent(double i){                                                        // 1
         return i/100;                                                                               //
@@ -125,6 +134,13 @@ public class Task2 {
         }                                                                                           //
     }                                                                                               //
 
+    private static void summ(int [] mass3) {                                                        // 8
+        int f = 0;                                                                                  //
+        for (int i = 0; i < mass3.length; i++){                                                     //
+            f += mass3[i];                                                                          //
+        }                                                                                           //
+        System.out.println("Сумма всех элементов массива равна: " + f);                          //
+    }                                                                                               //
 
 
 
