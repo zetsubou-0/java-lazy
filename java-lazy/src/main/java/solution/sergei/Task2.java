@@ -72,6 +72,10 @@ public class Task2 {
         summ(mass3);                                                                                //
 
         multiplication(mass3);                                                                      // 9
+
+        multiplication2(mass3);                                                                     // 10
+
+        multiplication3(mass3);                                                                     // 11
     }
 
 
@@ -152,6 +156,19 @@ public class Task2 {
         }                                                                                           //
         System.out.println("Произведение всех элементов массива равна: " + f);                   //
         return f;                                                                                   //
+    }                                                                                               //
+
+    private static void multiplication2(int[] mass3){                                               // 10
+        for (int i = 0; i< mass3.length; i++){                                                      //
+            int f = mass3[i];                                                                       //
+            System.out.println(f^2);
+        }                                                                                           //
+    }                                                                                               //
+
+    private static void multiplication3(int[] mass3){                                               // 11
+        for (int g : mass3){                                                                        //
+            System.out.println(g^3);                                                             //
+        }                                                                                           //
     }                                                                                               //
 
 }
