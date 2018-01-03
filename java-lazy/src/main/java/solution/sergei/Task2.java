@@ -34,41 +34,48 @@ false - в остальных случаях
 */
 public class Task2 {
     public static void main(){
-        double i = 12.5;                                                    // 1
-        System.out.println(procent(i));                                     //
+        double i = 12.5;                                                                            // 1
+        System.out.println(procent(i));                                                             //
 
-        int a = 13;                                                         // 2
-        System.out.println(positive(a));                                    //
+        int a = 13;                                                                                 // 2
+        System.out.println(positive(a));                                                            //
 
-        long b = 14;                                                        // 3
-        System.out.println(negative(b));                                               //
+        long b = 14;                                                                                // 3
+        System.out.println(negative(b));                                                            //
+
+        int c = 15;                                                                                 // 4
+        System.out.println((c > 0) ? "positive" : ((c<0) ? "negative": "zero"));                    //                                     //
     }
 
 
 
-    private static double procent(double i){                                // 1
-        return i/100;                                                       //
-    }                                                                       //
+    private static double procent(double i){                                                        // 1
+        return i/100;                                                                               //
+    }                                                                                               //
 
-    private  static boolean positive(int a){                                // 2
-        if (a>=0)                                                           //
-            {                                                               //
-                return true;                                                //
-            }                                                               //
-        else                                                                //
-            {                                                               //
-                return false;                                               //
-            }                                                               //
-    }                                                                       //
+    private  static boolean positive(int a){                                                        // 2
+        if (a>=0)                                                                                   //
+            {                                                                                       //
+                return true;                                                                        //
+            }                                                                                       //
+        else                                                                                        //
+            {                                                                                       //
+                return false;                                                                       //
+            }                                                                                       //
+    }                                                                                               //
 
-    private static String negative(long b){                                 // 3
-        if (b>0){                                                           //
-            return "positive";                                              //
-        }                                                                   //
-        else{                                                               //
-            return "negative";                                              //
-        }                                                                   //
-    }                                                                       //
+    private static String negative(long b){                                                         // 3
+        if (b>0){                                                                                   //
+            return "positive";                                                                      //
+        }                                                                                           //
+        else                                                                                        //
+            if(b<0){                                                                                //
+            return "negative";                                                                      //
+        }                                                                                           //
+        else                                                                                        //
+            return "zero";                                                                          //
+    }                                                                                               //
+
 
 
 }
