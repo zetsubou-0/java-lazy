@@ -61,17 +61,17 @@ public class Task2 {
         int[] mass2 = new int[5];                                                                   // 7
         mass2[0] = 3;                                                                               //
         mass2[1] = 2;                                                                               //
-        mass2[3] = 1;                                                                               //
-        mass2[4] = -1;                                                                              //
-        mass2[5] = -5;                                                                              //
+        mass2[2] = 1;                                                                               //
+        mass2[3] = -1;                                                                              //
+        mass2[4] = -5;                                                                              //
         conclusion2(mass2);                                                                         //
 
         int[] mass3 = new int[5];                                                                   // 8
         mass2[0] = 3;                                                                               //
         mass2[1] = 2;                                                                               //
-        mass2[3] = 1;                                                                               //
-        mass2[4] = -1;                                                                              //
-        mass2[5] = -5;                                                                              //
+        mass2[2] = 1;                                                                               //
+        mass2[3] = -1;                                                                              //
+        mass2[4] = -5;                                                                              //
         summ(mass3);                                                                                //
 
         multiplication(mass3);                                                                      // 9

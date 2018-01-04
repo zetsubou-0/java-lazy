@@ -14,7 +14,8 @@ package solution.sergei;
  myVar = 5L;
  */
 public class Task1 {
-    public static void main() {
+    public static void main(String[] args) {
+
         int a;
         a = 50;
 

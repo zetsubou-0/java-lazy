@@ -22,7 +22,7 @@ public class Task2_additional {
 
         //  #1
 
-        int a = 13;
+        int a = 3;
         System.out.println(fact(a));
 
         // #2
@@ -34,9 +34,15 @@ public class Task2_additional {
         c[3] = 4.5;
         System.out.println("Average value: " + averageValue(c));
 
+        // #3
+
+        int[] b = {1, 2, 3, 4, 5, 6};
+
+        System.out.println(mass(newMass(b)));
+
     }
 
-    // #1
+        // #1
 
     private static int fact(int b){
         if (b > 1){
@@ -53,7 +59,7 @@ public class Task2_additional {
     private static double averageValue(double[] c) {
         double max = c[0], min = c[0];
         for (int i = 0; i < c.length; i++){
-            if (c[i] < max)
+            if (c[i] > max)
                 max = c[i];
             if (c[i] < min)
                 min = c[i];
@@ -62,4 +68,18 @@ public class Task2_additional {
         System.out.println("Min: " + min);
         return (max + min) / 2;
     }
+
+        // #3
+
+    private static int[] newMass(int[] b) {
+        int[][] mass2 = new int[3][3];
+        return b;
+    }
+
+    private static int mass(int[] mass2){
+
+        return 0;
+    }
+
+
 }
