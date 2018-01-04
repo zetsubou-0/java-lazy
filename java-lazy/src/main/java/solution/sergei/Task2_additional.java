@@ -18,9 +18,48 @@ package solution.sergei;
 */
 
 public class Task2_additional {
+    public static void main(String[] args) {
 
-    public static void main (){
+        //  #1
+
+        int a = 13;
+        System.out.println(fact(a));
+
+        // #2
+
+        double[] c = new double[4];
+        c[0] = 1.2;
+        c[1] = 2.3;
+        c[2] = 3.4;
+        c[3] = 4.5;
+        System.out.println("Average value: " + averageValue(c));
 
     }
 
+    // #1
+
+    private static int fact(int b){
+        if (b > 1){
+            return b * fact(b - 1);
+            }
+        else if (b == 1) {
+            return 1;
+        }
+        return b;
+    }
+
+        //  #2
+
+    private static double averageValue(double[] c) {
+        double max = c[0], min = c[0];
+        for (int i = 0; i < c.length; i++){
+            if (c[i] < max)
+                max = c[i];
+            if (c[i] < min)
+                min = c[i];
+        }
+        System.out.println("Max: " + max);
+        System.out.println("Min: " + min);
+        return (max + min) / 2;
+    }
 }

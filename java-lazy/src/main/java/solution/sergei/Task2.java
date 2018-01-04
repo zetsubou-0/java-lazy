@@ -33,7 +33,10 @@ false - в остальных случаях
 11. Аналогично подзадаче №9, но через цикл 'for-each' и не квадрат, а куб числа.
 */
 public class Task2 {
-    public static void main(){
+    public static void main(String[] args) {
+
+
+
         double i = 12.5;                                                                            // 1
         System.out.println(procent(i));                                                             //
 
