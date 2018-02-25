@@ -1,4 +1,4 @@
-package solution.andrei;
+package solution.andrei.old;
 public class Task2 {
     public static void main (String[] args){
 

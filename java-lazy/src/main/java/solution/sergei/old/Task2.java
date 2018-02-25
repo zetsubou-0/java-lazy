@@ -1,4 +1,4 @@
-package solution.sergei;
+package solution.sergei.old;
 /*
 Все методы, которые вы будите создавать должны быть private static
 

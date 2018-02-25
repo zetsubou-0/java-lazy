@@ -1,4 +1,4 @@
-package solution.andrei;
+package solution.andrei.old;
 
 /*1. Создать любой класс с методом main
 

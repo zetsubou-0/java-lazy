@@ -1,4 +1,4 @@
-package solution.sergei;
+package solution.sergei.old;
 
 /*
 1. Создать рекурсивный меод, которая будет вычислять факториал числа.

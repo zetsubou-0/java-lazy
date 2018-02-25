@@ -1,4 +1,4 @@
-package solution.sergei;
+package solution.sergei.old;
 
 /**
  * Created by Carser on 24.12.2017
