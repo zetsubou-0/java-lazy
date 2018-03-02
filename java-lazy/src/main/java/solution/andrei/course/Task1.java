@@ -38,7 +38,7 @@ package solution.andrei.course;
 public class Task1 {
     public static void main (String[] args){
 
-        //2 и 3
+/*        //2 и 3
 
         byte a = 1;
         short b = 2 ;
@@ -92,6 +92,6 @@ public class Task1 {
 
         double x = (double)((int)o + a + b + c + d) + f + h;
         System.out.println(x);
-
+*/
     }
 }
