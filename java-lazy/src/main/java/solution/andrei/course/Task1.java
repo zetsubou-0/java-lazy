@@ -38,7 +38,7 @@ package solution.andrei.course;
 public class Task1 {
     public static void main (String[] args){
 
-/*        //2 и 3
+        //2
 
         byte a = 1;
         short b = 2 ;
@@ -48,6 +48,8 @@ public class Task1 {
         double h = 1.2;
         boolean l = true;
         char o = 'A';
+
+        //3
 
         d = c;
         c = a;
@@ -65,10 +67,10 @@ public class Task1 {
         Object myCar = new Object();
 
         //5
-
+/*
         s = (String) new Object();
         myCar = "neko";
-
+*/
         //6
         int p = 4 + (int)'A';
         char m = (char)((int)'A' + 4);
@@ -82,16 +84,7 @@ public class Task1 {
 
         //7
 
-        byte a = 1;
-        short b = 2 ;
-        int c = 10;
-        long d = 2L;
-        float f = 0.8f;
-        double h = 1.2;
-        char o = 'A';
-
         double x = (double)((int)o + a + b + c + d) + f + h;
         System.out.println(x);
-*/
     }
 }
