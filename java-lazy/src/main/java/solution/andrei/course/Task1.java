@@ -67,10 +67,10 @@ public class Task1 {
         Object myCar = new Object();
 
         //5
-/*
+
         s = (String) new Object();
         myCar = "neko";
-*/
+
         //6
         int p = 4 + (int)'A';
         char m = (char)((int)'A' + 4);
