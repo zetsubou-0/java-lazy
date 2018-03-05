@@ -65,16 +65,16 @@ public class Task1 {
 
         String s = "neko";
         Object myCar = new Object();
-
+/*
         //5
 
         s = (String) new Object();
         myCar = "neko";
-
+*/
         //6
         int p = 4 + (int)'A';
         char m = (char)((int)'A' + 4);
-        String g = "4" + "2" + " ";
+        String g = 4 + 2 + " ";
         String j = " " + 4 + 2;
 
         System.out.println(p);
@@ -84,7 +84,7 @@ public class Task1 {
 
         //7
 
-        double x = (double)((int)o + a + b + c + d) + f + h;
+        double x = (double)o + f + h + a + b + c + d;
         System.out.println(x);
     }
 }
