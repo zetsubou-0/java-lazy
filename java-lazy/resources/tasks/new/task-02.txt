@@ -1,0 +1,299 @@
+=====================================================================
+=====================================================================
+=																	=
+=			Создание консольной игры типа Counter Strike.			=
+=																	=
+=====================================================================
+=====================================================================
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++	1. Структура пакетов приложения									+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+solution.kiryl.game.console.cs (используйте ваше имя пакета, не мое). Дальше в примерах я буду использовать свое имя пакета
+	core
+		fight
+			impl
+		player
+			impl
+		store
+			impl
+	weapon
+		pistol
+		rifel
+		...
+	player
+
+вся структур приложения будет следующего вида (у вас может немного отличаться, дальше будет понятней)
+http://i.prntscr.com/T-4p3_-QSru6I7f5fLDgvg.png
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++	2. Реализация Объектов											+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Реализация команд
+solution.kiryl.game.console.cs.player.Team
+Это класс обертка, для констант класса, которые нам могут понадобиться впоследствии
+    public static final String COUNTER = "counter";
+    public static final String TERRORIST = "terrorist";
+    public static final String BOTH = "both";
+    public static final String NONE = "none";
+
+    public static final int COUNT = 5;
+
+
+Реализация оружия
+solution.kiryl.game.console.cs.weapon
+в этом пакете могут быть подпакеты с оружием по функциональному назначению (pistol, rifle, и т.д.) - http://i.prntscr.com/nh4l7qEKQx_oU2mSqSJYSA.png
+
+solution.kiryl.game.console.cs.weapon.Weapon - базовый класс оружия, со следующими полями
+    protected final int cost;
+    protected final int damage;
+    protected final String team;
+все поля должны инициализироваться через аргументы конструктора;
+переопределить метод toString, чтобы сделатиь читабельным вывод
+team - команда counter/terrorist (использовать константы класса solution.kiryl.game.console.cs.player.Team), если оружие доступно для обоих команд - solution.kiryl.game.console.cs.player.Team.BOTH
+
+Во всех классах наследниках сделать видимым только один конструктор (без параметров), т.е каждое оружие будет создаваться с заведомо известными параметраметрами.
+Должен существовать класс оружия Knife (Нож) с ценой в 0, т.е. его может позволить купить каждый ))
+остальное оружие создать по усмотрению
+
+
+Реализация игроков
+solution.kiryl.game.console.cs.player
+Этот пакет содержит в себе модели классы игроков.
+
+Сделать в этом пакете абстрактный класс solution.kiryl.game.console.cs.player.Player
+у этого класса будут следущие поля:
+
+    protected int heal
+    protected int money
+    protected Weapon weapon
+    protected boolean live
+
+один абстрактный метод
+	public boolean isTerrorist()
+который возвращает true - если этот игрок террорист, иначе flase
+
+и методы:
+ - public void takeDamage(Weapon weapon)
+ 	полученик урона от оружия
+ - public getHeal()
+ 	получить текущее кол-во жизни
+ - public int getMoney() / public void setMoney(int money)
+ 	получить/установить значение доступных средств (денег)
+ - public void pay(int cost)
+ 	оплатить покупку. При вызове метода должна быть проверка достаточно ли денег на счету и если достаточно вычесть сумму
+ - public void setWeapon(Weapon weapon) / public Weapon getWeapon()
+ 	прочитать/установить оружие
+ - public boolean isLive()
+ 	метод должен возвращать мертв (false), если показатель жизни ниже 1
+переопределить метод toString, чтобы сделатиь читабельным вывод
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++	3. Реализация интерфейсов (впоследствии возможно рассширим)		+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Магазин для покупок
+solution.kiryl.game.console.cs.core.store.Store
+необходимо создать интерфейс магазина для покупки оружия игроком
+на вход мы получаем игрока со всеми его данными и возвращаем оружие
+    Weapon buy(Player player);
+
+
+Абстрактный класс магазина
+solution.kiryl.game.console.cs.core.store.AbstractStore
+
+создать константу, которая будеть содержать все виды оружия по убыванию урона
+	protected static Weapon[] ALL_WEAPONS
+
+реализовать методы
+ - protected Weapon[] getAvailableWeapons(String team)
+	возвращает все доступные оружия для команды
+ - protected abstract Weapon[] getAvailableWeapons();
+ 	абстрактный метод, который вернет доступные орижия, должен быть реализован в дочерних классах. В дочерних стоит использовать вызов "protected Weapon[] getAvailableWeapons(String team)" со значением соответствующей команды
+ - public Weapon buy(Player player)
+ 	здесь же реализовать метод покупки, по следующему алгоритму:
+ 		- получить доступные оружия, вызвав getAvailableWeapons()
+ 		- пройтись в цикле по доступному оружию (оно лежит по убыванию урона)
+ 		- проверить достаточно ли денег у игрока на покупку. Если достаточно купить это оружие (списать деньги со счета и установить его игроку), если нет проверить следующее (если не хватит ни на одно у него должен появиться нож)
+
+solution.kiryl.game.console.cs.core.store.impl.CounterStore
+магазин с оружием контров
+solution.kiryl.game.console.cs.core.store.impl.TerroristStore
+магазин с оружием теров
+	protected Weapon[] getAvailableWeapons()
+в обоих классах должен быть реализован метод описанный выше
+
+
+Генератор игроков. Перед игрой мы не будем создавать игроков вручную, а напишем генератор, который будет заботиться о создании команд. Реализаций подобного генератора может быть много, поэтому мы используем интерфейс
+solution.kiryl.game.console.cs.core.player.PlayerGenerator
+интерфейс который содержит 2 метода
+    Player[] createCounterTeam();
+    Player[] createTerroristTeam();
+генератор команды котров и террористов
+
+Создать 1 реализацию данного метода:
+solution.kiryl.game.console.cs.core.player.impl.SimplePlayerGenerator
+простой генератор игроков, по 5 в каждую команду на основе рандомного кол-ва денег на старте
+класс должен содержать в себе 2 реализации магазинов, как поля класса (можно константы класса), магазин терроров и магазин контров (тип у обоих должен быть solution.kiryl.game.console.cs.core.store.Store)
+алгоритм работы методов будет следующий:
+ - создаем массив заведомо известной длины - 5 игроков (можно использовать константу solution.kiryl.game.console.cs.player.Team.COUNT)
+ - создаем игрока соответствующей команды (solution.kiryl.game.console.cs.player.Terrorist или solution.kiryl.game.console.cs.player.Counter)
+ - генерируем случайное кол-во денег в диапазоне 300 - 1000. Для генерации можно использовать Math.random() - случайное число double от 0 до 1, Math.round() - для округления значений до long
+ - устанавливаем полученное значение денег в поле игрока
+ - для соответствующей команды делаем покупку в соответствующем магазине, у игрока должно установиться оружие, после покупки
+
+
+Инферс для проведения боев/перестрелок )))
+solution.kiryl.game.console.cs.core.fight.Fight
+    String perform(Player[] counter, Player[] terrorist);
+принимает 2 команды игроков и определяет победителя, возращает строку со значение победившей команды
+
+
+solution.kiryl.game.console.cs.core.fight.impl.SimpleFight
+реализация дуэльных боев. Бой происходит 1 на 1 по 1 из каждой команды. Побеждает команда в которой осталось больше живых, есди кол-во ровное - то получаем "none"
+алгоритм работы:
+ - Проверяем размеры команд. Если в какой-то из них не 5 человек - выводим "Wrong team size" в консоль и выходим из метода возвращая Team.NONE
+ - в цикле проходим по каждому игроку, таким образом, чтобы 1й бился с 1ым, 5й с 5ым
+ - до начала боя выводим в консоль "Counter vs Terrorist - 1", ..., "Counter vs Terrorist - 5" для каждого из поединков
+ - начинаем бой до смерти 1 из игроков. Каждый игрок наносит удар/выстрел по очереди (кто первый сами решайте). При смерти 1го из игроков дуэль заканчивается (жив ли игрок проверять методом isLive())
+ 	При нанесении урона выводить в консоль информацию о том, кто получил урон, сколько осталось хелов, сколько получил урона, остался ли жив. К примеру:
+ 	Terrorist [75] takes 25 damage, live
+	Counter [80] takes 20 damage, live
+- После оканчания боя пройтись по массиву команд и посчитать кол-во выживших игроков в каждой
+- На основе этих данных вернуть значение строкой, кто победил
+
+
+
+
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
++	4. Запуск игры, вывод в консоль									+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Для запуска игры будем использовать класс solution.kiryl.game.console.cs.Game
+с методом main
+    public static void main(String[] args) {
+        PlayerGenerator playerGenerator = new SimplePlayerGenerator();
+
+        Player[] counterTerroristTeam = playerGenerator.createCounterTeam();
+        Player[] terroristTeam = playerGenerator.createTerroristTeam();
+
+        printTeam(counterTerroristTeam);
+        printTeam(terroristTeam);
+
+        Fight fight = new SimpleFight();
+        String winner = fight.perform(counterTerroristTeam, terroristTeam);
+        System.out.println("Winner is: " + winner);
+    }
+
+для вывода информации о игроках реализовать статический метод, который выводит информацию о каждом игроке команды
+	private static void printTeam(Player[] players)
+
+
+после запуска программы должно вывестись:
+ - начальные данные каждой команды
+ - пошаговые данные боя 1 на 1
+ - команда победитель
+
+
+
+Мой вывод в консоль:
+( как видно игроки #3 долго бились на ножах, не на жизнь а на смерть ^___^ )
+
+Counter, money: 150, weapon: CounterPistol : 25
+Counter, money: 150, weapon: CounterPistol : 25
+Counter, money: 600, weapon: Knife : 5
+Counter, money: 200, weapon: R8 : 45
+Counter, money: 200, weapon: R8 : 45
+
+Terrorist, money: 100, weapon: R8 : 45
+Terrorist, money: 300, weapon: Glock : 20
+Terrorist, money: 400, weapon: Knife : 5
+Terrorist, money: 150, weapon: Glock : 20
+Terrorist, money: 200, weapon: R8 : 45
+
+Counter vs Terrorist - 1
+Terrorist [75] takes 25 damage, live
+Counter [55] takes 45 damage, live
+Terrorist [50] takes 25 damage, live
+Counter [10] takes 45 damage, live
+Terrorist [25] takes 25 damage, live
+Counter [0] takes 45 damage, die
+
+Counter vs Terrorist - 2
+Terrorist [75] takes 25 damage, live
+Counter [80] takes 20 damage, live
+Terrorist [50] takes 25 damage, live
+Counter [60] takes 20 damage, live
+Terrorist [25] takes 25 damage, live
+Counter [40] takes 20 damage, live
+Terrorist [0] takes 25 damage, die
+
+Counter vs Terrorist - 3
+Terrorist [95] takes 5 damage, live
+Counter [95] takes 5 damage, live
+Terrorist [90] takes 5 damage, live
+Counter [90] takes 5 damage, live
+Terrorist [85] takes 5 damage, live
+Counter [85] takes 5 damage, live
+Terrorist [80] takes 5 damage, live
+Counter [80] takes 5 damage, live
+Terrorist [75] takes 5 damage, live
+Counter [75] takes 5 damage, live
+Terrorist [70] takes 5 damage, live
+Counter [70] takes 5 damage, live
+Terrorist [65] takes 5 damage, live
+Counter [65] takes 5 damage, live
+Terrorist [60] takes 5 damage, live
+Counter [60] takes 5 damage, live
+Terrorist [55] takes 5 damage, live
+Counter [55] takes 5 damage, live
+Terrorist [50] takes 5 damage, live
+Counter [50] takes 5 damage, live
+Terrorist [45] takes 5 damage, live
+Counter [45] takes 5 damage, live
+Terrorist [40] takes 5 damage, live
+Counter [40] takes 5 damage, live
+Terrorist [35] takes 5 damage, live
+Counter [35] takes 5 damage, live
+Terrorist [30] takes 5 damage, live
+Counter [30] takes 5 damage, live
+Terrorist [25] takes 5 damage, live
+Counter [25] takes 5 damage, live
+Terrorist [20] takes 5 damage, live
+Counter [20] takes 5 damage, live
+Terrorist [15] takes 5 damage, live
+Counter [15] takes 5 damage, live
+Terrorist [10] takes 5 damage, live
+Counter [10] takes 5 damage, live
+Terrorist [5] takes 5 damage, live
+Counter [5] takes 5 damage, live
+Terrorist [0] takes 5 damage, die
+
+Counter vs Terrorist - 4
+Terrorist [55] takes 45 damage, live
+Counter [80] takes 20 damage, live
+Terrorist [10] takes 45 damage, live
+Counter [60] takes 20 damage, live
+Terrorist [0] takes 45 damage, die
+
+Counter vs Terrorist - 5
+Terrorist [55] takes 45 damage, live
+Counter [55] takes 45 damage, live
+Terrorist [10] takes 45 damage, live
+Counter [10] takes 45 damage, live
+Terrorist [0] takes 45 damage, die
+
+
+Winner is: counter
