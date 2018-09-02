@@ -1,5 +1,7 @@
 package session.classes;
 
+import session.classes.impl.NewsPaperDataProvider;
+
 public class Runner {
     public static void main(String[] args) {
 //        Cat cat = new Cat();
@@ -33,22 +35,49 @@ public class Runner {
 //        System.out.println(Neko.word);      // new nya static           new nya static
 //        System.out.println(Neko.word);     // new nya static           nya
 
-        Human vadim = new Human();
-        vadim.age = 29;
+//        Human vadim = new Human();
+//        vadim.age = 29;
+//
+//        Human kiryl = new Human();
+//        kiryl.age = 30;
+//
+//        System.out.println(vadim);
+//        System.out.println(kiryl);
+//
+//        Human.averageAge = 98;
+//
+//        System.out.println(vadim);
+//        System.out.println(kiryl);
+//
+//        Cat lazyCat = new Cat();
+//        Neko neko = new Neko(lazyCat);
+//        neko.sayNya();
 
-        Human kiryl = new Human();
-        kiryl.age = 30;
+//        NewsPaper newsPaper = new NewsPaper("Pravda", new Data());
+//        System.out.println(newsPaper.getName());
 
-        System.out.println(vadim);
-        System.out.println(kiryl);
+        DataProvider newsPaperDataProvider = new NewsPaperDataProvider();
+        Data dataPravda = new Data();
+        dataPravda.data = "Pravda text";
+        Data dataCat = new Data();
+        dataCat.data = "Nya nyanyan";
 
-        Human.averageAge = 98;
+        newsPaperDataProvider.save("Pravda", dataPravda);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Cat newspaper", dataCat);
+        newsPaperDataProvider.save("Pravda 2", dataPravda);
 
-        System.out.println(vadim);
-        System.out.println(kiryl);
-
-        Cat lazyCat = new Cat();
-        Neko neko = new Neko(lazyCat);
-        neko.sayNya();
+        System.out.println(newsPaperDataProvider.read("Cat newspaper"));
+        System.out.println(newsPaperDataProvider.read("Trud"));
+        System.out.println(newsPaperDataProvider.read("Pravda"));
+        System.out.println(newsPaperDataProvider.read("Pravda 2"));
     }
 }
