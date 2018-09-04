@@ -14,6 +14,8 @@ public class NewsPaperDataProvider implements DataProvider {
             if (newsPaperArray[i] == null) {
                 newsPaperArray[i] = newsPaper;
                 break;
+            } else if (newsPaperArray[i].getName().equals(name)) {
+                return;
             }
         }
     }
