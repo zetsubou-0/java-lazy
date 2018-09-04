@@ -26,19 +26,19 @@ P.S для выполнения задания лучше создать пак�
 
 public class Car {
 
-    protected static int minYear;
+    private static int minYear;
 
-    public String mark;
-    public int year;
-    public int mileage;
+    private String mark;
+    private int year;
+    private int mileage;
 
 
     public Car() {
-        mark = "citroen";
+        this("citroen");
     }
 
     public Car(String mark) {
-        this.mark = mark;
+        this(mark, 0,0);
     }
 
     public Car(String mark, int year, int mileage) {
@@ -76,7 +76,7 @@ public class Car {
     }
 
     public void testYear(int year){
-        if (year < mileage){
+        if (year < minYear){
             System.out.println("машина старая");
         }else {
             System.out.println("нормальная машина");
