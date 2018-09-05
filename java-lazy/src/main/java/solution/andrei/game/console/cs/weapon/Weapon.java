@@ -12,6 +12,10 @@ public class Weapon {
         this.team = team;
     }
 
+    public int getCost(){
+        return cost;
+    }
+
     public int getDamage(){
         return damage;
     }

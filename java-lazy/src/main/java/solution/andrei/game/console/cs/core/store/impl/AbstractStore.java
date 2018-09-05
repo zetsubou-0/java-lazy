@@ -54,12 +54,26 @@ public abstract class AbstractStore {
     }
 
     protected abstract Weapon[] getAvailableWeapons(); //  абстрактный метод, который вернет доступные орижия, должен быть реализован в дочерних классах. В дочерних стоит использовать вызов "protected Weapon[] getAvailableWeapons(String team)" со значением соответствующей команды
-
+/*
     public Weapon buy(Player player){
        // здесь же реализовать метод покупки, по следующему алгоритму:
        // - получить доступные оружия, вызвав getAvailableWeapons()
         //- пройтись в цикле по доступному оружию (оно лежит по убыванию урона)
         //- проверить достаточно ли денег у игрока на покупку. Если достаточно купить это оружие (списать деньги со счета и установить его игроку), если нет проверить следующее (если не хватит ни на одно у него должен появиться нож)
-        return null;
+
+        Weapon[] playersWeapon = getAvailableWeapons();
+
+        for (int i = 0; i < playersWeapon.length; i++) {
+            if(player.getMoney() >= playersWeapon[i].getCost()) {
+                player.pay(playersWeapon[i].getCost());
+                player.setWeapon(playersWeapon[i]);
+                return playersWeapon[i];
+                break;
+            } else {
+                player.setWeapon(playersWeapon[5]);
+                return ALL_WEAPONS[5];
+            }
+        }
     }
+    */
 }
