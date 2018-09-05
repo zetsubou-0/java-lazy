@@ -56,28 +56,28 @@ public class Runner {
 //        NewsPaper newsPaper = new NewsPaper("Pravda", new Data());
 //        System.out.println(newsPaper.getName());
 
-        DataProvider newsPaperDataProvider = new NewsPaperDataProvider();
+        DataProvider dataProvider = new NewsPaperDataProvider();
         Data dataPravda = new Data();
         dataPravda.data = "Pravda text";
         Data dataCat = new Data();
         dataCat.data = "Nya nyanyan";
 
-        newsPaperDataProvider.save("Pravda", dataPravda);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Cat newspaper", dataCat);
-        newsPaperDataProvider.save("Pravda 2", dataPravda);
+        dataProvider.save("Pravda", dataPravda);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Cat newspaper", dataCat);
+        dataProvider.save("Pravda 2", dataPravda);
 
-        System.out.println(newsPaperDataProvider.read("Cat newspaper"));
-        System.out.println(newsPaperDataProvider.read("Trud"));
-        System.out.println(newsPaperDataProvider.read("Pravda"));
-        System.out.println(newsPaperDataProvider.read("Pravda 2"));
+        System.out.println(dataProvider.read("Cat newspaper"));
+        System.out.println(dataProvider.read("Trud"));
+        System.out.println(dataProvider.read("Pravda"));
+        System.out.println(dataProvider.read("Pravda 2"));
     }
 }
