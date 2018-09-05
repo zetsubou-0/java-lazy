@@ -7,6 +7,6 @@ import solution.andrei.game.console.cs.weapon.Weapon;
 public class Knife extends Weapon {
 
     public Knife(){
-        super(30, 60, Team.NONE);
+        super(0, 60, Team.BOTH);
     }
 }
