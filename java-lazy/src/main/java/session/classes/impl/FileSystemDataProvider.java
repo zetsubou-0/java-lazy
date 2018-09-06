@@ -38,20 +38,17 @@ public class FileSystemDataProvider implements DataProvider {
      * @param path путь (элемент)
      */
     public void addPath(int index, String path) {
-//        int count = 10;
-//        String[] paths = new String[count];
-//        for (int i = 0; i < paths.length; i++) {
-//            if (i < paths.length) {
-//                paths[index] = path;
-//            }
-//            if (i == paths.length - 1) {
-//                String[] newPaths = new String[count * 2];
-//                newPaths = paths;
-//            }
-//        }
-
-
-
+        if (index < paths.length) {
+            paths[index] = path;
+        }
+        if (index == paths.length) {
+            String[] newPaths = new String[paths.length * 2];
+            for (int i = 0; i < paths.length; i++) {
+                newPaths[i] = paths[i];
+            }
+            newPaths[index] = path;
+            paths = newPaths;
+        }
     }
 
     public void addData(int index, Data data) {
