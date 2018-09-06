@@ -15,46 +15,42 @@ public abstract class AbstractStore {
     protected static final Weapon[] ALL_WEAPONS = new Weapon[6]; //создать константу, которая будеть содержать все виды оружия по убыванию урона
 
     static {
-        ALL_WEAPONS [0] = new Kalash();
-        ALL_WEAPONS [1] = new M();
-        ALL_WEAPONS [2] = new CounterPistols();
-        ALL_WEAPONS [3] = new Glock();
-        ALL_WEAPONS [4] = new R8();
-        ALL_WEAPONS [5] = new Knife();
+        ALL_WEAPONS[0] = new Kalash();
+        ALL_WEAPONS[1] = new M();
+        ALL_WEAPONS[2] = new CounterPistols();
+        ALL_WEAPONS[3] = new Glock();
+        ALL_WEAPONS[4] = new R8();
+        ALL_WEAPONS[5] = new Knife();
     }
 
-    protected Weapon[] getAvailableWeapons(String team){ // возвращает все доступные оружия для команды
+    protected Weapon[] getAvailableWeapons(String team) { // возвращает все доступные оружия для команды
 
-        Weapon[] counter = new Weapon[5];
-        counter [0] = ALL_WEAPONS [0];
-        counter [1] = ALL_WEAPONS [2];
-        counter [2] = ALL_WEAPONS [3];
-        counter [3] = ALL_WEAPONS [4];
-        counter [4] = ALL_WEAPONS [5];
+        int counter = 0;
 
-        Weapon[] terrorist = new Weapon[5];
-        terrorist [0] = ALL_WEAPONS [1];
-        terrorist [1] = ALL_WEAPONS [2];
-        terrorist [2] = ALL_WEAPONS [3];
-        terrorist [3] = ALL_WEAPONS [4];
-        terrorist [4] = ALL_WEAPONS [5];
+        for (int i = 0; i < ALL_WEAPONS.length; i++) {
+            if (ALL_WEAPONS[i].getTeam().equals(team) || ALL_WEAPONS[i].getTeam().equals(Team.BOTH)) {
+                counter++;
+            }
+        }
 
-        Weapon[] both = new Weapon[4];
-        both [0] = ALL_WEAPONS [2];
-        both [1] = ALL_WEAPONS [3];
-        both [2] = ALL_WEAPONS [4];
-        both [3] = ALL_WEAPONS [5];
+        Weapon[] teamWeapon = new Weapon[counter];
 
+        int index = 0;
 
-        if (team.equals(Team.COUNTER )) return counter;
-        if (team.equals(Team.TERRORIST)) return terrorist;
-        if (team.equals(Team.BOTH)) return both;
+        for (int i = 0; i < ALL_WEAPONS.length; i++) {
+            if (ALL_WEAPONS[i].getTeam().equals(team) || ALL_WEAPONS[i].getTeam().equals(Team.BOTH)) {
+                teamWeapon[index] = ALL_WEAPONS[i];
+                index++;
+            }
+        }
 
-        return null;
+        return teamWeapon;
+
     }
+
 
     protected abstract Weapon[] getAvailableWeapons(); //  абстрактный метод, который вернет доступные орижия, должен быть реализован в дочерних классах. В дочерних стоит использовать вызов "protected Weapon[] getAvailableWeapons(String team)" со значением соответствующей команды
-/*
+
     public Weapon buy(Player player){
        // здесь же реализовать метод покупки, по следующему алгоритму:
        // - получить доступные оружия, вызвав getAvailableWeapons()
@@ -68,12 +64,10 @@ public abstract class AbstractStore {
                 player.pay(playersWeapon[i].getCost());
                 player.setWeapon(playersWeapon[i]);
                 return playersWeapon[i];
-                break;
-            } else {
-                player.setWeapon(playersWeapon[5]);
-                return ALL_WEAPONS[5];
             }
         }
+
+        return ALL_WEAPONS[5];
+
     }
-    */
 }

@@ -5,11 +5,14 @@ public class Weapon {
     protected final int damage;
     protected final String team;
 
-
     public Weapon(int cost, int damage, String team) {
         this.cost = cost;
         this.damage = damage;
         this.team = team;
+    }
+
+    public String getTeam() {
+        return team;
     }
 
     public int getCost(){
