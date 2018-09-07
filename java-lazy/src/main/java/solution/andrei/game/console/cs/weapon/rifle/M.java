@@ -7,7 +7,7 @@ import solution.andrei.game.console.cs.weapon.Weapon;
 public class M extends Weapon {
 
     public M() {
-        super(3500, 7000, Team.COUNTER);
+        super(3500, 90, Team.COUNTER);
     }
 
 }

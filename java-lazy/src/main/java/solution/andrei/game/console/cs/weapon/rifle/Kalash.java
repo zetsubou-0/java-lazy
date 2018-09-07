@@ -7,6 +7,6 @@ import solution.andrei.game.console.cs.weapon.Weapon;
 public class Kalash extends Weapon {
 
     public Kalash() {
-        super(4000, 8000, Team.TERRORIST);
+        super(4000, 100, Team.TERRORIST);
     }
 }

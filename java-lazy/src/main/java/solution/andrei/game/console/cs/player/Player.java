@@ -3,7 +3,7 @@ package solution.andrei.game.console.cs.player;
 import solution.andrei.game.console.cs.weapon.Weapon;
 
 public abstract class Player {
-    protected int heal;
+    protected int heal = 200;
     protected int money;
     protected Weapon weapon;
     protected boolean live;
@@ -42,10 +42,7 @@ public abstract class Player {
     }
 
     public boolean isLive() {  //метод должен возвращать мертв (false), если показатель жизни ниже переопределить метод toString, чтобы сделатиь читабельным вывод
-        if (heal < 0) {
-            live = false;
-        }
-        return live;
+        return heal > 0;
     }
 
 }
