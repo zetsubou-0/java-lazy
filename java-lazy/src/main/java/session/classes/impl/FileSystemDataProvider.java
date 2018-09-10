@@ -52,6 +52,17 @@ public class FileSystemDataProvider implements DataProvider {
     }
 
     public void addData(int index, Data data) {
+        if (index < this.data.length) {
+            this.data[index] = data;
+        }
+        if (index == this.data.length) {
+            Data[] newData = new Data[this.data.length * 2];
+            for (int i = 0; i < newData.length; i++) {
+                newData[i] = this.data[i];
+            }
+            newData[index] = data;
+            this.data = newData;
+        }
 
     }
 
