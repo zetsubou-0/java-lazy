@@ -6,7 +6,6 @@ public abstract class Player {
     protected int heal = 200;
     protected int money;
     protected Weapon weapon;
-    protected boolean live;
 
     public abstract boolean isTerrorist();
 
@@ -45,4 +44,7 @@ public abstract class Player {
         return heal > 0;
     }
 
+    public String toString(){
+        return "Игрок: " + (isTerrorist() ? "Terrorist" : "Counter") + " оружие: " + weapon.getName() + ", жизней: " + heal;
+    }
 }

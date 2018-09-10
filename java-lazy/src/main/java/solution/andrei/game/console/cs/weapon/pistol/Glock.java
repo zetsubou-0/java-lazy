@@ -6,6 +6,6 @@ import solution.andrei.game.console.cs.player.Team;
 public class Glock extends Weapon {
 
     public Glock() {
-        super(2000, 60, Team.BOTH);
+        super(250, 50, Team.BOTH, "Glock");
     }
 }

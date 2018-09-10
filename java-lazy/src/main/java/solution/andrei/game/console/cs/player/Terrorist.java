@@ -4,6 +4,6 @@ public class Terrorist extends Player {
 
     @Override
     public boolean isTerrorist() {
-        return false;
+        return true;
     }
 }
