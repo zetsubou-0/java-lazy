@@ -56,28 +56,32 @@ public class Runner {
 //        NewsPaper newsPaper = new NewsPaper("Pravda", new Data());
 //        System.out.println(newsPaper.getName());
 
-        DataProvider dataProvider = new NewsPaperDataProvider();
-        Data dataPravda = new Data();
-        dataPravda.data = "Pravda text";
-        Data dataCat = new Data();
-        dataCat.data = "Nya nyanyan";
+//        DataProvider dataProvider = new NewsPaperDataProvider();
+//        Data dataPravda = new Data();
+//        dataPravda.data = "Pravda text";
+//        Data dataCat = new Data();
+//        dataCat.data = "Nya nyanyan";
+//
+//        dataProvider.save("Pravda", dataPravda);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Cat newspaper", dataCat);
+//        dataProvider.save("Pravda 2", dataPravda);
+//
+//        System.out.println(dataProvider.read("Cat newspaper"));
+//        System.out.println(dataProvider.read("Trud"));
+//        System.out.println(dataProvider.read("Pravda"));
+//        System.out.println(dataProvider.read("Pravda 2"));
 
-        dataProvider.save("Pravda", dataPravda);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Cat newspaper", dataCat);
-        dataProvider.save("Pravda 2", dataPravda);
-
-        System.out.println(dataProvider.read("Cat newspaper"));
-        System.out.println(dataProvider.read("Trud"));
-        System.out.println(dataProvider.read("Pravda"));
-        System.out.println(dataProvider.read("Pravda 2"));
+        DataProvider dp = new NewsPaperDataProvider();
+        dp.read("qwe");
+        ((NewsPaperDataProvider) dp).printNewspaper();
     }
 }
