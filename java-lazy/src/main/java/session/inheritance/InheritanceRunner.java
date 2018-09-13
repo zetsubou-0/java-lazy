@@ -5,19 +5,16 @@ public class InheritanceRunner {
         Parent parent = new Parent();
         Parent child = new Child();
 
-        System.out.println(parent.getName());
         System.out.println(child.getName());
     }
 }
 
 /**
  * Andrei
- * 21 - null
- * 120 - null - Child
+ * 320 - null - Child
  */
 
 /**
  * Vadim
- * 120 - null
  * 120 - null - Child
 */
