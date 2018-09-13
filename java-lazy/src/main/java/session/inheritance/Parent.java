@@ -8,6 +8,7 @@ public class Parent {
     public Parent() {
         x = 1;
         y = 20;
+        name = "parent";
         print();
     }
 
@@ -16,7 +17,6 @@ public class Parent {
     }
 
     public void print() {
-        name = "parent";
         System.out.println(getName());
     }
 }

@@ -5,6 +5,7 @@ public class Child extends Parent {
     public Child() {
         super();
         x = 3;
+        name = "child";
         print();
     }
 
@@ -15,7 +16,6 @@ public class Child extends Parent {
 
     @Override
     public void print() {
-        name = "child";
         super.print();
     }
 }
