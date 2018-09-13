@@ -16,12 +16,13 @@ public class InheritanceRunner {
 /**
  * Andrei
  * 120 - parent
- * 320 - child - child
- * 320 - parent
+ * 120 - parent
+ * 120 - parent
  */
 
 /**
  * Vadim
- * null
- * null
+ * 120 - parent
+ * 320 - child
+ * 320 - child
 */
