@@ -29,4 +29,8 @@ public class NewsPaperDataProvider implements DataProvider {
         }
         return null;
     }
+
+    public void printNewspaper() {
+        // logic
+    }
 }
