@@ -2,8 +2,6 @@ package session.inheritance;
 
 public class Child extends Parent {
 
-    protected int x;
-
     public Child() {
         x = 3;
     }

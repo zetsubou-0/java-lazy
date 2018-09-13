@@ -9,3 +9,15 @@ public class InheritanceRunner {
         System.out.println(child.getName());
     }
 }
+
+/**
+ * Andrei
+ * 21 - null
+ * 120 - null - Child
+ */
+
+/**
+ * Vadim
+ * 120 - null
+ * 120 - null - Child
+*/
