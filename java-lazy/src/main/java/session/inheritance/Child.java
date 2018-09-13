@@ -10,6 +10,6 @@ public class Child extends Parent {
 
     @Override
     public String getName() {
-        return super.getName() + " - parent";
+        return super.getName() + " - Child";
     }
 }
