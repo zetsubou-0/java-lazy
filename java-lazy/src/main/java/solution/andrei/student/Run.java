@@ -15,7 +15,10 @@ public class Run {
         student[7] = new GeniusStudent("Коржов", "Роман", "Евгеньевич", 20);
         student[8] = new GeniusStudent("Хлистунов", "Никлай", "Алексеевна", 2);
 
+        // выводит на экран студентов сдавших экзамен
+
         for (int i = 0; i < student.length; i++) {
+            if (student[i].exam(student[i]).equals("экзамен сдал"))
             System.out.println(student[i] + " " + student[i].exam(student[i]));
         }
     }
