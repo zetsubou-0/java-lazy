@@ -18,7 +18,5 @@ public class Run {
         for (int i = 0; i < student.length; i++) {
             System.out.println(student[i] + " " + student[i].exam(student[i]));
         }
-
-
     }
 }
