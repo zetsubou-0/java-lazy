@@ -30,7 +30,7 @@ public abstract class Student {
         return numberLesson;
     }
 
-    public abstract String exam(Student a);
+    public abstract String exam();
 
     public String toString() {
         return getSurname() + " " + getName() + " " + getPatronymic() + " " + getNumberLesson();

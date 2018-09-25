@@ -8,8 +8,11 @@ public class OrdinaryStudent extends Student{
         super(surname, name, patronymic, numberLesson);
     }
 
-    public String exam(Student a){
-        if (getNumberLesson() == lesson || getNumberLesson() == lesson/2) return "экзамен сдал";
-        else return "экзамен не сдал";
+    public String exam(){
+        if (getNumberLesson() == lesson) return "экзамен сдал";
+        if (getNumberLesson() == lesson/2) {
+            if (0.5 <= Math.random()) return "экзамен сдал";
+        }
+        return "экзамен не сдал";
     }
 }

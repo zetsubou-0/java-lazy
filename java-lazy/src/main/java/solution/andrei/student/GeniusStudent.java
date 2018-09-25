@@ -8,8 +8,8 @@ public class GeniusStudent extends  Student{
         super(surname, name, patronymic, numberLesson);
     }
 
-    public String exam(Student a){
+    public String exam(){
         if (getNumberLesson() > 1) return "экзамен сдал";
-        else return "экзамен не сдал";
+        return "экзамен не сдал";
     }
 }
