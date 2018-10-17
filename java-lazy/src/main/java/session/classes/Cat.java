@@ -8,7 +8,7 @@ public class Cat {
     protected CatEye catEyeLeft;
     protected CatEye catEyeRight;
 
-    Cat() {
+    public Cat() {
         catEyeLeft = new CatEye("green");
         catEyeRight = new CatEye("blue");
     }
