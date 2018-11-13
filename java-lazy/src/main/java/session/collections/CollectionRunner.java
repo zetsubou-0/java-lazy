@@ -2,9 +2,7 @@ package session.collections;
 
 import session.classes.Cat;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class CollectionRunner {
 
@@ -31,17 +29,17 @@ public class CollectionRunner {
 //        System.out.println(arrayList.get(2));
 //        System.out.println(arrayList.get(3));
 
-        Cat cat1 = new Cat();
-        cat1.age = 1;
-        Cat cat2 = new Cat();
-        cat2.age = 2;
-        Cat cat3 = new Cat();
-        cat3.age = 3;
-        LinkedCatCollection linkedCatCollection = new LinkedCatCollection();
-        linkedCatCollection.add(cat1);
-        linkedCatCollection.add(cat2);
-        linkedCatCollection.add(cat1);
-        linkedCatCollection.add(cat3);
+//        Cat cat1 = new Cat();
+//        cat1.age = 1;
+//        Cat cat2 = new Cat();
+//        cat2.age = 2;
+//        Cat cat3 = new Cat();
+//        cat3.age = 3;
+//        LinkedCatCollection linkedCatCollection = new LinkedCatCollection();
+//        linkedCatCollection.add(cat1);
+//        linkedCatCollection.add(cat2);
+//        linkedCatCollection.add(cat1);
+//        linkedCatCollection.add(cat3);
 //        linkedCatCollection.printReverse();
 
 //        long start = System.currentTimeMillis();
@@ -59,5 +57,12 @@ public class CollectionRunner {
 //        long linkedListTime = end - start;
 //
 //        System.out.println(arrayListTime + " vs " + linkedListTime);
+
+        Set<Person> personSet = new HashSet<>();
+        for (int i = 0; i < 10; i++) {
+            personSet.add(new Person("Andrei", 30));
+            personSet.add(new Person("Kiryl", 30));
+        }
+        System.out.println(personSet);
     }
 }
