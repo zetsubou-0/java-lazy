@@ -1,0 +1,12 @@
+Дом с электроприборами ^___^
+
+1. Создать следующую структуру пакетов относительно базового
+        equipment
+                factory
+                        data
+                        impl
+                model
+                store
+        house
+                builder
+        collection
