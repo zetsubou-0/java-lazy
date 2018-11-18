@@ -46,7 +46,7 @@ RegularEquipmentFactory
 PortableEquipmentFactory
 HeavyEquipmentFactory
 
-создать класс непосредственно фабрики - ElectricEquipmentFactory
+создать класс непосредственно фабрики в пакете 'factory' - ElectricEquipmentFactory
 у данного класа должны быть следующие ограничения
     - данный класс нельзя наследовать
     - нельзя создавать экземпляр данного класса (объект через new)
