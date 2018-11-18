@@ -12,13 +12,15 @@
                 builder
         collection
 
-2. Для пакета моделей создать интерфейс "ElectricEquipment"
+2. Для пакета моделей (model) создать интерфейс "ElectricEquipment"
     public interface ElectricEquipment {
         EquipmentType type();
         int power();
         int price();
         Warranty getWarranty();
     }
+Warranty getWarranty();
+Warranty - класс, который находится под пакетом 'store', в данном пункте достаточно создать пустой класс, с этим именем
 
 класс абстрактной модели BaseElectricEquipment:
  - который будет содержать данные в виде приватных полей
@@ -33,3 +35,4 @@
 
 реальизовать несколько классов приборов разного типа (наследуются от базового)
 
+3.
