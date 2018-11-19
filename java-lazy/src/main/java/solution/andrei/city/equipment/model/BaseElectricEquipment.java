@@ -25,6 +25,7 @@ public class BaseElectricEquipment implements ElectricEquipment{
     public int price() {
         return 0;
     }
+
     public Warranty getWarranty() {
         return null;
     }
@@ -36,6 +37,7 @@ public class BaseElectricEquipment implements ElectricEquipment{
     public int getPower() {
         return power;
     }
+
     public int getPrice() {
         return price;
     }
