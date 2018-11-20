@@ -3,6 +3,7 @@ package solution.andrei.city.equipment.factory;
 import solution.andrei.city.equipment.model.ElectricEquipment;
 import solution.andrei.city.equipment.model.EquipmentType;
 
+import java.util.Collections;
 import java.util.Set;
 
 public final class ElectricEquipmentFactory {
@@ -12,6 +13,6 @@ public final class ElectricEquipmentFactory {
     }
 
     public static Set<ElectricEquipment> create(EquipmentType type) {
-        return null;
+        return Collections.emptySet();
     }
 }
