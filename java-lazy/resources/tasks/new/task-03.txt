@@ -56,4 +56,12 @@ HeavyEquipmentFactory
         на данном этапе данные для сервиса предоставить в ручную, можно испотльзовать заранее заготовленный объект Map<String, Object> parameters
 
 
-4.
+4. Создать класс для предоставления рандомных данных ввиде Map<String Object> на основе типа 'EquipmentType'
+Создать класс интерфейса 'DataProvider' в пакете 'factory.data'
+    public interface DataProvider {
+        Map<String, Object> generateParameters(EquipmentType type);
+    }
+И реализацию данного интерфейса 'RandomDataProvider' в пакете 'factory.data.impl'
+данные могут быть лубого формата, главное чтобы они корректно обрабатывались в классах RegularEquipmentFactory, PortableEquipmentFactory, HeavyEquipmentFactory.
+Т.е. на основе этих данных были сгенерированы продукты/
+Для каждого класса желательно добавить новое поле, специфическое только для него (например для крупногабаритных или тяжелых - ширина, длина, высота)
