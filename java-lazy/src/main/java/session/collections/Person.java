@@ -1,6 +1,6 @@
 package session.collections;
 
-public class Person {
+public class Person implements Comparable<Person> {
     private final String name;
     private int age;
 
@@ -45,8 +45,14 @@ public class Person {
 
     @Override
     public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + age;
-        return result;
+//        int result = name != null ? name.hashCode() : 0;
+//        result = 31 * result + age;
+//        return result;
+        return 44;
+    }
+
+    @Override
+    public int compareTo(Person person) {
+        return name.compareTo(person.getName());
     }
 }

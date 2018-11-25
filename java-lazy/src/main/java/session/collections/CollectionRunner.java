@@ -1,7 +1,5 @@
 package session.collections;
 
-import session.classes.Cat;
-
 import java.util.*;
 
 public class CollectionRunner {
@@ -63,6 +61,23 @@ public class CollectionRunner {
             personSet.add(new Person("Andrei", 30));
             personSet.add(new Person("Kiryl", 30));
         }
-        System.out.println(personSet);
+        System.out.println(personSet.remove(new Person("Vadim", 30)));
+        System.out.println(personSet.remove(new Person("Kiryl", 30)));
+        System.out.println(new Person("Kiryl", 30).equals(new Person("Kiryl", 30)));
+
+//        Comparator<Person> personComparator = new PersonComparator();
+//        Comparator<Person> personComparator = new Comparator<Person>() {
+//            @Override
+//            public int compare(Person person1, Person person2) {
+//                return person2.getName().compareTo(person1.getName());
+//            }
+//        };
+        Set<Person> sortedSet = new TreeSet<>();
+        sortedSet.add(new Person("Andrei", 30));
+        sortedSet.add(new Person("Vadim", 30));
+        sortedSet.add(new Person("Kiryl", 30));
+        for (Person person : sortedSet) {
+            System.out.println(person);
+        }
     }
 }
