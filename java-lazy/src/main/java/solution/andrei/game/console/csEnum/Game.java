@@ -20,8 +20,8 @@ public class Game {
         System.out.println("Победила:" + winner);
     }
     private static void printTeam(Player[] players) {
-        for (int i = 0; i < players.length; i++) {
-            System.out.println(players[i]);
+        for (Player a : players) {
+            System.out.println(a);
         }
         System.out.println();
     }

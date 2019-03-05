@@ -36,6 +36,7 @@ public class SimpleFight implements Fight {
             System.out.println("Неправильный размер команды террористов");
             return Team.NONE;
         }
+
         for (int i = 0; i < Team.COUNT; i++) {
             System.out.println("Counter vs Terrorist - " + (i + 1));
             while (true) {
@@ -63,18 +64,9 @@ public class SimpleFight implements Fight {
         int countLiveTerrorist = 0;
 
         for (int i = 0; i < Team.COUNT; i++) {
-            if (counter[i].isLive()) {
-                countLiveCounter++;
-            }
-            if (terrorist[i].isLive()) {
-                countLiveTerrorist++;
-            }
+            if (counter[i].isLive()) countLiveCounter++;
+            if (terrorist[i].isLive()) countLiveTerrorist++;
         }
-        if (countLiveCounter < countLiveTerrorist) {
-            return " Команда террористов! ";
-        } else if (countLiveCounter > countLiveTerrorist) {
-            return " Команда контров! ";
-        }
-        return "Ничья!";
+        return countLiveCounter < countLiveTerrorist ? " Команда террористов! " : " Команда контров! ";
     }
 }

@@ -20,9 +20,9 @@ public abstract class AbstractStore implements Store {
         Weapon[] com = new Weapon[4];
         int j = 0;
         if (team.equals(Team.COUNTER) || team.equals(Team.TERRORIST)) {
-            for (int i = 0; i < ALL_WEAPONS.length; i++) {
-                if (team.equals(ALL_WEAPONS[i].getTeam()) || Team.BOTH.equals(ALL_WEAPONS[i].getTeam())) {
-                    com[j++] = ALL_WEAPONS[i];
+            for (Weapon a : ALL_WEAPONS) {
+                if (team.equals(a.getTeam()) || Team.BOTH.equals(a.getTeam())) {
+                    com[j++] = a;
                 }
             }
         }
@@ -40,10 +40,10 @@ public abstract class AbstractStore implements Store {
     // и установить его игроку), если нет проверить следующее (если не хватит ни на одно у него должен появиться нож)
     public Weapon buy(Player player) {
         Weapon[] com = getAvailableWeapons();
-        for (int i = 0; i < com.length; i++) {
-            if (player.getMoney() >= com[i].getCost()) {
-                player.pay(com[i].getCost());
-                player.setWeapon(com[i]);
+        for (Weapon a : com) {
+            if (player.getMoney() >= a.getCost()) {
+                player.pay(a.getCost());
+                player.setWeapon(a);
                 break;
             }
         }
