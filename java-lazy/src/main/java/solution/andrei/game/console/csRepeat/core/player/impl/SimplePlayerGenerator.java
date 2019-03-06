@@ -10,11 +10,10 @@ import solution.andrei.game.console.csRepeat.core.store.impl.TerroristStore;
 import solution.andrei.game.console.csRepeat.player.Team;
 
 /**
- * Создать 1-ну реализацию данного интерфейса:
- *     solution.kiryl.game.console.SimplePlayerGenerator
- *     простой генератор игроков, по 5 в каждую команду на основе рандомного кол-ва денег на старте
- *     класс должен содержать в себе 2 реализации магазинов, как поля класса (можно константы класса), магазин терроров
- *      и магазин контров (тип у обоих должен быть solution.kiryl.game.console.Store)
+ * реализация интерфейса:
+ * простой генератор игроков, по 5 в каждую команду на основе рандомного кол-ва денег на старте
+ * класс должен содержать в себе 2 реализации магазинов, как поля класса (можно константы класса), магазин терроров
+ * и магазин контров (тип у обоих должен быть solution.kiryl.game.console.Store)
  */
 public class SimplePlayerGenerator implements PlayerGenerator {
     private Store counterStore = new CounterStore();

@@ -1,5 +1,10 @@
 package solution.andrei.game.console.csRepeat.weapon;
 
+/**
+ * solution.kiryl.game.console.cs.weapon.Weapon - базовый класс оружия, со следующими полями
+ * все поля должны инициализироваться через аргументы конструктора;
+ * переопределить метод toString, чтобы сделатиь читабельным вывод
+ */
 public class Weapon {
     private final int cost;
     private final int damage;
