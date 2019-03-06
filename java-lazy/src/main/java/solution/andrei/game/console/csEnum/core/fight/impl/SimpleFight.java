@@ -37,6 +37,9 @@ public class SimpleFight implements Fight {
             return Team.NONE;
         }
 
+        int countLiveCounter = 0;
+        int countLiveTerrorist = 0;
+
         for (int i = 0; i < Team.COUNT; i++) {
             System.out.println("Counter vs Terrorist - " + (i + 1));
             while (true) {
@@ -44,6 +47,7 @@ public class SimpleFight implements Fight {
                 System.out.print("Counter " + "[" + counter[i].getHeal() + "] " + terrorist[i].getWeapon() + ", ");
                 if (!counter[i].isLive()) {
                     System.out.println("мертв");
+                    countLiveTerrorist++;
                     break;
                 } else {
                     System.out.println("жив");
@@ -52,20 +56,13 @@ public class SimpleFight implements Fight {
                 System.out.print("Terrorist " + "[" + terrorist[i].getHeal() + "] " + counter[i].getWeapon() + ", ");
                 if (!terrorist[i].isLive()) {
                     System.out.println("мертв");
+                    countLiveCounter++;
                     break;
                 } else {
                     System.out.println("жив");
                 }
             }
             System.out.println();
-        }
-
-        int countLiveCounter = 0;
-        int countLiveTerrorist = 0;
-
-        for (int i = 0; i < Team.COUNT; i++) {
-            if (counter[i].isLive()) countLiveCounter++;
-            if (terrorist[i].isLive()) countLiveTerrorist++;
         }
         return countLiveCounter < countLiveTerrorist ? " Команда террористов! " : " Команда контров! ";
     }
