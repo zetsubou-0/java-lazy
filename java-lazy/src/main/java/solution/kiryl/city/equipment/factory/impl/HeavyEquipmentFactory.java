@@ -1,15 +1,15 @@
 package solution.kiryl.city.equipment.factory.impl;
 
 import solution.kiryl.city.equipment.factory.ElectricEquipmentFactoryService;
+import solution.kiryl.city.equipment.factory.data.model.EquipmentParameter;
 import solution.kiryl.city.equipment.model.ElectricEquipment;
 
 import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 public class HeavyEquipmentFactory implements ElectricEquipmentFactoryService {
     @Override
-    public Set<ElectricEquipment> create(Map<String, Object> parameters) {
-        return Collections.emptySet();
+    public List<ElectricEquipment> create(List<EquipmentParameter> parameters) {
+        return Collections.emptyList();
     }
 }

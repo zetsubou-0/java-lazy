@@ -1,10 +1,10 @@
 package solution.kiryl.city.equipment.factory;
 
+import solution.kiryl.city.equipment.factory.data.model.EquipmentParameter;
 import solution.kiryl.city.equipment.model.ElectricEquipment;
 
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
 public interface ElectricEquipmentFactoryService {
-    Set<ElectricEquipment> create(Map<String, Object> parameters);
+    List<ElectricEquipment> create(List<EquipmentParameter> parameters);
 }

@@ -2,6 +2,7 @@ package solution.kiryl.city.equipment.factory;
 
 import solution.kiryl.city.equipment.factory.data.DataProvider;
 import solution.kiryl.city.equipment.factory.data.impl.RandomDataProvider;
+import solution.kiryl.city.equipment.factory.data.model.EquipmentParameter;
 import solution.kiryl.city.equipment.factory.impl.HeavyEquipmentFactory;
 import solution.kiryl.city.equipment.factory.impl.PortableEquipmentFactory;
 import solution.kiryl.city.equipment.factory.impl.RegularEquipmentFactory;
@@ -9,8 +10,8 @@ import solution.kiryl.city.equipment.model.ElectricEquipment;
 import solution.kiryl.city.equipment.model.EquipmentType;
 
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public final class ElectricEquipmentFactory {
 
@@ -25,8 +26,8 @@ public final class ElectricEquipmentFactory {
     private ElectricEquipmentFactory() {
     }
 
-    public static Set<ElectricEquipment> create(EquipmentType type) {
-        final Map<String, Object> equipmentParameters = DATA_PROVIDER.generateParameters(type);
+    public static List<ElectricEquipment> create(EquipmentType type) {
+        final List<EquipmentParameter> equipmentParameters = DATA_PROVIDER.generateParameters(type);
         final ElectricEquipmentFactoryService factory = FACTORIES.get(type);
         return factory.create(equipmentParameters);
     }
