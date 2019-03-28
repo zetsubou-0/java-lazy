@@ -2,55 +2,60 @@ package solution.kiryl.city.equipment.model;
 
 import solution.kiryl.city.equipment.store.Warranty;
 
-public class BaseElectricEquipment implements ElectricEquipment {
+public abstract class BaseElectricEquipment implements ElectricEquipment {
     private final EquipmentType type;
     private final int power;
+    private final int price;
 
-    private int price;
     private Warranty warranty;
 
-    BaseElectricEquipment(EquipmentType type, int power) {
+    protected BaseElectricEquipment(EquipmentType type, int power, int price) {
         this.type = type;
         this.power = power;
+        this.price = price;
     }
 
     @Override
     public EquipmentType type() {
-        return null;
+        return type;
     }
 
     @Override
     public int power() {
-        return 0;
+        return power;
     }
 
     @Override
     public int price() {
-        return 0;
+        return price;
     }
 
     @Override
     public Warranty getWarranty() {
-        return null;
+        return warranty;
     }
 
     public EquipmentType getType() {
-        return type;
+        return type();
     }
 
     public int getPower() {
-        return power;
+        return power();
     }
 
     public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
+        return price();
     }
 
     public void setWarranty(Warranty warranty) {
         this.warranty = warranty;
+    }
+
+    @Override
+    public String toString() {
+        return "type=" + type +
+                ", power=" + power +
+                ", price=" + price +
+                ", warranty=" + warranty;
     }
 }

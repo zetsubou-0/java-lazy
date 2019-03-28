@@ -1,5 +1,6 @@
 package solution.kiryl.city.equipment.store;
 
+import java.util.Collections;
 import java.util.Set;
 
 public class Warranty {
@@ -11,6 +12,10 @@ public class Warranty {
         this.month = month;
         this.original = original;
         this.centers = centers;
+    }
+
+    public static Warranty withoutWarranty() {
+        return new Warranty(0, null, Collections.emptySet());
     }
 
     public int getMonth() {

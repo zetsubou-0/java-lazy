@@ -1,15 +1,20 @@
 package solution.kiryl.city.equipment.factory.impl;
 
-import solution.kiryl.city.equipment.factory.ElectricEquipmentFactoryService;
 import solution.kiryl.city.equipment.factory.data.model.EquipmentParameter;
 import solution.kiryl.city.equipment.model.ElectricEquipment;
+import solution.kiryl.city.equipment.model.regular.Kettle;
+import solution.kiryl.city.equipment.model.regular.Toaster;
 
-import java.util.Collections;
-import java.util.List;
+public class RegularEquipmentFactory extends AbstractElectricEquipmentFactoryService {
 
-public class RegularEquipmentFactory implements ElectricEquipmentFactoryService {
     @Override
-    public List<ElectricEquipment> create(List<EquipmentParameter> parameters) {
-        return Collections.emptyList();
+    ElectricEquipment createEquipment(EquipmentParameter parameter) {
+        if (Kettle.class.equals(parameter.getType())) {
+            return new Kettle(parameter.getPower(), parameter.getPrice(), parameter.getVolume());
+        }
+        if (Toaster.class.equals(parameter.getType())) {
+            return new Toaster(parameter.getPower(), parameter.getPrice(), parameter.getBreadCount());
+        }
+        return null;
     }
 }
