@@ -2,7 +2,7 @@ package solution.andrei.city.equipment.model;
 
 import solution.andrei.city.equipment.store.Warranty;
 
-public class BaseElectricEquipment implements ElectricEquipment{
+public abstract class BaseElectricEquipment implements ElectricEquipment{
 
     private final EquipmentType type;
     private final int power;
@@ -15,19 +15,15 @@ public class BaseElectricEquipment implements ElectricEquipment{
     }
 
     public EquipmentType type() {
-        return null;
+        return type;
     }
 
     public int power() {
-        return 0;
+        return power;
     }
 
     public int price() {
-        return 0;
-    }
-
-    public Warranty getWarranty() {
-        return null;
+        return price;
     }
 
     public EquipmentType getType() {
@@ -48,6 +44,10 @@ public class BaseElectricEquipment implements ElectricEquipment{
 
     public void setWarranty(Warranty warranty) {
         this.warranty = warranty;
+    }
+
+    public Warranty getWarranty() {
+        return warranty;
     }
 
 

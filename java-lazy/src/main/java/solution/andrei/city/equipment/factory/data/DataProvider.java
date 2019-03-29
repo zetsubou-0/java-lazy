@@ -1,9 +1,11 @@
 package solution.andrei.city.equipment.factory.data;
 
+import solution.andrei.city.equipment.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.EquipmentType;
 
-import java.util.Map;
+import java.util.List;
+
 
 public interface DataProvider {
-    Map<String, Object> generateParameters(EquipmentType type);
+    List<EquipmentParameter> generateParameters(EquipmentType type);
 }
