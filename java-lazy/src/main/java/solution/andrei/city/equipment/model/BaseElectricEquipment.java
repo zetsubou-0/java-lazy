@@ -14,16 +14,24 @@ public abstract class BaseElectricEquipment implements ElectricEquipment{
         this.power = power;
     }
 
+    @Override
     public EquipmentType type() {
         return type;
     }
 
+    @Override
     public int power() {
         return power;
     }
 
+    @Override
     public int price() {
         return price;
+    }
+
+    @Override
+    public Warranty getWarranty() {
+        return warranty;
     }
 
     public EquipmentType getType() {
@@ -38,17 +46,11 @@ public abstract class BaseElectricEquipment implements ElectricEquipment{
         return price;
     }
 
-    public void setPrice( int price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
     public void setWarranty(Warranty warranty) {
         this.warranty = warranty;
     }
-
-    public Warranty getWarranty() {
-        return warranty;
-    }
-
-
 }
