@@ -4,7 +4,7 @@ public class EquipmentParameter {
     private final EquipmentType equipmentType;
     private final int power;
     private final int price;
-    private int capacity;
+    private double capacity;
     private int width, height, length;
     private double screenSize;
     private int batteryCapacity;
@@ -29,7 +29,7 @@ public class EquipmentParameter {
         return price;
     }
 
-    public int getCapacity() {
+    public double getCapacity() {
         return capacity;
     }
 
@@ -61,7 +61,7 @@ public class EquipmentParameter {
         return resolutionOnHeight;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(double capacity) {
         this.capacity = capacity;
     }
 
