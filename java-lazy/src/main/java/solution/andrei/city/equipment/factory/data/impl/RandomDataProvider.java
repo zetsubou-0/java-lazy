@@ -29,7 +29,6 @@ public class RandomDataProvider implements DataProvider {
                     parameterRegular.setCapacity(0.5 + Math.round((Math.random() * 2)));
                     list.add(parameterRegular);
                 }
-
                 break;
             case PORTABLE:
                 for (int i = 0; i < 2; i++) {
@@ -38,7 +37,6 @@ public class RandomDataProvider implements DataProvider {
                     parameterPortable.setBatteryCapacity(1500 + (Math.round((int)(Math.random() * 5)) * 1000));
                     list.add(parameterPortable);
                 }
-
                 break;
         }
         return list;
