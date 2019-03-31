@@ -8,8 +8,8 @@ public class EquipmentParameter {
     private int width, height, length;
     private double screenSize;
     private int batteryCapacity;
-    private int resolutionOnWidth;
-    private int resolutionOnHeight;
+    private int resolutionWidth;
+    private int resolutionHeight;
 
     public EquipmentParameter(EquipmentType equipmentType, int power, int price) {
         this.equipmentType = equipmentType;
@@ -54,11 +54,11 @@ public class EquipmentParameter {
     }
 
     public int getResolutionWidth() {
-        return resolutionOnWidth;
+        return resolutionWidth;
     }
 
     public int getResolutionHeight() {
-        return resolutionOnHeight;
+        return resolutionHeight;
     }
 
     public void setCapacity(double capacity) {
@@ -86,11 +86,11 @@ public class EquipmentParameter {
     }
 
     public void setResolutionWidth(int resolutionWidth) {
-        this.resolutionOnWidth = resolutionWidth;
+        this.resolutionWidth = resolutionWidth;
     }
 
     public void setResolutionHeight(int resolutionHeight) {
-        this.resolutionOnHeight = resolutionHeight;
+        this.resolutionHeight = resolutionHeight;
     }
 
     @Override
@@ -105,8 +105,8 @@ public class EquipmentParameter {
                 ", length=" + length +
                 ", screenSize=" + screenSize +
                 ", batteryCapacity=" + batteryCapacity +
-                ", resolutionOnWidth=" + resolutionOnWidth +
-                ", resolutionOnHeight=" + resolutionOnHeight +
+                ", resolutionOnWidth=" + resolutionWidth +
+                ", resolutionOnHeight=" + resolutionHeight +
                 '}';
     }
 }

@@ -8,4 +8,15 @@ public class Refrigerator extends BaseElectricEquipment {
         this.height = height;
         this.length = length;
     }
+
+    @Override
+    public String toString() {
+        return "Refrigerator{" +
+                "power=" + getPower() +
+                ", width=" + width +
+                ", height=" + height +
+                ", length=" + length +
+                ", price=" + getPrice() +
+                '}';
+    }
 }

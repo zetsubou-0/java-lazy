@@ -53,4 +53,5 @@ public abstract class BaseElectricEquipment implements ElectricEquipment{
     public void setWarranty(Warranty warranty) {
         this.warranty = warranty;
     }
+
 }
