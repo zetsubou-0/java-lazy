@@ -6,15 +6,14 @@ import solution.andrei.city.equipment.factory.ElectricEquipmentFactoryService;
 import solution.andrei.city.equipment.factory.data.impl.RandomDataProvider;
 import solution.andrei.city.equipment.model.*;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class HeavyEquipmentFactory implements ElectricEquipmentFactoryService {
 
     @Override
-    public Set<ElectricEquipment> create(List<EquipmentParameter> parameters) {
-        Set<ElectricEquipment> electricEquipments = new HashSet<>();
+    public List<ElectricEquipment> create(List<EquipmentParameter> parameters) {
+        List<ElectricEquipment> electricEquipments = new ArrayList<>();
         for (EquipmentParameter o : parameters) {
             if (o.getPower() >= 200 && o.getPower() <= 300) {
                 TV tv = new TV(o.getPower(), o.getResolutionWidth(), o.getResolutionHeight());
@@ -37,7 +36,7 @@ public class HeavyEquipmentFactory implements ElectricEquipmentFactoryService {
             System.out.println(l.get(i));
         }
         HeavyEquipmentFactory heavyEquipmentFactory = new HeavyEquipmentFactory();
-        Set<ElectricEquipment> s = heavyEquipmentFactory.create(l);
+        List<ElectricEquipment> s = heavyEquipmentFactory.create(l);
         for (ElectricEquipment o : s) {
             System.out.println(o);
         }

@@ -15,8 +15,8 @@ import java.util.*;
 public class PortableEquipmentFactory implements ElectricEquipmentFactoryService {
 
     @Override
-    public Set<ElectricEquipment> create(List<EquipmentParameter> parameters) {
-        Set<ElectricEquipment> electricEquipments = new HashSet<>();
+    public List<ElectricEquipment> create(List<EquipmentParameter> parameters) {
+        List<ElectricEquipment> electricEquipments = new ArrayList<>();
         for (EquipmentParameter o : parameters) {
                 Telephone telephone = new Telephone(o.getPower(), o.getScreenSize(), o.getBatteryCapacity());
                 telephone.setPrice(o.getPrice());
@@ -32,7 +32,7 @@ public class PortableEquipmentFactory implements ElectricEquipmentFactoryService
             System.out.println(l.get(i));
         }
         PortableEquipmentFactory portableEquipmentFactory = new PortableEquipmentFactory();
-        Set<ElectricEquipment> s = portableEquipmentFactory.create(l);
+        List<ElectricEquipment> s = portableEquipmentFactory.create(l);
         for (ElectricEquipment o : s) {
             System.out.println(o);
         }

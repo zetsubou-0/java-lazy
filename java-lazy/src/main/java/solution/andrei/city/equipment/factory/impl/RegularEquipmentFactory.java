@@ -9,6 +9,7 @@ import solution.andrei.city.equipment.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.EquipmentType;
 import solution.andrei.city.equipment.model.Kettle;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,8 +17,8 @@ import java.util.Set;
 public class RegularEquipmentFactory implements ElectricEquipmentFactoryService {
 
     @Override
-    public Set<ElectricEquipment> create(List<EquipmentParameter> parameters) {
-        Set<ElectricEquipment> electricEquipments = new HashSet<>();
+    public List<ElectricEquipment> create(List<EquipmentParameter> parameters) {
+        List<ElectricEquipment> electricEquipments = new ArrayList<>();
         for (EquipmentParameter o : parameters) {
             Kettle kettle = new Kettle(o.getPower(), o.getCapacity());
             kettle.setPrice(o.getPrice());
@@ -33,7 +34,7 @@ public class RegularEquipmentFactory implements ElectricEquipmentFactoryService 
             System.out.println(l.get(i));
         }
         RegularEquipmentFactory regularEquipmentFactory = new RegularEquipmentFactory();
-        Set<ElectricEquipment> s = regularEquipmentFactory.create(l);
+        List<ElectricEquipment> s = regularEquipmentFactory.create(l);
         for (ElectricEquipment o : s) {
             System.out.println(o);
         }

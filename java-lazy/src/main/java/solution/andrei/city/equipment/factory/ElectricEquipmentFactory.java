@@ -13,26 +13,22 @@ public final class ElectricEquipmentFactory {
     private ElectricEquipmentFactory() {}
 
     public static List<ElectricEquipment> create(EquipmentType type) {
-        List<ElectricEquipment> listEquipment = new ArrayList<>();
+        List<ElectricEquipment> electricEquipments = new ArrayList<>();
         RandomDataProvider randomDataProvider = new RandomDataProvider();
-        Set<ElectricEquipment> electricEquipments;
         switch (type) {
             case HEAVY:
                 HeavyEquipmentFactory heavyEquipmentFactory = new HeavyEquipmentFactory();
-                electricEquipments = heavyEquipmentFactory.create(randomDataProvider.generateParameters(type));
-                listEquipment.addAll(electricEquipments);
+                electricEquipments.addAll(heavyEquipmentFactory.create(randomDataProvider.generateParameters(type)));
                 break;
             case PORTABLE:
                 PortableEquipmentFactory portableEquipmentFactory = new PortableEquipmentFactory();
-                electricEquipments = portableEquipmentFactory.create(randomDataProvider.generateParameters(type));
-                listEquipment.addAll(electricEquipments);
+                electricEquipments.addAll(portableEquipmentFactory.create(randomDataProvider.generateParameters(type)));
                 break;
             case REGULAR:
                 RegularEquipmentFactory regularEquipmentFactory = new RegularEquipmentFactory();
-                electricEquipments = regularEquipmentFactory.create(randomDataProvider.generateParameters(type));
-                listEquipment.addAll(electricEquipments);
+                electricEquipments.addAll(regularEquipmentFactory.create(randomDataProvider.generateParameters(type)));
                 break;
         }
-        return listEquipment;
+        return electricEquipments;
     }
 }
