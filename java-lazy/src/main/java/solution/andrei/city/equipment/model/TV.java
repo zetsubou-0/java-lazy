@@ -1,10 +1,10 @@
 package solution.andrei.city.equipment.model;
 
-public class TV extends BaseElectricEquipment {
+public class TV extends BaseHeaveElectricEquipment {
     private final int resolutionWidth;
     private final int resolutionHeight;
     public TV(int power, int resolutionWidth, int resolutionHeight) {
-        super(EquipmentType.HEAVY, power);
+        super(power);
         this.resolutionWidth = resolutionWidth;
         this.resolutionHeight = resolutionHeight;
     }

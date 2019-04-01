@@ -1,9 +1,9 @@
 package solution.andrei.city.equipment.model;
 
-public class Refrigerator extends BaseElectricEquipment {
+public class Refrigerator extends BaseHeaveElectricEquipment {
     private final int width, height, length;
     public Refrigerator(int power, int widht, int height, int length) {
-        super(EquipmentType.HEAVY, power);
+        super(power);
         this.width = widht;
         this.height = height;
         this.length = length;

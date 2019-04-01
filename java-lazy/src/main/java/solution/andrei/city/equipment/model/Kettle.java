@@ -1,9 +1,9 @@
 package solution.andrei.city.equipment.model;
 
-public class Kettle extends BaseElectricEquipment {
+public class Kettle extends BaseRegularElectricEquipment {
     private final double capacity;
     public Kettle(int power, double capacity) {
-        super(EquipmentType.REGULAR, power);
+        super(power);
         this.capacity = capacity;
     }
 
