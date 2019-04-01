@@ -5,7 +5,6 @@ import solution.andrei.city.equipment.factory.impl.HeavyEquipmentFactory;
 import solution.andrei.city.equipment.factory.impl.PortableEquipmentFactory;
 import solution.andrei.city.equipment.factory.impl.RegularEquipmentFactory;
 import solution.andrei.city.equipment.model.ElectricEquipment;
-import solution.andrei.city.equipment.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.EquipmentType;
 
 import java.util.*;
