@@ -6,4 +6,13 @@ public class Kettle extends BaseElectricEquipment {
         super(EquipmentType.REGULAR, power);
         this.capacity = capacity;
     }
+
+    @Override
+    public String toString() {
+        return "Kettle{" +
+                "power=" + getPower() +
+                ", capacity=" + capacity +
+                ", price=" + getPrice() +
+                '}';
+    }
 }

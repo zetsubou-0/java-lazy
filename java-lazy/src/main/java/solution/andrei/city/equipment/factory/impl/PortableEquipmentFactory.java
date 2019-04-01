@@ -3,8 +3,10 @@ package solution.andrei.city.equipment.factory.impl;
 
 
 import solution.andrei.city.equipment.factory.ElectricEquipmentFactoryService;
+import solution.andrei.city.equipment.factory.data.impl.RandomDataProvider;
 import solution.andrei.city.equipment.model.ElectricEquipment;
 import solution.andrei.city.equipment.model.EquipmentParameter;
+import solution.andrei.city.equipment.model.EquipmentType;
 import solution.andrei.city.equipment.model.Telephone;
 
 
@@ -16,18 +18,23 @@ public class PortableEquipmentFactory implements ElectricEquipmentFactoryService
     public Set<ElectricEquipment> create(List<EquipmentParameter> parameters) {
         Set<ElectricEquipment> electricEquipments = new HashSet<>();
         for (EquipmentParameter o : parameters) {
-            if (o.getPower() >= 10 && o.getPower() <= 12) {
                 Telephone telephone = new Telephone(o.getPower(), o.getScreenSize(), o.getBatteryCapacity());
                 telephone.setPrice(o.getPrice());
                 electricEquipments.add(telephone);
-            }
-            if (o.getPower() > 12 && o.getPower() <= 15) {
-                Refrigerator refrigerator = new Refrigerator(o.getPower(), o.getWidth(), o.getHeight(), o.getLength());
-                refrigerator.setPrice(o.getPrice());
-                electricEquipments.add(refrigerator);
-            }
         }
         return electricEquipments;
     }
+
+    public static void main(String[] args) {
+        RandomDataProvider randomDataProvider = new RandomDataProvider();
+        List<EquipmentParameter> l = randomDataProvider.generateParameters(EquipmentType.PORTABLE);
+        for (int i = 0; i < l.size(); i++) {
+            System.out.println(l.get(i));
+        }
+        PortableEquipmentFactory portableEquipmentFactory = new PortableEquipmentFactory();
+        Set<ElectricEquipment> s = portableEquipmentFactory.create(l);
+        for (ElectricEquipment o : s) {
+            System.out.println(o);
+        }
     }
 }

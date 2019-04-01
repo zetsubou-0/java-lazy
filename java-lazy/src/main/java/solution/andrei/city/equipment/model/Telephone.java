@@ -8,4 +8,14 @@ public class Telephone extends BaseElectricEquipment {
         this.screenSize = screenSize;
         this.batteryCapacity = batteryCapacity;
     }
+
+    @Override
+    public String toString() {
+        return "Telephone{" +
+                "power=" + getPower() +
+                ", screenSize=" + screenSize +
+                ", batteryCapacity=" + batteryCapacity +
+                ", price=" + getPrice() +
+                '}';
+    }
 }
