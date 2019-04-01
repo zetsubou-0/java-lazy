@@ -12,19 +12,20 @@ public final class ElectricEquipmentFactory {
 
     public static List<ElectricEquipment> create(List<EquipmentParameter> parameters) {
         List<ElectricEquipment> listEquipment = new ArrayList<>();
+        HeavyEquipmentFactory heavyEquipmentFactory = new HeavyEquipmentFactory();
         Set<ElectricEquipment> electricEquipments;
-        if (parameters.get(0).getEquipmentType().equals(EquipmentType.HEAVY)) {
-            HeavyEquipmentFactory heavyEquipmentFactory = new HeavyEquipmentFactory();
-            electricEquipments = heavyEquipmentFactory.create(parameters);
-            listEquipment.addAll(electricEquipments);
-        }else if (parameters.get(0).getEquipmentType().equals(EquipmentType.PORTABLE)) {
-            HeavyEquipmentFactory heavyEquipmentFactory = new HeavyEquipmentFactory();
-            electricEquipments = heavyEquipmentFactory.create(parameters);
-            listEquipment.addAll(electricEquipments);
-        }else if (parameters.get(0).getEquipmentType().equals(EquipmentType.REGULAR)) {
-            HeavyEquipmentFactory heavyEquipmentFactory = new HeavyEquipmentFactory();
-            electricEquipments = heavyEquipmentFactory.create(parameters);
-            listEquipment.addAll(electricEquipments);
+        switch (parameters.get(0).getEquipmentType()) {
+            case HEAVY:
+                electricEquipments = heavyEquipmentFactory.create(parameters);
+                listEquipment.addAll(electricEquipments);
+                break;
+            case PORTABLE:
+                electricEquipments = heavyEquipmentFactory.create(parameters);
+                listEquipment.addAll(electricEquipments);
+                break;
+            case REGULAR:
+                electricEquipments = heavyEquipmentFactory.create(parameters);
+                listEquipment.addAll(electricEquipments);
         }
         return listEquipment;
     }
