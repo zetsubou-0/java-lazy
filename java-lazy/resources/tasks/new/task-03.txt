@@ -57,7 +57,7 @@ EquipmentType equipmentType, int power, Class<? extends ElectricEquipment> type,
 
 5. Создание фабрику, которая будет производить электрические приборы, для этого нам необходимо реализовать следующее
 ElectricEquipmentFactoryService - интерфей, находится в пакете 'factory'. У данного интерфейса есть только 1 метод:
-    Set<ElectricEquipment> create(List<EquipmentParameter> parameters);
+    List<ElectricEquipment> create(List<EquipmentParameter> parameters);
     создает набор электрических приборов (ElectricEquipment) на основе входной конфигурации List<EquipmentParameter> parameters
     данная конфигурация содержит  параметры свойственные определенному типу электроприборов.
 Создать 3 реальзации данного интерфейса (по 1 на каждый тип) в пакете 'factory.impl'
