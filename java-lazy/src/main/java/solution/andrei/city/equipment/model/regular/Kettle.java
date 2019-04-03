@@ -1,4 +1,4 @@
-package solution.andrei.city.equipment.model;
+package solution.andrei.city.equipment.model.regular;
 
 public class Kettle extends BaseRegularElectricEquipment {
     private final double capacity;

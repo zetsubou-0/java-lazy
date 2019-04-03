@@ -9,7 +9,7 @@ public abstract class BaseElectricEquipment implements ElectricEquipment{
     private int price;
     private Warranty warranty;
 
-    BaseElectricEquipment(EquipmentType type, int power) {
+    public BaseElectricEquipment(EquipmentType type, int power) {
         this.type = type;
         this.power = power;
     }

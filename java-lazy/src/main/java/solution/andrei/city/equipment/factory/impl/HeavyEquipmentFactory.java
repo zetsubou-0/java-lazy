@@ -4,7 +4,10 @@ package solution.andrei.city.equipment.factory.impl;
 
 import solution.andrei.city.equipment.factory.ElectricEquipmentFactoryService;
 import solution.andrei.city.equipment.factory.data.impl.RandomDataProvider;
+import solution.andrei.city.equipment.factory.data.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.*;
+import solution.andrei.city.equipment.model.heavy.Refrigerator;
+import solution.andrei.city.equipment.model.heavy.TV;
 
 import java.util.ArrayList;
 import java.util.List;

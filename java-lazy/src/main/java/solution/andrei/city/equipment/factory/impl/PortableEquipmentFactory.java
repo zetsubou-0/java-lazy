@@ -4,10 +4,10 @@ package solution.andrei.city.equipment.factory.impl;
 
 import solution.andrei.city.equipment.factory.ElectricEquipmentFactoryService;
 import solution.andrei.city.equipment.factory.data.impl.RandomDataProvider;
+import solution.andrei.city.equipment.factory.data.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.ElectricEquipment;
-import solution.andrei.city.equipment.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.EquipmentType;
-import solution.andrei.city.equipment.model.Telephone;
+import solution.andrei.city.equipment.model.portable.Telephone;
 
 
 import java.util.*;

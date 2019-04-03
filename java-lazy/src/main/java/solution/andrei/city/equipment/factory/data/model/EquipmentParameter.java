@@ -1,6 +1,6 @@
-package solution.andrei.city.equipment.model;
+package solution.andrei.city.equipment.factory.data.model;
 
-import solution.kiryl.city.equipment.model.ElectricEquipment;
+import solution.andrei.city.equipment.model.EquipmentType;
 
 public class EquipmentParameter {
     private final EquipmentType equipmentType;
@@ -13,14 +13,10 @@ public class EquipmentParameter {
     private int resolutionWidth;
     private int resolutionHeight;
 
-    public EquipmentParameter(EquipmentType equipmentType, int power, int price) {
+    EquipmentParameter(EquipmentType equipmentType, int power, int price) {
         this.equipmentType = equipmentType;
         this.power = power;
         this.price = price;
-    }
-
-    public static EquipmentParameter getParametr(EquipmentType equipmentType, int power, int price) {
-        return new EquipmentParameter(equipmentType, power, price);
     }
 
     public EquipmentType getEquipmentType() {
@@ -67,35 +63,35 @@ public class EquipmentParameter {
         return resolutionHeight;
     }
 
-    public void setCapacity(double capacity) {
+    void setCapacity(double capacity) {
         this.capacity = capacity;
     }
 
-    public void setWidth(int width) {
+    void setWidth(int width) {
         this.width = width;
     }
 
-    public void setHeight(int height) {
+    void setHeight(int height) {
         this.height = height;
     }
 
-    public void setLength(int length) {
+    void setLength(int length) {
         this.length = length;
     }
 
-    public void setScreenSize(double screenSize) {
+    void setScreenSize(double screenSize) {
         this.screenSize = screenSize;
     }
 
-    public void setBatteryCapacity(int batteryCapacity) {
+    void setBatteryCapacity(int batteryCapacity) {
         this.batteryCapacity = batteryCapacity;
     }
 
-    public void setResolutionWidth(int resolutionWidth) {
+    void setResolutionWidth(int resolutionWidth) {
         this.resolutionWidth = resolutionWidth;
     }
 
-    public void setResolutionHeight(int resolutionHeight) {
+    void setResolutionHeight(int resolutionHeight) {
         this.resolutionHeight = resolutionHeight;
     }
 

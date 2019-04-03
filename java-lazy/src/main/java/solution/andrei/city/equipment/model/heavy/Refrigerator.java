@@ -1,4 +1,4 @@
-package solution.andrei.city.equipment.model;
+package solution.andrei.city.equipment.model.heavy;
 
 public class Refrigerator extends BaseHeaveElectricEquipment {
     private final int width, height, length;

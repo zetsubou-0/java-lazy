@@ -1,4 +1,4 @@
-package solution.andrei.city.equipment.model;
+package solution.andrei.city.equipment.model.portable;
 
 public class Telephone extends BasePortableElectricEquipment {
     private final double screenSize;

@@ -4,15 +4,13 @@ package solution.andrei.city.equipment.factory.impl;
 
 import solution.andrei.city.equipment.factory.ElectricEquipmentFactoryService;
 import solution.andrei.city.equipment.factory.data.impl.RandomDataProvider;
+import solution.andrei.city.equipment.factory.data.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.ElectricEquipment;
-import solution.andrei.city.equipment.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.EquipmentType;
-import solution.andrei.city.equipment.model.Kettle;
+import solution.andrei.city.equipment.model.regular.Kettle;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class RegularEquipmentFactory implements ElectricEquipmentFactoryService {
 
