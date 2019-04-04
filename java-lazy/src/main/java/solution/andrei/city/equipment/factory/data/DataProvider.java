@@ -1,6 +1,6 @@
 package solution.andrei.city.equipment.factory.data;
 
-import solution.andrei.city.equipment.model.EquipmentParameter;
+import solution.andrei.city.equipment.factory.data.model.EquipmentParameter;
 import solution.andrei.city.equipment.model.EquipmentType;
 
 import java.util.List;

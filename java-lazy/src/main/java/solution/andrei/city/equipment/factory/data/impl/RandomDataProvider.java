@@ -1,6 +1,7 @@
 package solution.andrei.city.equipment.factory.data.impl;
 
 import solution.andrei.city.equipment.factory.data.DataProvider;
+
 import solution.andrei.city.equipment.factory.data.model.EquipmentParameter;
 import solution.andrei.city.equipment.factory.data.model.EquipmentParameterBuilder;
 import solution.andrei.city.equipment.model.*;
