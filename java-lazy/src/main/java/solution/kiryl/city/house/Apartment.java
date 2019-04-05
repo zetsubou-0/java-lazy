@@ -14,4 +14,13 @@ public class Apartment {
         this.money = money;
         this.maxPower = maxPower;
     }
+
+    @Override
+    public String toString() {
+        return "Apartment{" +
+                "electricEquipments=" + electricEquipments +
+                ", money=" + money +
+                ", maxPower=" + maxPower +
+                '}';
+    }
 }
