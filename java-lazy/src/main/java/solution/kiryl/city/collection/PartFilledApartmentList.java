@@ -44,6 +44,10 @@ public class PartFilledApartmentList implements List<Apartment> {
         return size;
     }
 
+    public int getAvailableSize() {
+        return apartments.length;
+    }
+
     public int allFilledSize() {
         return currentIndex + 1;
     }
@@ -283,7 +287,10 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public void remove() {
-            if (apartments.length == 0 || !list.isAvailable(currentPosition)) {
+            if (apartments.length == 0) {
+                return;
+            }
+            if (list.isAvailable(currentPosition)) {
                 next();
                 return;
             }
@@ -309,12 +316,12 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public boolean hasPrevious() {
-            return super.currentPosition < super.list.apartments.length;
+            return super.currentPosition - 1 < super.list.apartments.length && super.currentPosition - 1 >= 0;
         }
 
         @Override
         public Apartment previous() {
-            final Apartment lastReturned = super.apartments[super.currentPosition--];
+            final Apartment lastReturned = super.apartments[--super.currentPosition];
             lastReturnedIndex = super.currentPosition;
             return lastReturned;
         }

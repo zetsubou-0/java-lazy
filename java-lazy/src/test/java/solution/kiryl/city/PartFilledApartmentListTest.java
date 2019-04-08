@@ -81,6 +81,14 @@ public class PartFilledApartmentListTest {
 
     @Test
     public void shouldReturnCorrectRealSize() {
+        checkCollectionSize(MAX_SIZE, ((PartFilledApartmentList) sut).getAvailableSize());
+
+        fillWithData();
+        checkCollectionSize(MAX_SIZE, ((PartFilledApartmentList) sut).getAvailableSize());
+    }
+
+    @Test
+    public void shouldReturnRealFilledSize() {
         checkCollectionSize(0, ((PartFilledApartmentList) sut).allFilledSize());
 
         fillWithData();
@@ -117,7 +125,77 @@ public class PartFilledApartmentListTest {
         assertFalse("Не должен найти null элемент в пустой коллеции", sut.contains(null));
     }
 
-    // TODO: 2019-04-08 iterator tests
+    @Test
+    public void shouldReturnIterator() {
+        final Iterator<Apartment> apartmentIterator = sut.iterator();
+        assertNotNull("Итератор не должен быть null", apartmentIterator);
+    }
+
+    @Test
+    public void shouldFindNext() {
+        fillWithData();
+        final Iterator<Apartment> apartmentIterator = sut.iterator();
+        assertTrue("Должен быть доступен следущий элемент в итераторе", apartmentIterator.hasNext());
+    }
+
+    private void createSingleElementCollection() {
+        sut = new PartFilledApartmentList(1, FULL_LOAD);
+        sut.add(TEST_APARTMENTS.get(0));
+    }
+
+    @Test
+    public void shouldNotFindNext() {
+        createSingleElementCollection();
+        final Iterator<Apartment> apartmentIterator = sut.iterator();
+        if (apartmentIterator.hasNext()) {
+            apartmentIterator.next();
+            assertFalse("Должен быть не доступен следущий элемент в итераторе", apartmentIterator.hasNext());
+            return;
+        }
+        throw new RuntimeException("Итератор не имеет следущего элемента, хотя должен");
+    }
+
+    @Test
+    public void shouldGetNextIfPresent() {
+        createSingleElementCollection();
+        final Iterator<Apartment> apartmentIterator = sut.iterator();
+        if (apartmentIterator.hasNext()) {
+            assertEquals("Должен быть доступен следущий элемент в итераторе", apartmentIterator.next(), TEST_APARTMENTS.get(0));
+            return;
+        }
+        throw new RuntimeException("Итератор не имеет следущего элемента, хотя должен");
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void shouldNotGetNextElementIfAbsent() {
+        createSingleElementCollection();
+        final Iterator<Apartment> apartmentIterator = sut.iterator();
+        if (apartmentIterator.hasNext()) {
+            apartmentIterator.next();
+            apartmentIterator.next();
+            return;
+        }
+        throw new RuntimeException("Итератор не имеет следущего элемента, хотя должен");
+    }
+
+    @Test
+    public void shouldRemoveElementFromCollectionViaIterator() {
+        createFullLoadedList();
+        fillWithData();
+        final Iterator<Apartment> apartmentIterator = sut.iterator();
+        int index = 0;
+        while (apartmentIterator.hasNext()) {
+            if (index++ == 4) {
+                apartmentIterator.remove();
+                break;
+            }
+            apartmentIterator.next();
+        }
+        final List<Apartment> resultList = new ArrayList<>(TEST_APARTMENTS.subList(0, MAX_SIZE));
+        resultList.set(4, null);
+        assertEquals("Должен удалить элемент из коллекции ", resultList, sut);
+
+    }
 
     @Test
     public void shouldConvertToObjectsArray() {
@@ -273,6 +351,31 @@ public class PartFilledApartmentListTest {
     }
 
     // TODO: 2019-04-08 list iterator test
+    @Test
+    public void shouldFindPrevious() {
+        createSingleElementCollection();
+        fillWithData();
+        final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
+        apartmentListIterator.next();
+        assertTrue("Должен найти предыдущий элемент", apartmentListIterator.hasPrevious());
+    }
+
+    @Test
+    public void shouldNotFindPrevious() {
+        createSingleElementCollection();
+        fillWithData();
+        final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
+        assertFalse("Должен не найти предыдущий элемент", apartmentListIterator.hasPrevious());
+    }
+
+    @Test
+    public void shouldShouldGetPrevious() {
+        createSingleElementCollection();
+        fillWithData();
+        final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
+        apartmentListIterator.next();
+        assertEquals("Должен найти предыдущий элемент", TEST_APARTMENTS.get(0), apartmentListIterator.previous());
+    }
 
     @Test
     public void shouldReturnSublist() {
