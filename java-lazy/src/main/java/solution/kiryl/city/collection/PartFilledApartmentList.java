@@ -4,7 +4,7 @@ import solution.kiryl.city.house.Apartment;
 
 import java.util.*;
 
-public class PartitionFilledApartmentList implements List<Apartment> {
+public class PartFilledApartmentList implements List<Apartment> {
 
     private static final int UNDEFINED_INDEX = -1;
 
@@ -14,12 +14,13 @@ public class PartitionFilledApartmentList implements List<Apartment> {
     private final Set<Integer> unavailableIndexes;
     private Apartment[] apartments;
     private int currentIndex;
+    private int size;
 
-    public PartitionFilledApartmentList(int maxSize, double fillPercentage) {
+    public PartFilledApartmentList(int maxSize, double fillPercentage) {
         this.currentIndex = -1;
         this.maxSize = maxSize;
         this.fillPercentage = fillPercentage;
-        this.filledSize = (int) Math.ceil(Math.round(maxSize * fillPercentage / 100));
+        this.filledSize = (int) Math.floor(maxSize * fillPercentage / 100);
         this.apartments = new Apartment[maxSize];
         this.unavailableIndexes = generateUnavailableIndexes();
     }
@@ -40,6 +41,10 @@ public class PartitionFilledApartmentList implements List<Apartment> {
 
     @Override
     public int size() {
+        return size;
+    }
+
+    public int allFilledSize() {
         return currentIndex + 1;
     }
 
@@ -50,11 +55,15 @@ public class PartitionFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean contains(Object o) {
-        if (o == null) {
+        if (size == 0) {
             return false;
         }
         for (Apartment apartment : apartments) {
-            if (o.equals(apartment)) {
+            if (o != null) {
+                if (o.equals(apartment)) {
+                    return true;
+                }
+            } else if (apartment == null) {
                 return true;
             }
         }
@@ -86,6 +95,7 @@ public class PartitionFilledApartmentList implements List<Apartment> {
             add(index, apartment);
             currentIndex = index;
         } catch (RangeException e) {
+            currentIndex = maxSize - 1;
             return false;
         }
         return true;
@@ -182,6 +192,7 @@ public class PartitionFilledApartmentList implements List<Apartment> {
             return;
         }
         apartments[index] = element;
+        size++;
     }
 
     @Override
@@ -230,7 +241,7 @@ public class PartitionFilledApartmentList implements List<Apartment> {
         if (checkListParameters(fromIndex, toIndex)) {
             throw new IllegalArgumentException("Wrong list parameters. Please check those");
         }
-        final PartitionFilledApartmentList apartmentList = new PartitionFilledApartmentList(maxSize, fillPercentage);
+        final PartFilledApartmentList apartmentList = new PartFilledApartmentList(maxSize, fillPercentage);
         System.arraycopy(apartments, 0, apartmentList.apartments, fromIndex, toIndex - fromIndex + 1);
         return apartmentList;
     }
@@ -248,13 +259,18 @@ public class PartitionFilledApartmentList implements List<Apartment> {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return Arrays.asList(apartments).toString();
+    }
+
     private static class ApartmentIterator implements Iterator<Apartment> {
 
-        private final PartitionFilledApartmentList list;
+        private final PartFilledApartmentList list;
         private Apartment[] apartments;
         private int currentPosition;
 
-        private ApartmentIterator(PartitionFilledApartmentList list) {
+        private ApartmentIterator(PartFilledApartmentList list) {
             this.list = list;
             apartments = new Apartment[list.apartments.length];
             System.arraycopy(list.apartments, 0, apartments, 0, list.apartments.length);
@@ -287,11 +303,11 @@ public class PartitionFilledApartmentList implements List<Apartment> {
 
         private int lastReturnedIndex = UNDEFINED_INDEX;
 
-        private ApartmentListIterator(PartitionFilledApartmentList list) {
+        private ApartmentListIterator(PartFilledApartmentList list) {
             super(list);
         }
 
-        private ApartmentListIterator(PartitionFilledApartmentList list, int startIndex) {
+        private ApartmentListIterator(PartFilledApartmentList list, int startIndex) {
             this(list);
             super.currentPosition = startIndex;
         }
