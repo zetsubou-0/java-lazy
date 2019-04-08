@@ -6,7 +6,10 @@ import java.util.*;
 
 public class PartitionFilledApartmentList implements List<Apartment> {
 
+    private static final int UNDEFINED_INDEX = -1;
+
     private final int maxSize;
+    private final double fillPercentage;
     private final int filledSize;
     private final Set<Integer> unavailableIndexes;
     private Apartment[] apartments;
@@ -15,6 +18,7 @@ public class PartitionFilledApartmentList implements List<Apartment> {
     public PartitionFilledApartmentList(int maxSize, double fillPercentage) {
         this.currentIndex = -1;
         this.maxSize = maxSize;
+        this.fillPercentage = fillPercentage;
         this.filledSize = (int) Math.ceil(Math.round(maxSize * fillPercentage / 100));
         this.apartments = new Apartment[maxSize];
         this.unavailableIndexes = generateUnavailableIndexes();
@@ -113,36 +117,53 @@ public class PartitionFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        boolean contains = true;
+        for (Apartment apartment : apartments) {
+            contains &= contains(apartment);
+        }
+        return contains;
     }
 
     @Override
     public boolean addAll(Collection<? extends Apartment> collection) {
-        boolean allSuccess = true;
+        boolean success = true;
         for (Apartment apartment : collection) {
-            allSuccess &= add(apartment);
+            success &= add(apartment);
         }
-        return allSuccess;
+        return success;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends Apartment> c) {
-        return false;
+        if (index != currentIndex) {
+            throw new UnsupportedOperationException("Could not add");
+        }
+        boolean success = true;
+        for (Apartment apartment : apartments) {
+            success &= add(apartment);
+        }
+        return success;
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean success = true;
+        for (Object apartment : c) {
+            success &= remove(apartment);
+        }
+        return success;
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException("Retain all is unsupported operation");
     }
 
     @Override
     public void clear() {
-
+        for (Apartment apartment : apartments) {
+            remove(apartment);
+        }
     }
 
     @Override
@@ -181,12 +202,17 @@ public class PartitionFilledApartmentList implements List<Apartment> {
                 return i;
             }
         }
-        return 0;
+        return UNDEFINED_INDEX;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        for (int i = apartments.length - 1; i >= 0; i--) {
+            if (o == null && apartments[i] == null || o != null && o.equals(apartments[i])) {
+                return i;
+            }
+        }
+        return UNDEFINED_INDEX;
     }
 
     @Override
@@ -196,12 +222,21 @@ public class PartitionFilledApartmentList implements List<Apartment> {
 
     @Override
     public ListIterator<Apartment> listIterator(int index) {
-        return null;
+        return new ApartmentListIterator(this, index);
     }
 
     @Override
     public List<Apartment> subList(int fromIndex, int toIndex) {
-        return null;
+        if (checkListParameters(fromIndex, toIndex)) {
+            throw new IllegalArgumentException("Wrong list parameters. Please check those");
+        }
+        final PartitionFilledApartmentList apartmentList = new PartitionFilledApartmentList(maxSize, fillPercentage);
+        System.arraycopy(apartments, 0, apartmentList.apartments, fromIndex, toIndex - fromIndex + 1);
+        return apartmentList;
+    }
+
+    private boolean checkListParameters(int fromIndex, int toIndex) {
+        return fromIndex < toIndex && fromIndex < maxSize;
     }
 
     public boolean addApartment(int index, Apartment apartment) {
@@ -250,70 +285,57 @@ public class PartitionFilledApartmentList implements List<Apartment> {
 
     private static class ApartmentListIterator extends ApartmentIterator implements ListIterator<Apartment> {
 
+        private int lastReturnedIndex = UNDEFINED_INDEX;
+
         private ApartmentListIterator(PartitionFilledApartmentList list) {
             super(list);
         }
 
+        private ApartmentListIterator(PartitionFilledApartmentList list, int startIndex) {
+            this(list);
+            super.currentPosition = startIndex;
+        }
+
         @Override
         public boolean hasPrevious() {
-            return false;
+            return super.currentPosition < super.list.apartments.length;
         }
 
         @Override
         public Apartment previous() {
-            return null;
+            final Apartment lastReturned = super.apartments[super.currentPosition--];
+            lastReturnedIndex = super.currentPosition;
+            return lastReturned;
+        }
+
+        @Override
+        public Apartment next() {
+            final Apartment lastReturned = super.next();
+            lastReturnedIndex = super.currentPosition;
+            return lastReturned;
         }
 
         @Override
         public int nextIndex() {
-            return 0;
+            return super.currentPosition + 1;
         }
 
         @Override
         public int previousIndex() {
-            return 0;
+            return super.currentPosition - 1;
         }
 
         @Override
         public void set(Apartment apartment) {
-
+            if (lastReturnedIndex != -1) {
+                super.apartments[lastReturnedIndex] = apartment;
+                lastReturnedIndex = -1;
+            }
         }
 
         @Override
         public void add(Apartment apartment) {
-
+            throw new UnsupportedOperationException("ListIterator#add operation is unsupported.");
         }
-    }
-
-    public static void main(String[] args) {
-        List<Apartment> apartments = new PartitionFilledApartmentList(10, 50);
-        for (Apartment apartment : apartments) {
-            System.out.print(apartment + "\t");
-        }
-        System.out.println();
-        for (int i = 0; i < 10; i++) {
-            apartments.add(new Apartment(i, i));
-        }
-        for (Apartment apartment : apartments) {
-            System.out.print(apartment + "\t");
-        }
-        System.out.println();
-        Iterator<Apartment> apartmentIterator = apartments.iterator();
-        while (apartmentIterator.hasNext()) {
-            System.out.print(apartmentIterator.next() + "\t");
-        }
-        System.out.println();
-        int removed = 0;
-        apartmentIterator = apartments.iterator();
-        while (apartmentIterator.hasNext()) {
-            apartmentIterator.remove();
-            if (++removed > 5) {
-                break;
-            }
-        }
-        for (Apartment apartment : apartments) {
-            System.out.print(apartment + "\t");
-        }
-        System.out.println();
     }
 }
