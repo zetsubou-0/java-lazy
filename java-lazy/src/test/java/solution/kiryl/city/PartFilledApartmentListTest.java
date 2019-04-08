@@ -1,14 +1,12 @@
 package solution.kiryl.city;
 
+import com.google.common.collect.ImmutableList;
 import org.junit.Before;
 import org.junit.Test;
 import solution.kiryl.city.collection.PartFilledApartmentList;
 import solution.kiryl.city.house.Apartment;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,14 +19,18 @@ public class PartFilledApartmentListTest {
             .mapToObj(val -> new Apartment(val, val))
             .collect(Collectors.toList());
     private static final List<Apartment> EXISTED_APARTMENTS = TEST_APARTMENTS.subList(0, 6);
-//    private static final Apartment[] EXISTED_APARTMENTS_AS_OBJECT = EXISTED_APARTMENTS;
     private static final int MAX_SIZE = 10;
+    public static final int FULL_LOAD = 100;
 
     private List<Apartment> sut = Collections.emptyList();
 
     @Before
     public void init() {
-        sut = new PartFilledApartmentList(MAX_SIZE, 60);
+        sut = new PartFilledApartmentList(MAX_SIZE, 67);
+    }
+
+    private void createFullLoadedList() {
+        sut = new PartFilledApartmentList(MAX_SIZE, FULL_LOAD);
     }
 
     @Test
@@ -147,13 +149,6 @@ public class PartFilledApartmentListTest {
     }
 
     @Test
-    public void shouldRemoveElement() {
-        fillWithData();
-        assertTrue("Элемент должен быть удален из коллекции", sut.remove(TEST_APARTMENTS.get(3)));
-        assertFalse("Элемент должен быть удален из коллекции", sut.contains(TEST_APARTMENTS.get(3)));
-    }
-
-    @Test
     public void shouldFindAllElements() {
         fillWithData();
         assertTrue("Должно найти все элементы из заполняемой коллекции, которые влазат в нее", sut.containsAll(EXISTED_APARTMENTS));
@@ -164,5 +159,143 @@ public class PartFilledApartmentListTest {
         assertTrue("Должен добавить все элементы", sut.addAll(EXISTED_APARTMENTS));
         assertTrue("Должен добавить все элементы", sut.containsAll(EXISTED_APARTMENTS));
 
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldThrowExceptionWhenAddAllElementsFromPosition() {
+        sut.addAll(3, TEST_APARTMENTS);
+    }
+
+    @Test
+    public void shouldRemoveAllFromCollection() {
+        fillWithData();
+        assertTrue("Должен удалить все данные из набора", sut.removeAll(ImmutableList.of(TEST_APARTMENTS.get(2), TEST_APARTMENTS.get(4))));
+        assertTrue("Элемент должен остаться", sut.contains(TEST_APARTMENTS.get(0)));
+        assertTrue("Элемент должен остаться", sut.contains(TEST_APARTMENTS.get(1)));
+        assertFalse("Элемент должен быть удален", sut.contains(TEST_APARTMENTS.get(2)));
+        assertTrue("Элемент должен остаться", sut.contains(TEST_APARTMENTS.get(3)));
+        assertFalse("Элемент должен быть удален", sut.contains(TEST_APARTMENTS.get(4)));
+        assertTrue("Элемент должен остаться", sut.contains(TEST_APARTMENTS.get(5)));
+        assertFalse("Должен не удалить все данные из набора большего чем лист", sut.removeAll(TEST_APARTMENTS));
+    }
+
+    @Test
+    public void shouldNotRemoveNulls() {
+        fillWithData();
+        final List<Apartment> oldList = new ArrayList<>(sut);
+        assertFalse("Должен не удалить все данные из набора null", sut.removeAll(Collections.singletonList(null)));
+        assertEquals("Должен не удалить все данные из набора null, данные не изменились", oldList, sut);
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldThrowExceptionWhenRetainAll() {
+        sut.retainAll(TEST_APARTMENTS);
+    }
+
+    @Test
+    public void shouldClearAllData() {
+        fillWithData();
+        sut.clear();
+        assertEquals("Лист должен быть нулевой длинны после удаления", 0, sut.size());
+        fillWithData();
+        assertEquals("Лист должен быть нулевой длинны после удаления (после добавления)", 0, sut.size());
+    }
+
+    @Test
+    public void shouldGetElementByIndex() {
+        fillWithData();
+        sut.get(5);
+        sut.get(MAX_SIZE - 1);
+
+        final int testIndex = 4;
+        createFullLoadedList();
+        fillWithData();
+        assertEquals("Должен найти элемент по индексу", TEST_APARTMENTS.get(testIndex), sut.get(testIndex));
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldThrowExceptionWhenSetElement() {
+        fillWithData();
+        sut.set(1, TEST_APARTMENTS.get(12));
+    }
+
+    @Test
+    public void shouldAddElementAtIndex() {
+        createFullLoadedList();
+        sut.addAll(EXISTED_APARTMENTS);
+        final int testIndex = 9;
+        final int expectedSize = 7;
+
+        sut.add(testIndex, TEST_APARTMENTS.get(testIndex));
+        assertEquals("Должно добавить данные в случайно выбранную свободную ячейку", expectedSize, sut.size());
+
+        sut.add(2, TEST_APARTMENTS.get(12));
+        assertEquals("Должно не добавить данные в случайно выбранную занятую ячейку", expectedSize, sut.size());
+    }
+
+    @Test
+    public void shouldRemoveElement() {
+        fillWithData();
+        assertTrue("Элемент должен быть удален из коллекции", sut.remove(TEST_APARTMENTS.get(3)));
+        assertFalse("Элемент должен быть удален из коллекции", sut.contains(TEST_APARTMENTS.get(3)));
+    }
+
+    @Test
+    public void shouldGetIndexOf() {
+        createFullLoadedList();
+        assertEquals("Должно найти индекс элемета", 0, sut.indexOf(null));
+
+        sut.add(TEST_APARTMENTS.get(10));
+        sut.add(TEST_APARTMENTS.get(1));
+        sut.add(TEST_APARTMENTS.get(2));
+        sut.add(TEST_APARTMENTS.get(12));
+        sut.add(TEST_APARTMENTS.get(4));
+        sut.add(TEST_APARTMENTS.get(4));
+        sut.add(TEST_APARTMENTS.get(3));
+        sut.add(TEST_APARTMENTS.get(2));
+        assertEquals("Должно найти индекс элемета", 4, sut.indexOf(TEST_APARTMENTS.get(4)));
+    }
+
+    @Test
+    public void shouldGetLastElementByIndex() {
+        createFullLoadedList();
+        assertEquals("Должно найти индекс элемета", MAX_SIZE - 1, sut.lastIndexOf(null));
+
+        sut.add(TEST_APARTMENTS.get(10));
+        sut.add(TEST_APARTMENTS.get(1));
+        sut.add(TEST_APARTMENTS.get(2));
+        sut.add(TEST_APARTMENTS.get(12));
+        sut.add(TEST_APARTMENTS.get(4));
+        sut.add(TEST_APARTMENTS.get(4));
+        sut.add(TEST_APARTMENTS.get(2));
+        sut.add(TEST_APARTMENTS.get(3));
+        assertEquals("Должно найти индекс элемета", 5, sut.lastIndexOf(TEST_APARTMENTS.get(4)));
+    }
+
+    // TODO: 2019-04-08 list iterator test
+
+    @Test
+    public void shouldReturnSublist() {
+        assertEquals("Размер саблиста должен совпадать", 5, sut.subList(5, 10).size());
+
+        createFullLoadedList();
+        fillWithData();
+        assertEquals(
+                "Саблисты должны совпадать",
+                ImmutableList.of(TEST_APARTMENTS.get(3), TEST_APARTMENTS.get(4), TEST_APARTMENTS.get(5)),
+                sut.subList(3, 6));
+    }
+
+    @Test
+    public void shouldAddApartmentInEmptyPoint() {
+        sut = new PartFilledApartmentList(MAX_SIZE, 0);
+        assertTrue("Апартаменты должны добавиться если есть свободное место (null)", ((PartFilledApartmentList) sut).addApartment(3, TEST_APARTMENTS.get(3)));
+    }
+
+    @Test
+    public void shouldNotAddApartmentInFilledPoint() {
+        createFullLoadedList();
+        fillWithData();
+        assertFalse("Апартаменты не должны добавиться если есть нет свободного места (null)", ((PartFilledApartmentList) sut).addApartment(3, TEST_APARTMENTS.get(3)));
     }
 }

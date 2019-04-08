@@ -9,6 +9,14 @@
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
+        <!--Guava Collection-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+
+        <!-- Test-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -36,7 +36,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     }
 
     private boolean isAvailable(int index) {
-        return !unavailableIndexes.contains(index) && maxSize > index;
+        return !unavailableIndexes.contains(index) && maxSize > index && apartments[index] == null;
     }
 
     @Override
@@ -119,6 +119,7 @@ public class PartFilledApartmentList implements List<Apartment> {
             if (o.equals(apartments[i])) {
                 apartments[i] = null;
                 unavailableIndexes.add(i);
+                size--;
                 return true;
             }
         }
@@ -145,14 +146,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean addAll(int index, Collection<? extends Apartment> c) {
-        if (index != currentIndex) {
-            throw new UnsupportedOperationException("Could not add");
-        }
-        boolean success = true;
-        for (Apartment apartment : apartments) {
-            success &= add(apartment);
-        }
-        return success;
+        throw new UnsupportedOperationException("Add with shift is unsupported");
     }
 
     @Override
@@ -238,24 +232,25 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public List<Apartment> subList(int fromIndex, int toIndex) {
-        if (checkListParameters(fromIndex, toIndex)) {
+        if (!checkListParameters(fromIndex, toIndex)) {
             throw new IllegalArgumentException("Wrong list parameters. Please check those");
         }
-        final PartFilledApartmentList apartmentList = new PartFilledApartmentList(maxSize, fillPercentage);
-        System.arraycopy(apartments, 0, apartmentList.apartments, fromIndex, toIndex - fromIndex + 1);
-        return apartmentList;
+        Apartment[] buffer = new Apartment[toIndex - fromIndex];
+        System.arraycopy(apartments, fromIndex, buffer, 0, toIndex - fromIndex);
+        return Arrays.asList(buffer);
     }
 
     private boolean checkListParameters(int fromIndex, int toIndex) {
-        return fromIndex < toIndex && fromIndex < maxSize;
+        return fromIndex < toIndex && fromIndex <= maxSize;
     }
 
     public boolean addApartment(int index, Apartment apartment) {
-        if (isAvailable(index)) {
+        if (apartments[index] != null) {
             return false;
         }
         unavailableIndexes.remove(index);
         apartments[index] = apartment;
+        size++;
         return true;
     }
 
