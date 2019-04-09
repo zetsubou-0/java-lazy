@@ -220,6 +220,13 @@ public class PartFilledApartmentListTest {
                 .forEach(val -> assertTrue("Элемент массива должен содержаться в исходной коллекции", TEST_APARTMENTS.contains(val)));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionIfUnsupportedType() {
+        fillWithData();
+        String[] array = new String[MAX_SIZE];
+        array = sut.toArray(array);
+    }
+
     @Test
     public void shouldAddElement() {
         assertTrue("Элемент должен быть добавлен в коллекцию", sut.add(TEST_APARTMENTS.get(0)));
@@ -398,12 +405,29 @@ public class PartFilledApartmentListTest {
     }
 
     @Test
+    public void shouldNotReturnNextIndex() {
+        createSingleElementCollection();
+        fillWithData();
+        final ListIterator<Apartment> listIterator = sut.listIterator();
+        listIterator.next();
+        assertEquals(-1, listIterator.nextIndex());
+    }
+
+    @Test
     public void shouldReturnPreviousIndex() {
         createFullLoadedList();
         fillWithData();
         final ListIterator<Apartment> listIterator = sut.listIterator();
         listIterator.next();
         assertEquals(0, listIterator.previousIndex());
+    }
+
+    @Test
+    public void shouldNotReturnPreviousIndex() {
+        createFullLoadedList();
+        fillWithData();
+        final ListIterator<Apartment> listIterator = sut.listIterator();
+        assertEquals(-1, listIterator.previousIndex());
     }
 
     @Test(expected = UnsupportedOperationException.class)
