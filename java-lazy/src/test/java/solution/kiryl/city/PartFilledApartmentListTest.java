@@ -236,7 +236,14 @@ public class PartFilledApartmentListTest {
     public void shouldAddAllElements() {
         assertTrue("Должен добавить все элементы", sut.addAll(EXISTED_APARTMENTS));
         assertTrue("Должен добавить все элементы", sut.containsAll(EXISTED_APARTMENTS));
+    }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldNotAddApartmentsWithShift() {
+        sut.add(TEST_APARTMENTS.get(0));
+        sut.add(TEST_APARTMENTS.get(1));
+        sut.add(TEST_APARTMENTS.get(2));
+        sut.addAll(1, TEST_APARTMENTS);
     }
 
     @Test(expected = UnsupportedOperationException.class)

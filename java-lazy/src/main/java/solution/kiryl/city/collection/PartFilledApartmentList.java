@@ -16,6 +16,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     private int currentIndex;
     private int size;
 
+    // done
     public PartFilledApartmentList(int maxSize, double fillPercentage) {
         this.currentIndex = -1;
         this.maxSize = maxSize;
@@ -92,6 +93,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         throw new IllegalArgumentException("Wrong array type - " + a.getClass() + ", but expected " + Apartment[].class);
     }
 
+    // done
     @Override
     public boolean add(Apartment apartment) {
         try {
@@ -139,6 +141,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         return contains;
     }
 
+    // done
     @Override
     public boolean addAll(Collection<? extends Apartment> collection) {
         boolean success = true;
@@ -148,6 +151,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         return success;
     }
 
+    // done
     @Override
     public boolean addAll(int index, Collection<? extends Apartment> c) {
         throw new UnsupportedOperationException("Add with shift is unsupported");
@@ -184,6 +188,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         throw new UnsupportedOperationException("Apartment set(int index, Apartment element) is unsupported. Unmodified collection");
     }
 
+    // done
     @Override
     public void add(int index, Apartment element) {
         if (!isAvailable(index)) {
@@ -248,6 +253,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         return fromIndex < toIndex && fromIndex <= maxSize;
     }
 
+    // done
     public boolean addApartment(int index, Apartment apartment) {
         if (apartments[index] != null) {
             return false;
