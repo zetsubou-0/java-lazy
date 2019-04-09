@@ -345,10 +345,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public void set(Apartment apartment) {
-            if (lastReturnedIndex != -1) {
-                super.apartments[lastReturnedIndex] = apartment;
-                lastReturnedIndex = -1;
-            }
+            throw new UnsupportedOperationException("Set is unsupported operation");
         }
 
         @Override

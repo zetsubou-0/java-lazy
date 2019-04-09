@@ -350,7 +350,6 @@ public class PartFilledApartmentListTest {
         assertEquals("Должно найти индекс элемета", 5, sut.lastIndexOf(TEST_APARTMENTS.get(4)));
     }
 
-    // TODO: 2019-04-08 list iterator test
     @Test
     public void shouldFindPrevious() {
         createSingleElementCollection();
@@ -375,6 +374,39 @@ public class PartFilledApartmentListTest {
         final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
         apartmentListIterator.next();
         assertEquals("Должен найти предыдущий элемент", TEST_APARTMENTS.get(0), apartmentListIterator.previous());
+    }
+
+    @Test
+    public void shouldReturnNextViaListIterator() {
+        createFullLoadedList();
+        fillWithData();
+        assertEquals(TEST_APARTMENTS.get(0), sut.listIterator().next());
+    }
+
+    @Test
+    public void shouldReturnNextIndex() {
+        createSingleElementCollection();
+        fillWithData();
+        assertEquals(1, sut.listIterator().nextIndex());
+    }
+
+    @Test
+    public void shouldReturnPreviousIndex() {
+        createFullLoadedList();
+        fillWithData();
+        final ListIterator<Apartment> listIterator = sut.listIterator();
+        listIterator.next();
+        assertEquals(0, listIterator.previousIndex());
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldThrowExceptionOnListIteratorSet() {
+        sut.listIterator().set(TEST_APARTMENTS.get(0));
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void shouldThrowExceptionOnListIteratorAdd() {
+        sut.listIterator().add(TEST_APARTMENTS.get(0));
     }
 
     @Test
