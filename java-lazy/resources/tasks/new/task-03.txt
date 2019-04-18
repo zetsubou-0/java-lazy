@@ -102,8 +102,14 @@ HeavyEquipmentFactory
         - Сеттеры класса EquipmentParameter должны быть недоступны для вызова, кроме как в этом билдере.
     Этот стособ создания объекта будет гарантировать в будущем неизменность данных и более удобное создание объекта.
 
-8 Создать свою реализацию коллекции - лист. Имплиментировать лист параметризированный Apartment (до этого создать пустой класс Apartment(int money, int maxPower) в city.house):
-    public class PartFilledApartmentList implements List<Apartment> {
+8 Создать интерфейс который будет содержать доп. методы для листа
+    public interface ApartmentList {
+        int getAvailableSize();
+        int allFilledSize();
+        boolean addApartment(int index, Apartment apartment);
+    }
+Создать свою реализацию коллекции - лист. Имплиментировать лист параметризированный Apartment (до этого создать пустой класс Apartment(int money, int maxPower) в city.house):
+    public class PartFilledApartmentList implements List<Apartment>, ApartmentList {
         ...
     }
 
@@ -125,35 +131,85 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
     - Коллекция должна содержать только апартаменты, конструктор должен принимать максимальный размер и процент заполнения.
     При расчете кол-ва свободных мест округление происходит в меньшую сторону. 10 и 40% -> 4, 10 и 69% -> 6
 
+    Порядок реализации методов:
+        1. public boolean add(Apartment apartment)
+            При добавлении новых элементов они кладутся на свободные места. При успехе возращается true.
+            Если не удалось положить элемент по причине того, что закончились места - false
+            Tests: shouldAddElement, shouldNotAddElement
+
+        2. public int size()
+            Должен возвращать кол-во добавленных элементов, т.е. реально заселенных апартаментов.
+            Tests: shouldReturnCorrectSize
+
+        3. public boolean contains(Object o)
+            Должен проверять если такой элемент в коллекции. Если мы ищем null, то его найдет в коллекции с заполнением < 100%
+            (учитывая округление) и не пустой коллекции.
+            Tests: shouldFindElement, shouldNotFindElement, shouldFindNullElementInPartFilledCollection, shouldNotFindNullInEmptyCollection, shouldNotFindNullInFullCollection
+
+        4. public boolean containsAll(Collection<?> c)
+            Должен проверять если все элементы входной коллекции в нашем листе
+            Tests: shouldFindAllElements
+
+        5. public Apartment get(int index)
+            Получить элемент по индексу
+            Tests: shouldGetElementByIndex
+
+        6. public boolean isEmpty()
+            Должна возвращать false, если был добавлен хотябы 1 элемент
+            Tests: shouldReturnRightEmptyStatus
+
+        7. public void add(int index, Apartment element)
+            Добавление элемента по индексу. Добавление происходит успешно только в том случае, если это место является вакантным (свободным),
+            Tests: shouldAddElementAtIndex
+
+        8. public boolean addAll(Collection<? extends Apartment> collection)
+            Должен добавлять все элементы одной коллекции в другую, по принципам описанным выше.
+            Tests: shouldAddAllElements
+
+        9. public boolean retainAll(Collection<?> c)
+            Неподдерживаемая операция
+            Tests: shouldThrowExceptionWhenRetainAll
+
+        10. public boolean addAll(int index, Collection<? extends Apartment> c)
+            Добавление коллекции не в конец не поддерживается, т.к. при этом необходимо сделать смещение.
+            В реальной жизни если бы кто-то заселился в квартиру которая была ранее не занята, всем бы жильцам пришлось переехать на 1 квартиру.
+            Tests: shouldNotAddApartmentsWithShift
+
+        11. public Apartment set(int index, Apartment element)
+            Неподдерживаемая операция
+            Tests: shouldThrowExceptionWhenSetElement
+
+        12. public int indexOf(Object o)
+            получение индекса первого совпадения с начала, иначе возвращается -1
+            Tests: shouldGetIndexOf
+
+        13. public int lastIndexOf(Object o)
+            получение индекса первого совпадения с конца, иначе возвращается -1
+            Tests: shouldGetLastElementByIndex
+
+        14. public List<Apartment> subList(int fromIndex, int toIndex)
+            Должен вернуться лист апартментов как часть исходного. включая стартовый и не включая последний
+            Tests: shouldReturnSublist
+
+        15. public String toString()
+            Дожно быть идентично выводу стандартных коллекций (к примеру ArrayList)
+            Tests: shouldGetStringViewAsArrayList
+
+        16.
+
+
     - Добавление новых элементов.
-        - public boolean add(Apartment apartment)
-        При добавлении новых элементов они кладутся на свободные места. При успехе возращается true.
-        Если не удалось положить элемент по причине того, что закончились места - false
-        - public void add(int index, Apartment element)
-        Добавление элемента по индексу. Добавление происходит успешно только в том случае, если это место является вакантным (свободным),
-        иначе возвращается результат - false
-        - public boolean addAll(Collection<? extends Apartment> collection)
-        Должен добавлять все элементы одной коллекции в другую, по принципам описанным выше.
-        - public boolean addAll(int index, Collection<? extends Apartment> c)
-        Добавление коллекции не в конец не поддерживается, т.к. при этом необходимо сделать смещение.
-        В реальной жизни если бы кто-то заселился в квартиру которая была ранее не занята, всем бы жильцам пришлось переехать на 1 квартиру.
         - public boolean addApartment(int index, Apartment apartment)
         Этот новый метод должен позволять добавлять элемены на указанную позицию. Если место уже занято, то ничего не должно произойти,
         вернется false. Элемент может быть добавлен на любое свободно место, даже если оно не вакантное. При этом оно становится вакантным.
         В примере выше если мы добавим на 2ю позицию, то получим следущее: el1, null, el3, el2, null
 
     - Получение размера коллекции.
-        - public int size()
-        Должен возвращать кол-во добавленных элементов, т.е. реально заселенных апартаментов.
         - public int getAvailableSize()
         Должен возвращать доступный размер для заселения (в идеале это максимально возможный размер)
         - public int allFilledSize()
         Должен возвращать размер заполненных апартоментов. До последнего заселенного.
         el1, null, el2, null, null - должен вернуть 3
-
-    - Проверка пустая ли коллекция.
-        - public boolean isEmpty()
-        Должна возвращать false, если был добавлен хотябы 1 элемент
 
     - Преобразование в массив.
         - public Object[] toArray()
@@ -161,12 +217,6 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
         - public <T> T[] toArray(T[] a)
         Должен возвращать представление листа в виде массива типизированно T. В нашем случае поддерживается только массив Apartment[]
         Если массив будет не типа Apartment, то должно появится IllegalArgumentException
-
-    - Проверка наличия элелмента/элементов в листе.
-        - public boolean contains(Object o)
-        Должен проверять если такой элемент в коллекции
-        - public boolean containsAll(Collection<?> c)
-        Должен проверять если все элементы входной коллекции в нашем листе
 
     - Удаление из листа. Все методы после удаления делают текущее место недоступным для заселения (кроме метода addApartment)
         - public boolean remove(Object o)
@@ -177,28 +227,6 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
         Должен удалять все элементы, которые мы передаем в качестве параметров из листа. Если все удалены - true
         - public void clear()
         Должен удалять все элементы коллекции и делать недоступными для заселения.
-
-    - Удержание/сохранение
-        - public boolean retainAll(Collection<?> c)
-        Неподдерживаемая операция
-
-    - Get/Set
-        - public Apartment get(int index)
-        Получить элемент по индексу
-        - public Apartment set(int index, Apartment element)
-        Неподдерживаемая операция
-        - public List<Apartment> subList(int fromIndex, int toIndex)
-        Должен вернуться лист апартментов как часть исходного. включая стартовый и не включая последний
-
-    - Получение индекса элемента
-        - public int indexOf(Object o)
-        получение индекса первого совпадения с начала, иначе возвращается -1
-        - public int lastIndexOf(Object o)
-        получение индекса первого совпадения с конца, иначе возвращается -1
-
-    - Преобразование в строку.
-        - public String toString()
-        Дожно быть идентично выводу стандартных коллекций (к примеру ArrayList)
 
     - Получение итераторов.
         - public Iterator<Apartment> iterator()
