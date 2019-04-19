@@ -158,99 +158,132 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
             Должна возвращать false, если был добавлен хотябы 1 элемент
             Tests: shouldReturnRightEmptyStatus
 
-        7. public void add(int index, Apartment element)
+        7. public PartFilledApartmentListNew(int maxSize, double fillPercentage) - конструктор
+            Проверяем что наша коллекция создается с верным распределением в зависимости от переданного процента (округление венрно)
+            Tests: shouldCreatePartFilledCollection, shouldCreatePartFilledCollectionWithRoundingDown
+
+        8. public void add(int index, Apartment element)
             Добавление элемента по индексу. Добавление происходит успешно только в том случае, если это место является вакантным (свободным),
             Tests: shouldAddElementAtIndex
 
-        8. public boolean addAll(Collection<? extends Apartment> collection)
+        9. public boolean addAll(Collection<? extends Apartment> collection)
             Должен добавлять все элементы одной коллекции в другую, по принципам описанным выше.
             Tests: shouldAddAllElements
 
-        9. public boolean retainAll(Collection<?> c)
+        10. public boolean retainAll(Collection<?> c)
             Неподдерживаемая операция
             Tests: shouldThrowExceptionWhenRetainAll
 
-        10. public boolean addAll(int index, Collection<? extends Apartment> c)
+        11. public boolean addAll(int index, Collection<? extends Apartment> c)
             Добавление коллекции не в конец не поддерживается, т.к. при этом необходимо сделать смещение.
             В реальной жизни если бы кто-то заселился в квартиру которая была ранее не занята, всем бы жильцам пришлось переехать на 1 квартиру.
             Tests: shouldNotAddApartmentsWithShift
 
-        11. public Apartment set(int index, Apartment element)
+        12. public Apartment set(int index, Apartment element)
             Неподдерживаемая операция
             Tests: shouldThrowExceptionWhenSetElement
 
-        12. public int indexOf(Object o)
+        13. public int indexOf(Object o)
             получение индекса первого совпадения с начала, иначе возвращается -1
             Tests: shouldGetIndexOf
 
-        13. public int lastIndexOf(Object o)
+        14. public int lastIndexOf(Object o)
             получение индекса первого совпадения с конца, иначе возвращается -1
             Tests: shouldGetLastElementByIndex
 
-        14. public List<Apartment> subList(int fromIndex, int toIndex)
+        15. public List<Apartment> subList(int fromIndex, int toIndex)
             Должен вернуться лист апартментов как часть исходного. включая стартовый и не включая последний
             Tests: shouldReturnSublist
 
-        15. public String toString()
+        16. public String toString()
             Дожно быть идентично выводу стандартных коллекций (к примеру ArrayList)
             Tests: shouldGetStringViewAsArrayList
 
-        16.
+        17. public boolean remove(Object o)
+            Должен удалять переданный элемент из коллекции. Если элемент удален - true. null нельзя удалить
+            Tests: shouldRemoveElement, shouldNotRemoveNullElement
 
+        18. public Apartment remove(int index)
+            Должен удалить элемент по индексу, если там есть данные
+            Tests: shouldRemoveElementByIndex, shouldRemoveNotRemoveNullElementByIndex
 
-    - Добавление новых элементов.
-        - public boolean addApartment(int index, Apartment apartment)
-        Этот новый метод должен позволять добавлять элемены на указанную позицию. Если место уже занято, то ничего не должно произойти,
-        вернется false. Элемент может быть добавлен на любое свободно место, даже если оно не вакантное. При этом оно становится вакантным.
-        В примере выше если мы добавим на 2ю позицию, то получим следущее: el1, null, el3, el2, null
+        19. public Object[] toArray()
+            Должен возвращать представление листа в виде массива объектов
+            Tests: shouldConvertToObjectsArray
 
-    - Получение размера коллекции.
-        - public int getAvailableSize()
-        Должен возвращать доступный размер для заселения (в идеале это максимально возможный размер)
-        - public int allFilledSize()
-        Должен возвращать размер заполненных апартоментов. До последнего заселенного.
-        el1, null, el2, null, null - должен вернуть 3
+        20. public <T> T[] toArray(T[] a)
+            Должен возвращать представление листа в виде массива типизированно T. В нашем случае поддерживается только массив Apartment[]
+            Если массив будет не типа Apartment, то должно появится IllegalArgumentException
+            Tests: shouldConvertToApartmentArray, shouldThrowExceptionIfUnsupportedType
 
-    - Преобразование в массив.
-        - public Object[] toArray()
-        Должен возвращать представление листа в виде массива объектов
-        - public <T> T[] toArray(T[] a)
-        Должен возвращать представление листа в виде массива типизированно T. В нашем случае поддерживается только массив Apartment[]
-        Если массив будет не типа Apartment, то должно появится IllegalArgumentException
+        21. public boolean addApartment(int index, Apartment apartment)
+            Этот новый метод должен позволять добавлять элемены на указанную позицию. Если место уже занято, то ничего не должно произойти,
+            вернется false. Элемент может быть добавлен на любое свободно место, даже если оно не вакантное. При этом оно становится вакантным.
+            В примере выше если мы добавим на 2ю позицию, то получим следущее: el1, null, el3, el2, null
+            Tests: shouldAddApartmentInEmptyPoint, shouldNotAddApartmentInFilledPoint
 
-    - Удаление из листа. Все методы после удаления делают текущее место недоступным для заселения (кроме метода addApartment)
-        - public boolean remove(Object o)
-        Должен удалять переданный элемент из коллекции. Если элемент удален - true.
-        - public Apartment remove(int index)
-        Должен удалить элемент по индексу, если там есть данные
-        - public boolean removeAll(Collection<?> c)
-        Должен удалять все элементы, которые мы передаем в качестве параметров из листа. Если все удалены - true
-        - public void clear()
-        Должен удалять все элементы коллекции и делать недоступными для заселения.
+        22. public int getAvailableSize()
+            Должен возвращать доступный размер для заселения (в идеале это максимально возможный размер)
+            Tests: shouldReturnCorrectRealSize
 
-    - Получение итераторов.
-        - public Iterator<Apartment> iterator()
-        возвращает реальзацию итератора, которая способна пройти по нашей коллекции
-        - public ListIterator<Apartment> listIterator()
-        возвращает реальзацию итератора, которая способна пройти по нашей коллекции
-        - public ListIterator<Apartment> listIterator(int index)
-        возвращает реальзацию итератора, которая способна пройти по нашей коллекции начиная с элемента index
+        23. public int allFilledSize()
+            Должен возвращать размер заполненных апартоментов. До последнего заселенного.
+            el1, null, el2, null, null - должен вернуть 3
+            Tests: shouldReturnRealFilledSize
 
-    - Методы итератора
-        - public boolean hasNext()
-        проверяет есть ли еще элементы в коллекции
-        - public Apartment next()
-        возвращает следующий элемент коллекции иначе ArrayIndexOutOfBoundsException
-        - public void remove()
-        должен удалить элемент на текущей позиции
+        24. public Iterator<Apartment> iterator()
+            возвращает реальзацию итератора, которая способна пройти по нашей коллекции
+            Tests: shouldReturnIterator
 
-    - Методы листитератора (все как у итератора, кроме:)
-        - public boolean hasPrevious()
-        Проверяет, есть ли предыдущий элемент.
-        - public Apartment previous()
-        Возвращает предыдущий вариант
-        - public int nextIndex()
-        Возвращает следующий индекс элемента или -1, если конец списка
-        - public int previousIndex()
-        Возвращает предыдущий индекс элемента или -1, если индекс < 0
+        25. public boolean hasNext()
+            проверяет есть ли еще элементы в коллекции
+            Tests: shouldFindNext, shouldNotFindNext
 
+        26. public Apartment next()
+            возвращает следующий элемент коллекции иначе ArrayIndexOutOfBoundsException
+            Tests: shouldGetNextIfPresent, shouldNotGetNextElementIfAbsent
+
+        27. public ListIterator<Apartment> listIterator()
+            возвращает реальзацию итератора, которая способна пройти по нашей коллекции
+            Tests: shouldReturnListIterator
+
+        28. public ListIterator<Apartment> listIterator(int index)
+            возвращает реальзацию итератора, которая способна пройти по нашей коллекции начиная с элемента index
+            Tests: shouldReturnListIteratorStartedWithIndex
+
+        29. public boolean hasPrevious()
+            Проверяет, есть ли предыдущий элемент.
+            Tests: shouldFindPrevious, shouldNotFindPrevious
+
+        30. public Apartment previous()
+            Возвращает предыдущий вариант
+            Tests: shouldGetPrevious
+
+        31. public int nextIndex()
+            Возвращает следующий индекс элемента или -1, если конец списка
+            Tests: shouldReturnNextIndex, shouldNotReturnNextIndex
+
+        32. public int previousIndex()
+            Возвращает предыдущий индекс элемента или -1, если индекс < 0
+            Tests: shouldReturnPreviousIndex, shouldNotReturnPreviousIndex
+
+        33. public void remove()
+            должен удалить элемент на текущей позиции
+            Tests: shouldRemoveElementFromCollectionViaIterator
+
+        34. public boolean removeAll(Collection<?> c)
+            Должен удалять все элементы, которые мы передаем в качестве параметров из листа. Если все удалены - true
+            Входная коллекция в которой есть null - null просто игнорируется. Если во входной коллекции только null - вернуть false
+            Tests: shouldRemoveAllFromCollection, shouldRemoveAllIfNullExistsInInputFromCollection, shouldNotRemoveIfOnlyNulls
+
+        35. public void clear()
+            Должен удалять все элементы коллекции и делать недоступными для заселения.
+            Tests: shouldClearAllData
+
+        36. public void add(Apartment apartment) - лист итератор
+            Неподдерживаемая операция
+            Tests: shouldThrowExceptionOnListIteratorAdd
+
+        37. public void set(Apartment apartment) - лист итератор
+            Неподдерживаемая операция
+            Tests: shouldThrowExceptionOnListIteratorSet

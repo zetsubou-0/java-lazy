@@ -4,12 +4,11 @@ import solution.kiryl.city.house.Apartment;
 
 import java.util.*;
 
-public class PartFilledApartmentList implements List<Apartment> {
+public class PartFilledApartmentList implements List<Apartment>, ApartmentList {
 
     private static final int UNDEFINED_INDEX = -1;
 
     private final int maxSize;
-    private final double fillPercentage;
     private final int filledSize;
     private final Set<Integer> unavailableIndexes;
     private Apartment[] apartments;
@@ -19,7 +18,6 @@ public class PartFilledApartmentList implements List<Apartment> {
     public PartFilledApartmentList(int maxSize, double fillPercentage) {
         this.currentIndex = -1;
         this.maxSize = maxSize;
-        this.fillPercentage = fillPercentage;
         this.filledSize = (int) Math.floor(maxSize * fillPercentage / 100);
         this.apartments = new Apartment[maxSize];
         this.unavailableIndexes = generateUnavailableIndexes();
@@ -39,17 +37,27 @@ public class PartFilledApartmentList implements List<Apartment> {
         return !unavailableIndexes.contains(index) && maxSize > index && apartments[index] == null;
     }
 
+    private int getAvailableIndex(int index) throws RangeException {
+        if (index >= maxSize) {
+            throw new RangeException();
+        }
+        return isAvailable(index + 1)
+                ? index + 1
+                : getAvailableIndex(index + 1);
+    }
+
+    private boolean checkListParameters(int fromIndex, int toIndex) {
+        return fromIndex < toIndex && fromIndex <= maxSize;
+    }
+
+    private boolean allNulls(Collection<?> collection) {
+        return collection.stream()
+                .allMatch(Objects::isNull);
+    }
+
     @Override
     public int size() {
         return size;
-    }
-
-    public int getAvailableSize() {
-        return apartments.length;
-    }
-
-    public int allFilledSize() {
-        return currentIndex + 1;
     }
 
     @Override
@@ -97,21 +105,11 @@ public class PartFilledApartmentList implements List<Apartment> {
         try {
             int index = getAvailableIndex(currentIndex);
             add(index, apartment);
-            currentIndex = index;
         } catch (RangeException e) {
             currentIndex = maxSize - 1;
             return false;
         }
         return true;
-    }
-
-    private int getAvailableIndex(int index) throws RangeException {
-        if (index >= maxSize) {
-            throw new RangeException();
-        }
-        return isAvailable(index + 1)
-                ? index + 1
-                : getAvailableIndex(index + 1);
     }
 
     @Override
@@ -154,10 +152,15 @@ public class PartFilledApartmentList implements List<Apartment> {
     }
 
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(Collection<?> collection) {
+        if (allNulls(collection)) {
+            return false;
+        }
         boolean success = true;
-        for (Object apartment : c) {
-            success &= remove(apartment);
+        for (Object apartment : collection) {
+            if (apartment != null) {
+                success &= remove(apartment);
+            }
         }
         return success;
     }
@@ -195,11 +198,11 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public Apartment remove(int index) {
-        if (!isAvailable(index)) {
+        if (index >= maxSize && apartments[index] == null) {
             return null;
         }
-        unavailableIndexes.add(index);
         final Apartment oldApartment = apartments[index];
+        unavailableIndexes.add(index);
         apartments[index] = null;
         return oldApartment;
     }
@@ -242,12 +245,20 @@ public class PartFilledApartmentList implements List<Apartment> {
         Apartment[] buffer = new Apartment[toIndex - fromIndex];
         System.arraycopy(apartments, fromIndex, buffer, 0, toIndex - fromIndex);
         return Arrays.asList(buffer);
+
     }
 
-    private boolean checkListParameters(int fromIndex, int toIndex) {
-        return fromIndex < toIndex && fromIndex <= maxSize;
+    @Override
+    public int getAvailableSize() {
+        return apartments.length;
     }
 
+    @Override
+    public int allFilledSize() {
+        return currentIndex + 1;
+    }
+
+    @Override
     public boolean addApartment(int index, Apartment apartment) {
         if (apartments[index] != null) {
             return false;
