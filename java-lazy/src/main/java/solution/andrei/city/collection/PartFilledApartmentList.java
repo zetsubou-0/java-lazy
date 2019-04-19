@@ -15,6 +15,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     private final double percentFilling;
     private final double percentEmpty;
     private final double numberElementForFilling;
+    private final Set<Integer> unavailableIndexes;
     private final Apartment[] array;
     public int size;
 
@@ -24,7 +25,16 @@ public class PartFilledApartmentList implements List<Apartment> {
         this.percentEmpty = (100 - percentFilling) /100;
         array = new Apartment[capasity];
         numberElementForFilling = capasity * percentFilling;
+        unavailableIndexes = number();
     }
+
+    private Set<Integer> number() {
+        for (;;) {
+            unavailableIndexes.add((int)(Math.random() * capasity));
+            if (unavailableIndexes.size() == numberElementForFilling) return unavailableIndexes;
+        }
+    }
+
 
 
     @Override
@@ -57,47 +67,19 @@ public class PartFilledApartmentList implements List<Apartment> {
         return null;
     }
 
-
-
-
-//        if (size == NUMBER_ELEMENT_FOR_FILLING) {
-//            return false;
-//        }
-//        for (int i = (int)(Math.random() * capasity); i < ARRAY.length; i++) {
-//            if (ARRAY[i] == null && size < NUMBER_ELEMENT_FOR_FILLING) {
-//                ARRAY[i] = apartment;
-//                size++;
-//                return true;
-//            }
-//        }
-//        return false;
-
 //231
     @Override
     public boolean add(Apartment apartment) {
-        if (size == numberElementForFilling) {
-            return false;
-        }
-        int n = 0;
-        for (int i = array.length - 1; i >= 0 ; i--) {
-            if (array[i] != null) {
-                n = i;
-                break;
+
+        for (int i = 0; i < array.length ; i++) {
+            for (Integer o : unavailableIndexes) {
+                if (i == o) {
+                    array[i] = apartment;
+                    return true;
+                }
             }
         }
-        int i;
-        for (;;) {
-            if (n == 0) {
-                array[0] = apartment;
-                return true;
-            }
-            i = (int)(Math.random() * capasity);
-            if (i > n && array.length - i >= (capasity * percentEmpty) - size) {
-                array[i] = apartment;
-                size++;
-                return true;
-            }
-        }
+        return false;
     }
 
     public static void main(String[] args) {
