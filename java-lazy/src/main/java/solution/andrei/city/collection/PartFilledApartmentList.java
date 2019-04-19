@@ -13,6 +13,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     private final int capasity;
     private final double percentFilling;
+    private final double percentEmpty;
     private final double NUMBER_ELEMENT_FOR_FILLING;
     private final Apartment[] ARRAY;
     public int size;
@@ -20,6 +21,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     public PartFilledApartmentList(int capasity, double percentFilling) {
         this.capasity = capasity;
         this.percentFilling = percentFilling / 100;
+        this.percentEmpty = (100 - percentFilling) /100;
         ARRAY = new Apartment[capasity];
         NUMBER_ELEMENT_FOR_FILLING = capasity * percentFilling;
     }
@@ -27,7 +29,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
@@ -58,30 +60,62 @@ public class PartFilledApartmentList implements List<Apartment> {
 
 
 
+//        if (size == NUMBER_ELEMENT_FOR_FILLING) {
+//            return false;
+//        }
+//        for (int i = (int)(Math.random() * capasity); i < ARRAY.length; i++) {
+//            if (ARRAY[i] == null && size < NUMBER_ELEMENT_FOR_FILLING) {
+//                ARRAY[i] = apartment;
+//                size++;
+//                return true;
+//            }
+//        }
+//        return false;
 
-
-
+//231
     @Override
     public boolean add(Apartment apartment) {
         if (size == NUMBER_ELEMENT_FOR_FILLING) {
             return false;
         }
-        for (int i = (int)(Math.random() * capasity); i < ARRAY.length; i++) {
-            if (ARRAY[i] == null && size < NUMBER_ELEMENT_FOR_FILLING) {
+
+        int n = 0;
+
+        for (int i = ARRAY.length - 1; i >= 0 ; i--) {
+            if (ARRAY[i] != null) {
+
+                n = i;
+                break;
+
+            }
+        }
+        int i;
+        for (;;) {
+            if (n == 0) {
+                ARRAY[0] = apartment;
+                return true;
+            }
+            i = (int)(Math.random() * capasity);
+            if (i > n && ARRAY.length - i >= (capasity * percentEmpty) - size) {
                 ARRAY[i] = apartment;
                 size++;
                 return true;
             }
         }
-        return false;
     }
 
+    public static void main(String[] args) {
+        PartFilledApartmentList a = new PartFilledApartmentList(10, 40);
+        a.add(new Apartment(100, 100));
+        a.add(new Apartment(150, 150));
+        a.add(new Apartment(160, 160));
+        a.add(new Apartment(170, 170));
+        a.add(new Apartment(180, 180));
+        for (int i = 0; i < a.ARRAY.length ; i++) {
+            System.out.println(a.ARRAY[i]);
+        }
 
-
-
-
-
-
+    }
 
 
 
@@ -141,10 +175,12 @@ public class PartFilledApartmentList implements List<Apartment> {
     public Apartment set(int index, Apartment element) {
         return null;
     }
-
+//315
     @Override
     public void add(int index, Apartment element) {
-
+        if (size != NUMBER_ELEMENT_FOR_FILLING && ARRAY[index] == null) {
+            ARRAY[index] = element;
+        }
     }
 
     @Override
