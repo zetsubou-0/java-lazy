@@ -14,16 +14,16 @@ public class PartFilledApartmentList implements List<Apartment> {
     private final int capasity;
     private final double percentFilling;
     private final double percentEmpty;
-    private final double NUMBER_ELEMENT_FOR_FILLING;
-    private final Apartment[] ARRAY;
+    private final double numberElementForFilling;
+    private final Apartment[] array;
     public int size;
 
     public PartFilledApartmentList(int capasity, double percentFilling) {
         this.capasity = capasity;
         this.percentFilling = percentFilling / 100;
         this.percentEmpty = (100 - percentFilling) /100;
-        ARRAY = new Apartment[capasity];
-        NUMBER_ELEMENT_FOR_FILLING = capasity * percentFilling;
+        array = new Apartment[capasity];
+        numberElementForFilling = capasity * percentFilling;
     }
 
 
@@ -75,12 +75,12 @@ public class PartFilledApartmentList implements List<Apartment> {
 //231
     @Override
     public boolean add(Apartment apartment) {
-        if (size == NUMBER_ELEMENT_FOR_FILLING) {
+        if (size == numberElementForFilling) {
             return false;
         }
         int n = 0;
-        for (int i = ARRAY.length - 1; i >= 0 ; i--) {
-            if (ARRAY[i] != null) {
+        for (int i = array.length - 1; i >= 0 ; i--) {
+            if (array[i] != null) {
                 n = i;
                 break;
             }
@@ -88,12 +88,12 @@ public class PartFilledApartmentList implements List<Apartment> {
         int i;
         for (;;) {
             if (n == 0) {
-                ARRAY[0] = apartment;
+                array[0] = apartment;
                 return true;
             }
             i = (int)(Math.random() * capasity);
-            if (i > n && ARRAY.length - i >= (capasity * percentEmpty) - size) {
-                ARRAY[i] = apartment;
+            if (i > n && array.length - i >= (capasity * percentEmpty) - size) {
+                array[i] = apartment;
                 size++;
                 return true;
             }
@@ -107,8 +107,8 @@ public class PartFilledApartmentList implements List<Apartment> {
         a.add(new Apartment(160, 160));
         a.add(new Apartment(170, 170));
         a.add(new Apartment(180, 180));
-        for (int i = 0; i < a.ARRAY.length ; i++) {
-            System.out.println(a.ARRAY[i]);
+        for (int i = 0; i < a.array.length ; i++) {
+            System.out.println(a.array[i]);
         }
 
     }
@@ -174,8 +174,8 @@ public class PartFilledApartmentList implements List<Apartment> {
 //315
     @Override
     public void add(int index, Apartment element) {
-        if (size != NUMBER_ELEMENT_FOR_FILLING && ARRAY[index] == null) {
-            ARRAY[index] = element;
+        if (size != numberElementForFilling && array[index] == null) {
+            array[index] = element;
         }
     }
 
