@@ -78,15 +78,11 @@ public class PartFilledApartmentList implements List<Apartment> {
         if (size == NUMBER_ELEMENT_FOR_FILLING) {
             return false;
         }
-
         int n = 0;
-
         for (int i = ARRAY.length - 1; i >= 0 ; i--) {
             if (ARRAY[i] != null) {
-
                 n = i;
                 break;
-
             }
         }
         int i;
