@@ -23,10 +23,10 @@ public class PartFilledApartmentList implements List<Apartment> {
         this.percentFilling = percentFilling / 100;
         array = new Apartment[capasity];
         numberElementForFilling = capasity * this.percentFilling;
-        unavailableIndexes = number();
+        unavailableIndexes = createRandomElement();
     }
 
-    private Set<Integer> number() {
+    private Set<Integer> createRandomElement() {
         Random random = new Random();
         Set<Integer> set = new LinkedHashSet<>();
         while (true) {
