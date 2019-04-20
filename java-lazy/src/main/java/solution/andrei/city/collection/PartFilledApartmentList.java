@@ -73,6 +73,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         for (int i = 0; i < array.length ; i++) {
             if (unavailableIndexes.contains(i) && array[i] == null) {
                 array[i] = apartment;
+                size++;
                 return true;
             }
         }
