@@ -13,7 +13,6 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     private final int capasity;
     private final double percentFilling;
-    private final double percentEmpty;
     private final double numberElementForFilling;
     private final Set<Integer> unavailableIndexes;
     private final Apartment[] array;
@@ -22,20 +21,21 @@ public class PartFilledApartmentList implements List<Apartment> {
     public PartFilledApartmentList(int capasity, double percentFilling) {
         this.capasity = capasity;
         this.percentFilling = percentFilling / 100;
-        this.percentEmpty = (100 - percentFilling) /100;
         array = new Apartment[capasity];
-        numberElementForFilling = capasity * percentFilling;
+        numberElementForFilling = capasity * this.percentFilling;
         unavailableIndexes = number();
     }
 
     private Set<Integer> number() {
-        for (;;) {
-            unavailableIndexes.add((int)(Math.random() * capasity));
-            if (unavailableIndexes.size() == numberElementForFilling) return unavailableIndexes;
+        Random random = new Random();
+        Set<Integer> set = new LinkedHashSet<>();
+        while (true) {
+            if (set.size() < numberElementForFilling) {
+                set.add(random.nextInt(capasity));
+            }
+            if (set.size() == numberElementForFilling) return set;
         }
     }
-
-
 
     @Override
     public int size() {
@@ -70,13 +70,10 @@ public class PartFilledApartmentList implements List<Apartment> {
 //231
     @Override
     public boolean add(Apartment apartment) {
-
         for (int i = 0; i < array.length ; i++) {
-            for (Integer o : unavailableIndexes) {
-                if (i == o) {
-                    array[i] = apartment;
-                    return true;
-                }
+            if (unavailableIndexes.contains(i) && array[i] == null) {
+                array[i] = apartment;
+                return true;
             }
         }
         return false;
@@ -85,19 +82,14 @@ public class PartFilledApartmentList implements List<Apartment> {
     public static void main(String[] args) {
         PartFilledApartmentList a = new PartFilledApartmentList(10, 40);
         a.add(new Apartment(100, 100));
+        a.add(new Apartment(120, 120));
+        a.add(new Apartment(130, 130));
         a.add(new Apartment(150, 150));
-        a.add(new Apartment(160, 160));
-        a.add(new Apartment(170, 170));
-        a.add(new Apartment(180, 180));
+
         for (int i = 0; i < a.array.length ; i++) {
             System.out.println(a.array[i]);
         }
-
     }
-
-
-
-
 
     @Override
     public boolean remove(Object o) {
