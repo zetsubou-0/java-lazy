@@ -49,7 +49,16 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean contains(Object o) {
-        return true;
+        if (o == null) {
+            for (Object apartment : array) {
+                if (o == null) return false;
+            }
+        } else {
+            for (Object apartment : array) {
+                if (o == apartment) return true;
+            }
+        }
+        return false;
     }
 
     @Override
