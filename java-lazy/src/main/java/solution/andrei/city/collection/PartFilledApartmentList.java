@@ -30,10 +30,10 @@ public class PartFilledApartmentList implements List<Apartment> {
         Random random = new Random();
         Set<Integer> set = new LinkedHashSet<>();
         while (true) {
-            if (set.size() < numberElementForFilling) {
+            if (set.size() < (int)numberElementForFilling) {
                 set.add(random.nextInt(capasity));
             }
-            if (set.size() == numberElementForFilling) return set;
+            if (set.size() == (int)numberElementForFilling) return set;
         }
     }
 
@@ -81,7 +81,15 @@ public class PartFilledApartmentList implements List<Apartment> {
     }
 
     public static void main(String[] args) {
-        PartFilledApartmentList a = new PartFilledApartmentList(10, 40);
+        PartFilledApartmentList a = new PartFilledApartmentList(10, 67);
+        a.add(new Apartment(100, 100));
+        a.add(new Apartment(120, 120));
+        a.add(new Apartment(130, 130));
+        a.add(new Apartment(150, 150));
+        a.add(new Apartment(100, 100));
+        a.add(new Apartment(120, 120));
+        a.add(new Apartment(130, 130));
+        a.add(new Apartment(150, 150));
         a.add(new Apartment(100, 100));
         a.add(new Apartment(120, 120));
         a.add(new Apartment(130, 130));
