@@ -123,6 +123,17 @@ public class PartFilledApartmentListTest {
     }
 
     @Test
+    public void shouldNotFindNullCollectionInEmptyCollection() {
+        assertFalse("Должно не найти null элементы пустой коллекции", sut.containsAll(Collections.singletonList(null)));
+    }
+
+    @Test
+    public void shouldFindNullInNotEmptyCollection() {
+        fillWithData();
+        assertTrue("Должно найти null элементы в заполняемой частично коллекции (в которой они есть)", sut.containsAll(Collections.singletonList(null)));
+    }
+
+    @Test
     public void shouldGetElementByIndex() {
         fillWithData();
         sut.get(5);
