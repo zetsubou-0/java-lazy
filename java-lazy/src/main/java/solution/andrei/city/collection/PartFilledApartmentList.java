@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 public class PartFilledApartmentList implements List<Apartment> {
 
-    private final int capasity;
+    private final int capacity;
     private final double percentFilling;
     private final double numberElementForFilling;
     private final Set<Integer> unavailableIndexes;
@@ -19,7 +19,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     public int size;
 
     public PartFilledApartmentList(int capasity, double percentFilling) {
-        this.capasity = capasity;
+        this.capacity = capasity;
         this.percentFilling = percentFilling / 100;
         array = new Apartment[capasity];
         numberElementForFilling = capasity * this.percentFilling;
@@ -31,7 +31,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         Set<Integer> set = new LinkedHashSet<>();
         while (true) {
             if (set.size() < (int)numberElementForFilling) {
-                set.add(random.nextInt(capasity));
+                set.add(random.nextInt(capacity));
             }
             if (set.size() == (int)numberElementForFilling) return set;
         }
@@ -44,7 +44,10 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        for (Object o : array) {
+            if (o != null) return false;
+        }
+        return true;
     }
 
     @Override
@@ -111,14 +114,23 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        Object[] temp = c.toArray();
-        int counter = 0;
-        for (int i = 0; i < c.size() ; i++) {
-            for (Object o : array) {
-                if (temp[i] == o) counter++;
-            }
+        if (c == null) return false;
+        if (c.isEmpty()) return false;
+
+        boolean d = true;
+        for (Object o : c) {
+            if (!contains(o)) d = false;
         }
-        return counter == c.size();
+        return d;
+
+//        Object[] temp = c.toArray();
+//        int counter = 0;
+//        for (int i = 0; i < c.size() ; i++) {
+//            for (Object o : array) {
+//                if (temp[i] == o) counter++;
+//            }
+//        }
+//        return counter == c.size();
     }
 
     @Override
@@ -158,7 +170,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public Apartment get(int index) {
-        return null;
+        return array[index];
     }
 
     @Override
