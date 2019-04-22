@@ -148,7 +148,7 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
             Tests: shouldFindElement, shouldNotFindElement, shouldFindNullElementInPartFilledCollection, shouldNotFindNullInEmptyCollection, shouldNotFindNullInFullCollection
 
         4. public boolean containsAll(Collection<?> c)
-            Должен проверять если все элементы входной коллекции в нашем листе
+            Должен проверять если все элементы входной коллекции в нашем листе (правила теже что и для contains)
             Tests: shouldFindAllElements, shouldNotFindNullCollectionInEmptyCollection, shouldFindNullInNotEmptyCollection
 
         5. public Apartment get(int index)
