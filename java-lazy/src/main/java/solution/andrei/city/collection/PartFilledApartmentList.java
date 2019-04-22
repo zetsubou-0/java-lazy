@@ -87,6 +87,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         return false;
     }
 
+
     public static void main(String[] args) {
         PartFilledApartmentList a = new PartFilledApartmentList(10, 67);
         a.add(new Apartment(100, 100));
