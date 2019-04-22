@@ -52,7 +52,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean contains(Object o) {
-        if (o == null && percentFilling < 100 && percentFilling != 0) return true;
+        if (o == null && percentFilling < 100 && percentFilling != 0) return false;
         for (Object apartment : array) {
             if (o == apartment) return true;
         }
@@ -122,15 +122,6 @@ public class PartFilledApartmentList implements List<Apartment> {
             if (!contains(o)) d = false;
         }
         return d;
-
-//        Object[] temp = c.toArray();
-//        int counter = 0;
-//        for (int i = 0; i < c.size() ; i++) {
-//            for (Object o : array) {
-//                if (temp[i] == o) counter++;
-//            }
-//        }
-//        return counter == c.size();
     }
 
     @Override
