@@ -110,6 +110,7 @@ HeavyEquipmentFactory
     }
 Создать свою реализацию коллекции - лист. Имплиментировать лист параметризированный Apartment (до этого создать пустой класс Apartment(int money, int maxPower) в city.house):
     public class PartFilledApartmentList implements List<Apartment>, ApartmentList {
+        public PartFilledApartmentListNew(int maxSize, double fillPercentage) {...}
         ...
     }
 
