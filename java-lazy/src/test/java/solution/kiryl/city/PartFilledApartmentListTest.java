@@ -38,8 +38,6 @@ public class PartFilledApartmentListTest {
         assertEquals("При создании коллекции размер должен быть нулевым", 0, sut.size());
         fillWithData();
         checkCollectionSize(expectedSize, sut.size());
-        long filledCount = getFilledCount();
-        checkCollectionSize(expectedSize, filledCount);
     }
 
     private void fillWithData() {
