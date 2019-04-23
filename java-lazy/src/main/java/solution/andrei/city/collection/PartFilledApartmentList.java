@@ -52,7 +52,8 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean contains(Object o) {
-        if (o == null && percentFilling < 100 && percentFilling != 0) return false;
+        if (size == 0) return false;
+        if (o == null && percentFilling < 1 && percentFilling > 0) return true;
         for (Object apartment : array) {
             if (o == apartment) return true;
         }
@@ -115,14 +116,10 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        if (c == null) return false;
-        if (c.isEmpty()) return false;
-
-        boolean d = true;
         for (Object o : c) {
-            if (!contains(o)) d = false;
+            if (!contains(o)) return false;
         }
-        return d;
+        return true;
     }
 
     @Override
