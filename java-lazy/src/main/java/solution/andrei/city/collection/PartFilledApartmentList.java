@@ -22,7 +22,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         this.capacity = capasity;
         this.percentFilling = percentFilling / 100;
         array = new Apartment[capasity];
-        numberElementForFilling = capasity * this.percentFilling;
+        numberElementForFilling = (int)(capasity * this.percentFilling);
         unavailableIndexes = createRandomElement();
     }
 
@@ -30,10 +30,10 @@ public class PartFilledApartmentList implements List<Apartment> {
         Random random = new Random();
         Set<Integer> set = new LinkedHashSet<>();
         while (true) {
-            if (set.size() < (int)numberElementForFilling) {
+            if (set.size() < numberElementForFilling) {
                 set.add(random.nextInt(capacity));
             }
-            if (set.size() == (int)numberElementForFilling) return set;
+            if (set.size() == numberElementForFilling) return set;
         }
     }
 
@@ -75,7 +75,6 @@ public class PartFilledApartmentList implements List<Apartment> {
         return null;
     }
 
-//231
     @Override
     public boolean add(Apartment apartment) {
         for (int i = 0; i < array.length ; i++) {
@@ -129,6 +128,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean addAll(int index, Collection<? extends Apartment> c) {
+
         return false;
     }
 
@@ -166,11 +166,12 @@ public class PartFilledApartmentList implements List<Apartment> {
     public Apartment set(int index, Apartment element) {
         return null;
     }
-//315
+
     @Override
     public void add(int index, Apartment element) {
-        if (size != numberElementForFilling && array[index] == null) {
+        if (unavailableIndexes.contains(index) && array[index] == null) {
             array[index] = element;
+            size++;
         }
     }
 
