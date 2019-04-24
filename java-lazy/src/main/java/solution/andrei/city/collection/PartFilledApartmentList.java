@@ -123,13 +123,19 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean addAll(Collection<? extends Apartment> c) {
-        return false;
+        for (Apartment apartment : c) {
+            if (!add(apartment)) return false;
+        }
+        return true;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends Apartment> c) {
 
-        return false;
+        return true;
+
+
+
     }
 
     @Override
@@ -139,7 +145,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
