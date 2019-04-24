@@ -131,11 +131,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean addAll(int index, Collection<? extends Apartment> c) {
-
-        return true;
-
-
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -170,7 +166,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public Apartment set(int index, Apartment element) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -188,12 +184,18 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        for (int i = 0; i < array.length; i++) {
+            if (o == array[i]) return i;
+        }
+        return -1;
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        for (int i = array.length - 1; i >= 0; i--) {
+            if (o == array[i]) return i;
+        }
+        return -1;
     }
 
     @Override
@@ -208,7 +210,11 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public List<Apartment> subList(int fromIndex, int toIndex) {
-        return null;
+        List<Apartment> list = new ArrayList<>();
+        for (int i = fromIndex; i < toIndex; i++) {
+            list.add(array[i]);
+        }
+        return list;
     }
 
     @Override
