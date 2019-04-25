@@ -62,16 +62,17 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public Iterator<Apartment> iterator() {
-        return null;
+        return new MyIterator();
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return array;
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
+
         return null;
     }
 
@@ -89,27 +90,41 @@ public class PartFilledApartmentList implements List<Apartment> {
 
 
     public static void main(String[] args) {
-        PartFilledApartmentList a = new PartFilledApartmentList(10, 67);
-        a.add(new Apartment(100, 100));
-        a.add(new Apartment(120, 120));
-        a.add(new Apartment(130, 130));
-        a.add(new Apartment(150, 150));
-        a.add(new Apartment(100, 100));
-        a.add(new Apartment(120, 120));
-        a.add(new Apartment(130, 130));
-        a.add(new Apartment(150, 150));
-        a.add(new Apartment(100, 100));
-        a.add(new Apartment(120, 120));
-        a.add(new Apartment(130, 130));
-        a.add(new Apartment(150, 150));
+//        PartFilledApartmentList a = new PartFilledApartmentList(10, 67);
+//        a.add(new Apartment(100, 100));
+//        a.add(new Apartment(120, 120));
+//        a.add(new Apartment(130, 130));
+//        a.add(new Apartment(150, 150));
+//        a.add(new Apartment(100, 100));
+//        a.add(new Apartment(120, 120));
+//        a.add(new Apartment(130, 130));
+//        a.add(new Apartment(150, 150));
+//        a.add(new Apartment(100, 100));
+//        a.add(new Apartment(120, 120));
+//        a.add(new Apartment(130, 130));
+//        a.add(new Apartment(150, 150));
+//        System.out.println(a);
+//        for (int i = 0; i < a.array.length ; i++) {
+//            System.out.println(a.array[i]);
+//        }
+        ArrayList<Integer> list = new ArrayList<>(10);
+        list.add(1);
+        System.out.println(list);
+        int[] d = new int[5];
+        d[0] = 1;
+        System.out.println(Arrays.toString(d));
 
-        for (int i = 0; i < a.array.length ; i++) {
-            System.out.println(a.array[i]);
-        }
     }
 
     @Override
     public boolean remove(Object o) {
+        if (o == null) return false;
+        for (int i = 0; i < array.length; i++) {
+            if (o == array[i]) {
+                array[i] = null;
+                return true;
+            }
+        }
         return false;
     }
 
@@ -179,7 +194,12 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public Apartment remove(int index) {
-        return null;
+        Apartment apartment = null;
+        if (array[index] != null) {
+            apartment = array[index];
+            array[index] = null;
+        }
+        return apartment;
     }
 
     @Override
@@ -243,14 +263,51 @@ public class PartFilledApartmentList implements List<Apartment> {
     }
 
     public int getAvailableSize() {
-        return 0;
+        return array.length;
     }
 
     public int allFilledSize() {
+        for (int i = array.length - 1; i >=0 ; i--) {
+            if (array[i] != null) return i + 1;
+        }
         return 0;
     }
 
     public boolean addApartment(int index, Apartment apartment) {
-        return true;
+        if (array[index] == null) {
+            array[index] = apartment;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return  Arrays.toString(array);
+    }
+
+    public class MyIterator implements Iterator<Apartment> {
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super Apartment> action) {
+
+        }
+
+        @Override
+        public boolean hasNext() {
+
+
+
+            return false;
+        }
+
+        @Override
+        public Apartment next() {
+            return null;
+        }
     }
 }
