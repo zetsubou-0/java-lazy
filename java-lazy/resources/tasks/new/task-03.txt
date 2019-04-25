@@ -242,7 +242,7 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
             Tests: shouldFindNext, shouldNotFindNext
 
         26. public Apartment next()
-            возвращает следующий элемент коллекции иначе ArrayIndexOutOfBoundsException
+            возвращает следующий элемент коллекции (производит смещение внутреннего указателя) иначе ArrayIndexOutOfBoundsException
             Tests: shouldGetNextIfPresent, shouldNotGetNextElementIfAbsent
 
         27. public ListIterator<Apartment> listIterator()
@@ -258,7 +258,7 @@ import solution.kiryl.city.collection.PartFilledApartmentList; на свою. З
             Tests: shouldFindPrevious, shouldNotFindPrevious
 
         30. public Apartment previous()
-            Возвращает предыдущий вариант
+            Возвращает предыдущий вариант (производит смещение внутреннего указателя)
             Tests: shouldGetPrevious
 
         31. public int nextIndex()
