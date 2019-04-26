@@ -73,6 +73,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     @Override
     public <T> T[] toArray(T[] a) {
 
+
         return null;
     }
 
@@ -220,12 +221,12 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public ListIterator<Apartment> listIterator() {
-        return null;
+        return new MyListIterator();
     }
 
     @Override
     public ListIterator<Apartment> listIterator(int index) {
-        return null;
+        return new MyListIterator(index);
     }
 
     @Override
@@ -287,6 +288,10 @@ public class PartFilledApartmentList implements List<Apartment> {
     }
 
     public class MyIterator implements Iterator<Apartment> {
+
+        int currentElement = 0;
+        Apartment currentApartment = null;
+
         @Override
         public void remove() {
 
@@ -299,15 +304,84 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public boolean hasNext() {
+            return currentElement < array.length;
+        }
 
+        @Override
+        public Apartment next() {
+            if (hasNext()) {
+                currentApartment = array[currentElement];
+                currentElement++;
+            }
+                return currentApartment;
+        }
+    }
 
+    public class MyListIterator implements ListIterator<Apartment> {
 
+        int previousElement = array.length - 1;
+        int currentElement;
+        Apartment currentApartment = null;
+
+        private MyListIterator() {
+        }
+
+        private MyListIterator(int currentElement) {
+            this.currentElement = currentElement;
+        }
+
+        @Override
+        public boolean hasNext() {
             return false;
         }
 
         @Override
         public Apartment next() {
             return null;
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return previousElement >= 0;
+        }
+
+        @Override
+        public void forEachRemaining(Consumer<? super Apartment> action) {
+
+        }
+
+        @Override
+        public Apartment previous() {
+            if (hasPrevious()) {
+                currentApartment = array[previousElement];
+                previousElement--;
+            }
+            return currentApartment;
+        }
+
+        @Override
+        public int nextIndex() {
+            return 0;
+        }
+
+        @Override
+        public int previousIndex() {
+         return 0;
+        }
+
+        @Override
+        public void remove() {
+
+        }
+
+        @Override
+        public void set(Apartment apartment) {
+            throw new UnsupportedOperationException();
+        }
+
+        @Override
+        public void add(Apartment apartment) {
+            throw new UnsupportedOperationException();
         }
     }
 }
