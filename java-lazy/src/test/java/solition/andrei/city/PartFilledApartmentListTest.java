@@ -390,16 +390,17 @@ public class PartFilledApartmentListTest {
 
     @Test
     public void shouldFindPrevious() {
-        createSingleElementCollection();
+        createFullLoadedList();
         fillWithData();
         final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
+        apartmentListIterator.next();
         apartmentListIterator.next();
         assertTrue(apartmentListIterator.hasPrevious());
     }
 
     @Test
     public void shouldNotFindPrevious() {
-        createSingleElementCollection();
+        createFullLoadedList();
         fillWithData();
         final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
         assertFalse(apartmentListIterator.hasPrevious());
@@ -407,7 +408,7 @@ public class PartFilledApartmentListTest {
 
     @Test
     public void shouldGetPrevious() {
-        createSingleElementCollection();
+        createFullLoadedList();
         fillWithData();
         final ListIterator<Apartment> apartmentListIterator = sut.listIterator();
         apartmentListIterator.next();
@@ -416,7 +417,7 @@ public class PartFilledApartmentListTest {
 
     @Test
     public void shouldReturnNextIndex() {
-        createSingleElementCollection();
+        createFullLoadedList();
         fillWithData();
         assertEquals(1, sut.listIterator().nextIndex());
     }
