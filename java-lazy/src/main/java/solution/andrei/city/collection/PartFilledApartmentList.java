@@ -312,6 +312,8 @@ public class PartFilledApartmentList implements List<Apartment> {
             if (hasNext()) {
                 currentApartment = array[currentElement];
                 currentElement++;
+            } else {
+                throw new ArrayIndexOutOfBoundsException();
             }
                 return currentApartment;
         }
@@ -319,11 +321,12 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     public class MyListIterator implements ListIterator<Apartment> {
 
-        int previousElement = array.length - 1;
+
         int currentElement;
         Apartment currentApartment = null;
 
         private MyListIterator() {
+            currentElement = array.length - 1;
         }
 
         private MyListIterator(int currentElement) {
@@ -342,7 +345,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public boolean hasPrevious() {
-            return previousElement >= 0;
+            return currentElement >= 0 && currentElement < array.length;
         }
 
         @Override
@@ -353,8 +356,10 @@ public class PartFilledApartmentList implements List<Apartment> {
         @Override
         public Apartment previous() {
             if (hasPrevious()) {
-                currentApartment = array[previousElement];
-                previousElement--;
+                currentApartment = array[currentElement];
+                currentElement--;
+            } else {
+                throw new ArrayIndexOutOfBoundsException();
             }
             return currentApartment;
         }
