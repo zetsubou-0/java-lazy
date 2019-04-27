@@ -294,7 +294,7 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public void remove() {
-
+            array[currentElement] = null;
         }
 
         @Override
@@ -319,11 +319,7 @@ public class PartFilledApartmentList implements List<Apartment> {
         }
     }
 
-    public class MyListIterator implements ListIterator<Apartment> {
-
-
-        int currentElement;
-        Apartment currentApartment = null;
+    public class MyListIterator extends MyIterator implements ListIterator<Apartment> {
 
         private MyListIterator() {
             currentElement = array.length - 1;
@@ -334,23 +330,8 @@ public class PartFilledApartmentList implements List<Apartment> {
         }
 
         @Override
-        public boolean hasNext() {
-            return false;
-        }
-
-        @Override
-        public Apartment next() {
-            return null;
-        }
-
-        @Override
         public boolean hasPrevious() {
             return currentElement >= 0 && currentElement < array.length;
-        }
-
-        @Override
-        public void forEachRemaining(Consumer<? super Apartment> action) {
-
         }
 
         @Override
@@ -371,12 +352,8 @@ public class PartFilledApartmentList implements List<Apartment> {
 
         @Override
         public int previousIndex() {
+
          return 0;
-        }
-
-        @Override
-        public void remove() {
-
         }
 
         @Override
