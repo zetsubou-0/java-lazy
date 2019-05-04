@@ -14,7 +14,7 @@ public class PartFilledApartmentList implements List<Apartment> {
     private final int capacity;
     private final double percentFilling;
     private final double numberElementForFilling;
-    private final Set<Integer> unavailableIndexes;
+    private Set<Integer> unavailableIndexes;
     private final Apartment[] array;
     public int size;
 
@@ -72,9 +72,8 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public <T> T[] toArray(T[] a) {
-
-
-        return null;
+        if (a instanceof Apartment[]) return a;
+        else throw new IllegalArgumentException();
     }
 
     @Override
@@ -152,6 +151,8 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
+
+
         return false;
     }
 
@@ -321,8 +322,9 @@ public class PartFilledApartmentList implements List<Apartment> {
 
     public class MyListIterator extends MyIterator implements ListIterator<Apartment> {
 
+        int currentElement = array.length - 1;
+
         private MyListIterator() {
-            currentElement = array.length - 1;
         }
 
         private MyListIterator(int currentElement) {
